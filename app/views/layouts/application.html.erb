@@ -1,7 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>HhsAcfUcDashboard</title>
+    <title>HHS: Unaccompanied Minors Dashboard</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" type="image/ico" href="<%= image_url "/assets/favicons/favicon.ico"%>" />
+    <link rel="icon" type="image/png" sizes="192x192" href="<%= image_url "/assets/favicons/favicon-192.png" %>" />
+    <link rel="apple-touch-icon-precomposed" href="<%= image_url "/assets/favicons/favicon-57.png" %>">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<%= image_url "assets/favicons/favicon-72.png" %>">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<%= image_url "/assets/favicons/favicon-114.png" %>">
+
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -9,6 +23,19 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header class="usa-site-header" role="banner">
+      <div class="usa-disclaimer">
+        <div class="usa-disclaimer-official">
+          <img src="<%= image_url "/assets/favicons/favicon-40.png" %>" alt="U.S. flag">
+          <p>An official website of the United States government</p>
+        </div>
+      </div>
+      <div class='site-navbar'>
+        <h1>HHS: <small>Unaccompanied Minors Dashboard</small></h1>
+      </div>
+    </header>
+    <div class='main-content'>
+      <%= yield %>
+    </div>
   </body>
 </html>
