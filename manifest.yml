@@ -1,0 +1,10 @@
+applications:
+- name: hhs-acf-uc-dashboard
+  instances: 1
+  memory: 512M
+  disk_quota: 1024M
+  routes:
+  - route: hhs-acf-uc-dashboard.apps.cloud.gov
+  env:
+    SECRET_TOKEN: 0a9da3384ff925e6ac2ee7da692c47ac444dcff9bd9e3de02a981dfb4555a4948217f337a57ae7ee2176407a7ae8d97d037a050a768d51da94e29cb2edbf8509
+  stack: cflinuxfs2

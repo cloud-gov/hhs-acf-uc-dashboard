@@ -1,0 +1,7 @@
+applications:
+- name: hhs-uc-dashboard-database-migrator
+  memory: 512M
+  disk_quota: 1024M
+  no-route: true
+  command: rake db:migrate
+  stack: cflinuxfs2
