@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>HHS: Unaccompanied Minors Dashboard</title>
+    <title>Unaccompanied Children Dashboard</title>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,19 +23,23 @@
   </head>
 
   <body>
-    <header class="usa-site-header" role="banner">
-      <div class="usa-disclaimer">
-        <div class="usa-disclaimer-official">
-          <img src="<%= image_url "/assets/favicons/favicon-40.png" %>" alt="U.S. flag">
-          <p>An official website of the United States government</p>
+    <div class="usa-disclaimer">
+      <div class="usa-disclaimer-official application-content">
+        <img src="<%= image_url "/assets/favicons/favicon-40.png" %>" alt="U.S. flag">
+        <p>An official website of the United States government</p>
+      </div>
+    </div>
+
+    <div class='application-content content-space'>
+      <header class="usa-site-header" role="banner">
+        <div class='site-navbar'>
+          <h3>Unaccompanied Children Dashboard</h3>
+          <h6>Office for Refugee Resettlement</h6>
         </div>
+      </header>
+      <div class='main-content'>
+        <%= yield %>
       </div>
-      <div class='site-navbar'>
-        <h1>HHS: <small>Unaccompanied Minors Dashboard</small></h1>
-      </div>
-    </header>
-    <div class='main-content'>
-      <%= yield %>
     </div>
   </body>
 </html>
