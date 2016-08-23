@@ -15,11 +15,6 @@ This repo will contain a web app used within ORR to view data from their unaccom
 
 See [CONTRIBUTING](CONTRIBUTING.md) for additional information.
 
-### Branch flow
-
-- Main branch: `master`
-- Development branch: `develop`
-
 ## Public domain
 
 This project is in the worldwide [public domain](LICENSE.md). As stated in [CONTRIBUTING](CONTRIBUTING.md):
