@@ -1,0 +1,19 @@
+@import 'variables';
+
+.devise-form {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+
+  h2 {
+    font-family: "Source Sans Pro";
+    margin: 0;
+  }
+}
+
+.registrations,
+.sessions {
+  .devise-form {
+    margin-top: 3rem;
+  }
+}

@@ -33,11 +33,13 @@
     <div class='application-content content-space'>
       <header class="usa-site-header" role="banner">
         <div class='site-navbar'>
-          <h3>Unaccompanied Children Dashboard</h3>
-          <h6>Office for Refugee Resettlement</h6>
+          <a href='/'>
+            <h3>Unaccompanied Children Dashboard</h3>
+            <h6>Office for Refugee Resettlement</h6>
+          </a>
         </div>
       </header>
-      <div class='main-content'>
+      <div class='main-content <%= controller_name.underscore %>'>
         <%= yield %>
       </div>
     </div>

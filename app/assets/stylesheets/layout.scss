@@ -25,6 +25,11 @@ body {
   color: $color-white;
   padding: 2rem 3rem;
 
+  a {
+    color: white;
+    text-decoration: none;
+  }
+
   h3 {
     margin: 0;
   }
