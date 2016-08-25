@@ -1400,8 +1400,8 @@ select {
   -webkit-appearance: none;
   appearance: none;
   background-color: #ffffff;
-  background-image: asset-url("../images/arrow-down.png");
-  background-image: asset-url("../images/arrow-down.svg");
+  background-image: asset-url("arrow-down.png");
+  background-image: asset-url("arrow-down.svg");
   background-position: right 1.3rem center;
   background-repeat: no-repeat;
   background-size: 1.3rem;
@@ -1483,8 +1483,8 @@ input[type="radio"]:focus + label::before {
 }
 
 input[type="checkbox"]:checked + label::before {
-  background-image: asset-url("../images/correct8.png");
-  background-image: asset-url("../images/correct8.svg");
+  background-image: asset-url("correct8.png");
+  background-image: asset-url("correct8.svg");
   background-position: 50%;
   background-repeat: no-repeat;
 }
@@ -1800,8 +1800,8 @@ a:focus {
 }
 
 .usa-external_link::after {
-  background: asset-url("../images/external-link.png") no-repeat 0 0;
-  background: asset-url("../images/external-link.svg") no-repeat 0 0;
+  background: asset-url("external-link.png") no-repeat 0 0;
+  background: asset-url("external-link.svg") no-repeat 0 0;
   background-size: 100%;
   content: '';
   display: inline-block;
@@ -1812,13 +1812,13 @@ a:focus {
 }
 
 .usa-external_link:hover::after {
-  background-image: asset-url("../images/external-link-hover.png");
-  background-image: asset-url("../images/external-link-hover.svg");
+  background-image: asset-url("external-link-hover.png");
+  background-image: asset-url("external-link-hover.svg");
 }
 
 .usa-external_link-alt::after {
-  background: asset-url("../images/external-link-alt.png") no-repeat 0 0;
-  background: asset-url("../images/external-link-alt.svg") no-repeat 0 0;
+  background: asset-url("external-link-alt.png") no-repeat 0 0;
+  background: asset-url("external-link-alt.svg") no-repeat 0 0;
   background-size: 100%;
   content: '';
   display: inline-block;
@@ -1829,8 +1829,8 @@ a:focus {
 }
 
 .usa-external_link-alt:hover::after {
-  background-image: asset-url("../images/external-link-alt-hover.png");
-  background-image: asset-url("../images/external-link-alt-hover.svg");
+  background-image: asset-url("external-link-alt-hover.png");
+  background-image: asset-url("external-link-alt-hover.svg");
 }
 
 h1,
@@ -2063,8 +2063,8 @@ dfn {
   text-align: left;
   -webkit-font-smoothing: auto;
   background-color: #f1f1f1;
-  background-image: asset-url("../images/minus.png");
-  background-image: asset-url("../images/minus.svg");
+  background-image: asset-url("minus.png");
+  background-image: asset-url("minus.svg");
   background-position: right 3rem center;
   background-repeat: no-repeat;
   background-size: 13px;
@@ -2111,8 +2111,8 @@ dfn {
 
 .usa-accordion > ul [aria-expanded=false],
 .usa-accordion-bordered > ul [aria-expanded=false] {
-  background-image: asset-url("../images/plus.png");
-  background-image: asset-url("../images/plus.svg");
+  background-image: asset-url("plus.png");
+  background-image: asset-url("plus.svg");
   background-repeat: no-repeat;
   background-size: 1.3rem;
 }
@@ -2160,8 +2160,8 @@ dfn {
   text-align: left;
   -webkit-font-smoothing: auto;
   background-color: #f1f1f1;
-  background-image: asset-url("../images/minus.png");
-  background-image: asset-url("../images/minus.svg");
+  background-image: asset-url("minus.png");
+  background-image: asset-url("minus.svg");
   background-position: right 3rem center;
   background-repeat: no-repeat;
   background-size: 13px;
@@ -2197,8 +2197,8 @@ dfn {
 }
 
 .usa-accordion-button[aria-expanded=false] {
-  background-image: asset-url("../images/plus.png");
-  background-image: asset-url("../images/plus.svg");
+  background-image: asset-url("plus.png");
+  background-image: asset-url("plus.svg");
   background-repeat: no-repeat;
   background-size: 1.3rem;
 }
@@ -2259,26 +2259,28 @@ dfn {
 
 .usa-alert-success {
   background-color: #e7f4e4;
-  background-image: asset-url("../images/alerts/success.png");
-  background-image: asset-url("../images/alerts/success.svg");
+  background-image: asset-url("alerts/success.png");
+  background-image: asset-url("alerts/success.svg");
 }
 
-.usa-alert-warning {
+.usa-alert-warning,
+.usa-alert-alert {
   background-color: #fff1d2;
-  background-image: asset-url("../images/alerts/warning.png");
-  background-image: asset-url("../images/alerts/warning.svg");
+  background-image: asset-url("alerts/warning.png");
+  background-image: asset-url("alerts/warning.svg");
 }
 
 .usa-alert-error {
   background-color: #f9dede;
-  background-image: asset-url("../images/alerts/error.png");
-  background-image: asset-url("../images/alerts/error.svg");
+  background-image: asset-url("alerts/error.png");
+  background-image: asset-url("alerts/error.svg");
 }
 
-.usa-alert-info {
+.usa-alert-info,
+.usa-alert-notice {
   background-color: #e1f3f8;
-  background-image: asset-url("../images/alerts/info.png");
-  background-image: asset-url("../images/alerts/info.svg");
+  background-image: asset-url("alerts/info.png");
+  background-image: asset-url("alerts/info.svg");
 }
 
 .usa-alert-no_icon {
@@ -2586,8 +2588,8 @@ li.usa-footer-primary-content:last-child {
 }
 
 .usa-footer-big ul .usa-footer-primary-link {
-  background-image: asset-url("../images/arrow-down.png");
-  background-image: asset-url("../images/arrow-down.svg");
+  background-image: asset-url("arrow-down.png");
+  background-image: asset-url("arrow-down.svg");
   background-position: 1.5rem center;
   background-repeat: no-repeat;
   background-size: 1.3rem;
@@ -2618,8 +2620,8 @@ li.usa-footer-primary-content:last-child {
 }
 
 .usa-footer-big ul.hidden .usa-footer-primary-link {
-  background-image: asset-url("../images/arrow-right.png");
-  background-image: asset-url("../images/arrow-right.svg");
+  background-image: asset-url("arrow-right.png");
+  background-image: asset-url("arrow-right.svg");
   cursor: pointer;
   display: block;
 }
@@ -2704,23 +2706,23 @@ li.usa-footer-primary-content:last-child {
 }
 
 .usa-link-facebook {
-  background-image: asset-url("../images/social-icons/png/facebook25.png");
-  background-image: asset-url("../images/social-icons/svg/facebook25.svg");
+  background-image: asset-url("social-icons/png/facebook25.png");
+  background-image: asset-url("social-icons/svg/facebook25.svg");
 }
 
 .usa-link-twitter {
-  background-image: asset-url("../images/social-icons/png/twitter16.png");
-  background-image: asset-url("../images/social-icons/svg/twitter16.svg");
+  background-image: asset-url("social-icons/png/twitter16.png");
+  background-image: asset-url("social-icons/svg/twitter16.svg");
 }
 
 .usa-link-youtube {
-  background-image: asset-url("../images/social-icons/png/youtube15.png");
-  background-image: asset-url("../images/social-icons/svg/youtube15.svg");
+  background-image: asset-url("social-icons/png/youtube15.png");
+  background-image: asset-url("social-icons/svg/youtube15.svg");
 }
 
 .usa-link-rss {
-  background-image: asset-url("../images/social-icons/png/rss25.png");
-  background-image: asset-url("../images/social-icons/svg/rss25.svg");
+  background-image: asset-url("social-icons/png/rss25.png");
+  background-image: asset-url("social-icons/svg/rss25.svg");
 }
 
 form a {
@@ -2876,8 +2878,8 @@ fieldset {
 }
 
 .usa-checklist-checked::before {
-  background-image: asset-url("../images/correct9.png");
-  background-image: asset-url("../images/correct9.svg");
+  background-image: asset-url("correct9.png");
+  background-image: asset-url("correct9.svg");
   background-position: 100%;
   background-repeat: no-repeat;
   background-size: 100%;
@@ -2918,8 +2920,8 @@ fieldset {
 
 .usa-search [type="submit"],
 .usa-search .usa-search-submit {
-  background-image: asset-url("../images/search.png");
-  background-image: asset-url("../images/search.svg");
+  background-image: asset-url("search.png");
+  background-image: asset-url("search.svg");
   background-position: 50%;
   background-repeat: no-repeat;
   border-bottom-left-radius: 0;
@@ -2970,8 +2972,8 @@ fieldset {
   }
   .usa-search.usa-search-small [type="submit"],
   .usa-search.usa-search-small .usa-search-submit {
-    background-image: asset-url("../images/search.png");
-    background-image: asset-url("../images/search.svg");
+    background-image: asset-url("search.png");
+    background-image: asset-url("search.svg");
     background-position: 50%;
     background-repeat: no-repeat;
     width: 4.5rem;

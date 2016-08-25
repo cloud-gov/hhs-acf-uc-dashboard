@@ -40,6 +40,9 @@
         </div>
       </header>
       <div class='main-content <%= controller_name.underscore %>'>
+        <% flash.each do |key_value| %>
+          <%= render partial: '/layouts/flash', locals: { type: key_value[0], value: key_value[1] } %>
+        <% end %>
         <%= yield %>
       </div>
     </div>

@@ -8,9 +8,9 @@ Feature:
     When I visit the home page
     Then I should see a link to request access
 
-  @wip
   Scenario: Registering as an unverified user
     Given I am an unverified user
+    And I visit the home page
     When I click the link to request access
     And I fill in my email
     And I fill in and confirm a password

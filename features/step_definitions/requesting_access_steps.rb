@@ -15,12 +15,13 @@ When(/^I click the link to request access$/) do
 end
 
 When(/^I fill in my email$/) do
-  fill_in('Email', :with => 'asker@hhs.gov')
+  @unknown_email = 'asker@hhs.gov'
+  fill_in('Email', :with => @unknown_email)
 end
 
 When(/^I fill in and confirm a password$/) do
   fill_in('Password', :with => 's3kr3t')
-  fill_in('Confirm Password', :with => 's3kr3t')
+  fill_in('Password confirmation', :with => 's3kr3t')
 end
 
 When(/^I click to submit$/) do
@@ -28,18 +29,15 @@ When(/^I click to submit$/) do
 end
 
 Then(/^I should see a message telling me I need to verify my email$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  expect(page).to have_content("A message with a confirmation link has been sent to your email address")
 end
 
 Then(/^I receive an email asking me to verify my email address$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  mail = ActionMailer::Base.deliveries.last
+  expect(mail.to.first).to eq(@unknown_email)
 end
 
 Given(/^I have requested access to the dashboard$/) do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Given(/^I receive an email asking me to verify my email address$/) do
   pending # Write code here that turns the phrase above into concrete actions
 end
 
