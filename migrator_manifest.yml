@@ -1,9 +1,0 @@
-applications:
-- name: hhs-uc-dashboard-database-migrator
-  memory: 512M
-  disk_quota: 1024M
-  routes:
-  - route: hhs-acf-uc-dashboard.apps.cloud.gov
-  no-route: true
-  command: (rake db:migrate && echo SUCCESS || echo FAIL) && sleep infinity
-  stack: cflinuxfs2
