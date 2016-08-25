@@ -15,12 +15,16 @@ When(/^I click the link to request access$/) do
 end
 
 When(/^I fill in my email$/) do
-  @unknown_email = 'asker@hhs.gov'
+  @unknown_email ||= 'asker@hhs.gov'
   fill_in('Email', :with => @unknown_email)
 end
 
-When(/^I fill in and confirm a password$/) do
+When(/^I fill in my password$/) do
   fill_in('Password', :with => 's3kr3t')
+end
+
+When(/^I fill in and confirm a password$/) do
+  step "I fill in my password"
   fill_in('Password confirmation', :with => 's3kr3t')
 end
 
@@ -38,13 +42,28 @@ Then(/^I receive an email asking me to verify my email address$/) do
 end
 
 Given(/^I have requested access to the dashboard$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  step "I visit the home page"
+  step "I click the link to request access"
+  step "I fill in my email"
+  step "I fill in and confirm a password"
+  step "I click to submit"
 end
 
 When(/^I click on the verification link in the email$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  user = User.where(email: @unknown_email).first
+  visit "/users/confirmation?confirmation_token=#{user.confirmation_token}"
 end
 
 Then(/^I should see a message that my participation is being reviewed$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  expect(page).to have_content(/your participation is being reviewed/i)
+end
+
+Then(/^I will see a message that my email is confirmed$/) do
+  expect(page).to have_content(/Your email address has been successfully confirmed/i)
+end
+
+When(/^I sign in as an unverified user with my credentials$/) do
+  step "I fill in my email"
+  step "I fill in my password"
+  click_button "Sign in"
 end
