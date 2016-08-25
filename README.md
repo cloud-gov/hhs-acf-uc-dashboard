@@ -4,12 +4,28 @@ Unaccompanied children apprehended by the Department of Homeland Security (DHS) 
 
 More info: [www.acf.hhs.gov/orr/programs/ucs](http://www.acf.hhs.gov/orr/programs/ucs)
 
-This repo will contain a web app used within ORR to view data from their unaccompanied child database.
+This repo will contain a web app used within ORR to view data from their unaccompanied child portal.
 
 ## Repositories
 
 - API
 - Dashboard (this repo)
+
+## Product Board
+Stories are on a [Pivotal Tracker Workspace](https://www.pivotaltracker.com/n/projects/1779875) that is public.
+
+## Application Information
+
+This is a Rails app with authentication covered by the `devise` gem.
+
+Bundling and setting up databases follows the expected Rails patterns.
+
+Tests can be run with the default rake command, `rake`.
+
+
+## Deploying
+
+A demo application is on [cloud.gov](https://hhs-acf-uc-dashboard.apps.cloud.gov/). With permissions you can deploy with `cf push`. Getting access to the box can be done via `cf-ssh`.
 
 ## Contributing
 
