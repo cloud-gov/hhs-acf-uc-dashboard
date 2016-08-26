@@ -12,6 +12,17 @@ module View
       end
     end
 
+    def role_names
+      [
+        Role::None,
+        Role::General,
+        Role::Operations,
+        Role::AdminRole
+      ].map do |klass|
+        klass.new.name
+      end
+    end
+
     class UserPresentation
       attr_reader :user
 

@@ -38,3 +38,28 @@ Then(/^I should see a list of existing users$/) do
     expect(page).to have_content(user.email)
   end
 end
+
+Given(/^there is a 'No access' user listed$/) do
+  step "there are user of various types in the system"
+  @no_access_user = @users[1]
+end
+
+When(/^I change the role of the 'No access' user to 'Operations'$/) do
+  within("form.user_id_#{@no_access_user.id}") do
+    find('input[name=role]').click
+    fill_in('role', with: 'Operations')
+  end
+end
+
+When(/^I click to save the role change$/) do
+  within("form.user_id_#{@no_access_user.id}") do
+    click_button('Save')
+  end
+end
+
+Then(/^I will see the role of the 'No access' user is now 'Operations'$/) do
+  within("form.user_id_#{@no_access_user.id}") do
+    new_role = find('select[name=role]').value
+    expect(new_role).to eq('Operations')
+  end
+end

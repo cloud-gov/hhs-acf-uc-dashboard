@@ -9,15 +9,15 @@ Feature:
     When I visit the 'Users' page
     Then I should see a list of existing users
 
-  #@wip
-  #Scenario: Promoting the role of a 'No access' user
-    #Given I am an authenticated 'admin' user
-    #And there is a 'No access' user listed
-    #And I visit the 'Users' page
-    #When I click on the role of the 'No access' user
-    #And I change it to 'Leadership'
-    #And I click to save the role change
-    #Then I will see the user now has the updated role
+  @wip @javascript
+  Scenario: Promoting the role of a 'No access' user
+    Given I have signed in as an authenticated 'admin' user
+    And there is a 'No access' user listed
+    And I visit the 'Users' page
+    When I click on the role of the 'No access' user
+    And I change it to 'Leadership'
+    And I click to save the role change
+    Then I will see the user now has the updated role
 
   #@wip
   #Scenario: Demoting the role of a user

@@ -13,7 +13,13 @@
     <tr>
       <td><%= user.email %></td>
       <td><%= user.confirmed_at %></td>
-      <td><%= user.role %></td>
+      <td class='role-form-container'>
+        <%= form_for([:admin, user.user], html: {class: 'user-role'}) do |f| %>
+          <%= f.select :role, @view_model.role_names, {selected: user.role} %>
+          <%= f.submit 'Save' %>
+          <a href='javascript:void(0)' class='cancel-user-role-change'>Cancel</a>
+        <% end %>
+      </td>
     </tr>
     <% end %>
   </tbody>

@@ -6,4 +6,21 @@
   table {
     margin-top: 1rem;
   }
+
+  .role-form-container {
+    width: 315px;
+  }
+
+  form {
+    select {
+      display: inline;
+      width: 150px;
+    }
+
+    input[type=submit] {
+      display: inline-block;
+      padding: 1rem;
+      margin: 0 1rem;
+    }
+  }
 }

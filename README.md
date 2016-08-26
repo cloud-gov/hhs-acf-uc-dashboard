@@ -22,6 +22,11 @@ Bundling and setting up databases follows the expected Rails patterns.
 
 Tests can be run with the default rake command, `rake`.
 
+## Binary dependencies
+
+Rails uses the `poltergeist` gem for testing, which requires the binary `phantomjs`.
+On our mac machines use: `brew install phantomjs`. Otherwise checkout
+either project for advice on installation.
 
 ## Deploying
 
