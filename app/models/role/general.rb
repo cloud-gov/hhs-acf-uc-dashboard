@@ -3,5 +3,9 @@ class Role
     def manage_users?
       false
     end
+
+    def name
+      'Observer'
+    end
   end
 end

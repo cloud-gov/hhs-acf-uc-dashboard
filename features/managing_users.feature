@@ -3,12 +3,11 @@ Feature:
   I want to grant role level permissions to users
   So that they can participate in the program at the appropriate level
 
-  @wip
   Scenario: Viewing existing users
-    Given I am an authenticated 'admin' user
+    Given I have signed in as an authenticated 'admin' user
     And there are user of various types in the system
     When I visit the 'Users' page
-    #Then I should see a list of existing users
+    Then I should see a list of existing users
 
   #@wip
   #Scenario: Promoting the role of a 'No access' user

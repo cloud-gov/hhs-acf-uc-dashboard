@@ -3,6 +3,10 @@ class Role
     def manage_users?
       false
     end
+
+    def name
+      'Operations'
+    end
   end
 end
 

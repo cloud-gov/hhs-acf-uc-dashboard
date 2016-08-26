@@ -1,11 +1,19 @@
+Given(/^I have signed in as an authenticated 'admin' user$/) do
+  step "I am an authenticated 'admin' user"
+  step "I visit the home page"
+  step "I sign in"
+end
+
 Given(/^I am an authenticated 'admin' user$/) do
-  @admin = User.new({
-    email: 'admin@hhs.gov',
-    password: 's3kr3t',
-    password_confirmation: 's3kr3t'
+  @email = 'admin@hhs.gov'
+  @password = 's3kr3t'
+  @admin = User.create!({
+    email: @email,
+    password: @password,
+    password_confirmation: @password,
+    role: 'admin'
   })
-  @admin.role = 'admin'
-  @admin.save!
+  @admin.update_attribute(:confirmed_at, Time.now - 3.days)
 end
 
 Given(/^there are user of various types in the system$/) do
@@ -17,7 +25,7 @@ Given(/^there are user of various types in the system$/) do
     User.create!({email: 'user-3@hhs.gov', password: password, password_confirmation: password})
   ]
 
-  @users.first.update_attribute(:role, 'leadership')
+  @users.first.update_attribute(:role, 'operations')
   @users.last.update_attribute(:role, 'observer')
 end
 

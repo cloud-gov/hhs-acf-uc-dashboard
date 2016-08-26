@@ -15,17 +15,18 @@ When(/^I click the link to request access$/) do
 end
 
 When(/^I fill in my email$/) do
-  @unknown_email ||= 'asker@hhs.gov'
-  fill_in('Email', :with => @unknown_email)
+  @email ||= 'asker@hhs.gov'
+  fill_in('Email', :with => @email)
 end
 
 When(/^I fill in my password$/) do
-  fill_in('Password', :with => 's3kr3t')
+  @password ||= 's3kr3t'
+  fill_in('Password', :with => @password)
 end
 
 When(/^I fill in and confirm a password$/) do
   step "I fill in my password"
-  fill_in('Password confirmation', :with => 's3kr3t')
+  fill_in('Password confirmation', :with => @password)
 end
 
 When(/^I click to submit$/) do
@@ -38,7 +39,7 @@ end
 
 Then(/^I receive an email asking me to verify my email address$/) do
   mail = ActionMailer::Base.deliveries.last
-  expect(mail.to.first).to eq(@unknown_email)
+  expect(mail.to.first).to eq(@email)
 end
 
 Given(/^I have requested access to the dashboard$/) do
@@ -50,7 +51,7 @@ Given(/^I have requested access to the dashboard$/) do
 end
 
 When(/^I click on the verification link in the email$/) do
-  user = User.where(email: @unknown_email).first
+  user = User.where(email: @email).first
   visit "/users/confirmation?confirmation_token=#{user.confirmation_token}"
 end
 
@@ -63,6 +64,10 @@ Then(/^I will see a message that my email is confirmed$/) do
 end
 
 When(/^I sign in as an unverified user with my credentials$/) do
+  step "I sign in"
+end
+
+When(/^I sign in$/) do
   step "I fill in my email"
   step "I fill in my password"
   click_button "Sign in"
