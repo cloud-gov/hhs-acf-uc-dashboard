@@ -13,14 +13,7 @@ module View
     end
 
     def role_names
-      [
-        Role::None,
-        Role::General,
-        Role::Operations,
-        Role::AdminRole
-      ].map do |klass|
-        klass.new.name
-      end
+      Role.all.map(&:name)
     end
 
     class UserPresentation

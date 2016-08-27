@@ -7,6 +7,10 @@ class Role
     def name
       'Operations'
     end
+
+    def field_value
+      'operations'
+    end
   end
 end
 

@@ -7,5 +7,9 @@ class Role
     def name
       'No access'
     end
+
+    def field_value
+      nil
+    end
   end
 end

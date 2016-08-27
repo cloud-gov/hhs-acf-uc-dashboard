@@ -9,25 +9,20 @@ Feature:
     When I visit the 'Users' page
     Then I should see a list of existing users
 
-  @wip @javascript
+  @javascript
   Scenario: Promoting the role of a 'No access' user
     Given I have signed in as an authenticated 'admin' user
     And there is a 'No access' user listed
     And I visit the 'Users' page
-    When I click on the role of the 'No access' user
-    And I change it to 'Leadership'
+    When I change the role of the 'No access' user to 'Operations'
     And I click to save the role change
-    Then I will see the user now has the updated role
+    Then I will see the role of the 'No access' user is now 'Operations'
 
-  #@wip
-  #Scenario: Demoting the role of a user
-    #Given I am an authenticated 'admin' user
-    #And there is a user with 'Leadership'
-    #And I visit the 'Users' page
-    #And I am on the 'Users' page
-    #When I click on the role of the 'Leadership' user
-    #And I change it to 'No access'
-    #And I click to save the role change
-    #Then I will see the user now has a 'No access' role
-
- # need scenarios for demoting 'Observer' or 'Admin' roles, or make sure they are covered in unit tests
+  @javascript
+  Scenario: Demoting the role of a user
+    Given I have signed in as an authenticated 'admin' user
+    And there is a 'Operations' user listed
+    And I visit the 'Users' page
+    When I change the role of the 'Operations' user to 'No access'
+    And I click to save the role change
+    Then I will see the role of the 'Operations' user is now 'No access'

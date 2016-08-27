@@ -26,4 +26,15 @@ class Role
       general: Role::General,
     }
   end
+
+  def self.all
+    @all ||= [
+      Role::None,
+      Role::General,
+      Role::Operations,
+      Role::AdminRole
+    ].map do |klass|
+      klass.new
+    end
+  end
 end

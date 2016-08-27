@@ -7,6 +7,10 @@ class Role
     def name
       'Admin'
     end
+
+    def field_value
+      'admin'
+    end
   end
 end
 

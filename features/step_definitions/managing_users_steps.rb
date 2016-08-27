@@ -41,25 +41,30 @@ end
 
 Given(/^there is a 'No access' user listed$/) do
   step "there are user of various types in the system"
-  @no_access_user = @users[1]
+  @selected_user = @users[1]
 end
 
-When(/^I change the role of the 'No access' user to 'Operations'$/) do
-  within("form.user_id_#{@no_access_user.id}") do
-    find('input[name=role]').click
-    fill_in('role', with: 'Operations')
+Given(/^there is a 'Operations' user listed$/) do
+  step "there are user of various types in the system"
+  @selected_user = @users.first
+end
+
+When(/^I change the role of the '(.+)' user to '(.+)'$/) do |from_role, to_role|
+  within("form#edit_user_#{@selected_user.id}") do
+    find('select').click
+    find('select').find(:option, to_role).select_option
   end
 end
 
 When(/^I click to save the role change$/) do
-  within("form.user_id_#{@no_access_user.id}") do
+  within("form#edit_user_#{@selected_user.id}") do
     click_button('Save')
   end
 end
 
-Then(/^I will see the role of the 'No access' user is now 'Operations'$/) do
-  within("form.user_id_#{@no_access_user.id}") do
-    new_role = find('select[name=role]').value
-    expect(new_role).to eq('Operations')
+Then(/^I will see the role of the '(.+)' user is now '(.+)'$/) do |from_role, to_role|
+  step "I visit the 'Users' page" # again for the reload
+  within("form#edit_user_#{@selected_user.id}") do
+    expect(find('option[selected]').value).to eq(to_role)
   end
 end

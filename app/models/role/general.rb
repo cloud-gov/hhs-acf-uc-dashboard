@@ -7,5 +7,9 @@ class Role
     def name
       'Observer'
     end
+
+    def field_value
+      'observer'
+    end
   end
 end
