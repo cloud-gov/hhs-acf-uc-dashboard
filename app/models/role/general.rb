@@ -5,11 +5,11 @@ class Role
     end
 
     def name
-      'Observer'
+      'General'
     end
 
     def field_value
-      'observer'
+      'general'
     end
   end
 end

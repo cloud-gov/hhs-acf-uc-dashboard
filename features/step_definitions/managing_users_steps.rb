@@ -26,7 +26,7 @@ Given(/^there are user of various types in the system$/) do
   ]
 
   @users.first.update_attribute(:role, 'operations')
-  @users.last.update_attribute(:role, 'observer')
+  @users.last.update_attribute(:role, 'general')
 end
 
 When(/^I visit the 'Users' page$/) do
