@@ -60,5 +60,11 @@ RSpec.describe Admin::UsersController, type: :controller do
       nobody.reload
       expect(nobody.role).to eq('operations')
     end
+
+    it 'adds a flash message for success' do
+      allow(controller).to receive(:current_user).and_return(admin)
+      put :update, params: update_params
+      expect(flash[:success]).to include(nobody.email)
+    end
   end
 end

@@ -12,6 +12,7 @@ module Admin
       require!(:can_manage_users)
       user = User.find(params[:id])
       Admin::UserRole.new(user, params[:user]).update
+      flash[:success] = "Successfully changed role for #{user.email}."
       redirect_to admin_users_path
     end
   end
