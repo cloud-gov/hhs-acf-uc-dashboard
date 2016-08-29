@@ -24,6 +24,7 @@ class Role
       admin: ::Role::AdminRole,
       operations: Role::Operations,
       general: Role::General,
+      observer: Role::General
     }
   end
 

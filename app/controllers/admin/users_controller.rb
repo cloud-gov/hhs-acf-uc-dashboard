@@ -4,7 +4,7 @@ module Admin
 
     def index
       require!(:can_manage_users)
-      users = User.all
+      users = User.all.order(:email)
       @view_model = View::AdminUsers.new(users)
     end
 

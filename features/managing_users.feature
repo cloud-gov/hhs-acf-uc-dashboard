@@ -14,9 +14,9 @@ Feature:
     Given I have signed in as an authenticated 'admin' user
     And there is a 'No access' user listed
     And I visit the 'Users' page
-    When I change the role of the 'No access' user to 'Operations'
+    When I change the role of the 'No access' user to 'Observer'
     And I click to save the role change
-    Then I will see the role of the 'No access' user is now 'Operations'
+    Then I will see the role of the 'No access' user is now 'Observer'
 
   @javascript
   Scenario: Demoting the role of a user
