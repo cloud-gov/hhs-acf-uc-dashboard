@@ -19,5 +19,9 @@ class Role
     def dashboard_template(*)
       :'no-access'
     end
+
+    def header_partial
+      '/layouts/header_links/no_access'
+    end
   end
 end

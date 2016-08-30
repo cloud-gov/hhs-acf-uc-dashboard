@@ -37,10 +37,8 @@
             <h3>Unaccompanied Children Dashboard</h3>
             <h6>Office for Refugee Resettlement</h6>
           </a>
-          <div class='usa-width-one-third'>
-            <% if current_user %>
-              <a href='/users/sign_out' class='float-right'>Sign out</a>
-            <% end %>
+          <div class='usa-width-one-third links'>
+            <%= render partial: Role.new(current_user).header_partial %>
           </div>
         </div>
       </header>

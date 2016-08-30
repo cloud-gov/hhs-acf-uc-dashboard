@@ -1,19 +1,7 @@
-Given(/^I have signed in as an authenticated 'admin' user$/) do
-  step "I am an authenticated 'admin' user"
+Given(/^I have signed in as an authenticated 'Admin' user$/) do
+  step "I am a verified 'Admin' user"
   step "I visit the home page"
   step "I sign in"
-end
-
-Given(/^I am an authenticated 'admin' user$/) do
-  @email = 'admin@hhs.gov'
-  @password = 's3kr3t'
-  @admin = User.create!({
-    email: @email,
-    password: @password,
-    password_confirmation: @password,
-    role: 'admin'
-  })
-  @admin.update_attribute(:confirmed_at, Time.now - 3.days)
 end
 
 Given(/^there are user of various types in the system$/) do

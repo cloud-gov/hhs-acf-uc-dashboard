@@ -21,6 +21,10 @@ class Role
       return requested_template if templates.include?(requested_template.to_s)
       :operations
     end
+
+    def header_partial
+      '/layouts/header_links/admin'
+    end
   end
 end
 

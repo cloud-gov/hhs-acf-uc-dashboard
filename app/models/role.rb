@@ -9,13 +9,13 @@ class Role
     @delegate_object ||= role_class.new
   end
 
-  delegate :admin?, :name, :home_path, :dashboard_template,
+  delegate :admin?, :name, :home_path, :dashboard_template, :header_partial,
     to: :delegate_object
 
   private
 
   def role_class
-    return Role::None if !user
+    return Role::SignedOut if !user
     type_map[user.role.to_s.underscore.to_sym] || Role::None
   end
 

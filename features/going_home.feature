@@ -4,7 +4,7 @@ Feature:
   So that I know how I fit into the application permissions
 
   Scenario: General users auto travel to their dashboard
-    Given I am an authenticated 'General' user
+    Given I am a verified 'General' user
     And I visit the home page
     When I sign in
     Then I should see the general dashboard
@@ -13,7 +13,7 @@ Feature:
     Then I should be redirected to the general dashboard
 
   Scenario: Operations users auto travel to their dashboard
-    Given I am an authenticated 'Operations' user
+    Given I am a verified 'Operations' user
     And I visit the home page
     When I sign in
     Then I should see the operations dashboard
@@ -22,7 +22,7 @@ Feature:
     Then I should be redirected to the operations dashboard
 
   Scenario: Admin users auto travel to capacity management
-    Given I am an authenticated 'admin' user
+    Given I am a verified 'Admin' user
     And I visit the home page
     When I sign in
     Then I should see the capacity page

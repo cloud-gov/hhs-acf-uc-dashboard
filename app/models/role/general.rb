@@ -19,5 +19,9 @@ class Role
     def dashboard_template(*)
       :general
     end
+
+    def header_partial
+      '/layouts/header_links/standard'
+    end
   end
 end
