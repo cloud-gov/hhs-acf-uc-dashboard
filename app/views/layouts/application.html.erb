@@ -38,7 +38,9 @@
             <h6>Office for Refugee Resettlement</h6>
           </a>
           <div class='usa-width-one-third'>
-            <a href='/users/sign_out' class='float-right'>Sign out</a>
+            <% if current_user %>
+              <a href='/users/sign_out' class='float-right'>Sign out</a>
+            <% end %>
           </div>
         </div>
       </header>
