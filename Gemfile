@@ -26,6 +26,7 @@ group :development, :test do
   gem 'poltergeist'
   gem 'launchy'
   gem 'jasmine-rails'
+  gem 'rails-controller-testing'
 end
 
 group :development do

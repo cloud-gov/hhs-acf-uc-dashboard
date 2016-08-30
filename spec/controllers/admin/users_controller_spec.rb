@@ -24,7 +24,7 @@ RSpec.describe Admin::UsersController, type: :controller do
       allow(controller).to receive(:authenticate_user!)
       allow(controller).to receive(:current_user).and_return(nobody)
       get :index
-      expect(response).to redirect_to('/dashboard_authorization')
+      expect(response).to redirect_to('/dashboards/default')
     end
 
     it "returns http success if current user is an admin" do
@@ -51,7 +51,7 @@ RSpec.describe Admin::UsersController, type: :controller do
     it 'redirects if not authorized' do
       allow(controller).to receive(:current_user).and_return(nobody)
       put :update, params: update_params
-      expect(response).to redirect_to('/dashboard_authorization')
+      expect(response).to redirect_to('/dashboards/default')
     end
 
     it 'updates the role of a user correctly when done by an admin' do

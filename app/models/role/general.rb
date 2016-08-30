@@ -1,6 +1,6 @@
 class Role
   class General
-    def manage_users?
+    def admin?
       false
     end
 
@@ -10,6 +10,14 @@ class Role
 
     def field_value
       'general'
+    end
+
+    def home_path
+      '/dashboards'
+    end
+
+    def dashboard_template(*)
+      :general
     end
   end
 end

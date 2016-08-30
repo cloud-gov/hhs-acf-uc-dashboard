@@ -10,8 +10,8 @@ RSpec.describe Role, type: :model do
       expect(role.delegate_object).to be_a(Role::AdminRole)
     end
 
-    it "can manager users" do
-      expect(role.manage_users?).to be true
+    it "can admin the app" do
+      expect(role.admin?).to be true
     end
   end
 
@@ -22,8 +22,8 @@ RSpec.describe Role, type: :model do
       expect(role.delegate_object).to be_a(Role::Operations)
     end
 
-    it "cannot manager users" do
-      expect(role.manage_users?).to be false
+    it "cannot admin the app" do
+      expect(role.admin?).to be false
     end
   end
 
@@ -34,8 +34,8 @@ RSpec.describe Role, type: :model do
       expect(role.delegate_object).to be_a(Role::General)
     end
 
-    it "cannot manager users" do
-      expect(role.manage_users?).to be false
+    it "cannot admin the app" do
+      expect(role.admin?).to be false
     end
   end
 
@@ -46,8 +46,8 @@ RSpec.describe Role, type: :model do
       expect(role.delegate_object).to be_a(Role::None)
     end
 
-    it "cannot manager users" do
-      expect(role.manage_users?).to be false
+    it "cannot admin the app" do
+      expect(role.admin?).to be false
     end
   end
 

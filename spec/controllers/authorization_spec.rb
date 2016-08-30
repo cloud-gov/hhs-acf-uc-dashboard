@@ -17,11 +17,11 @@ RSpec.describe Authorization do
     }
 
     it '#can with permission request returns true' do
-      expect(controller.can(:manage_users?)).to be true
+      expect(controller.can(:admin?)).to be true
     end
 
     it '#require! does not raise an error' do
-      controller.require!(:can_manage_users)
+      controller.require!(:can_admin)
       # no expectations, if it runs it passed
     end
   end
@@ -30,11 +30,11 @@ RSpec.describe Authorization do
     let(:controller) { MockController.new }
 
     it '#can with permission request returns false' do
-      expect(controller.can(:manage_users?)).to be false
+      expect(controller.can(:admin?)).to be false
     end
 
     it '#require! raises an error' do
-      expect(-> { controller.require!(:can_manage_users)}).to raise_error(Authorization::Error)
+      expect(-> { controller.require!(:can_admin)}).to raise_error(Authorization::Error)
     end
   end
 end

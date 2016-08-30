@@ -1,6 +1,6 @@
 class Role
   class None
-    def manage_users?
+    def admin?
       false
     end
 
@@ -10,6 +10,14 @@ class Role
 
     def field_value
       nil
+    end
+
+    def home_path
+      "/dashboards"
+    end
+
+    def dashboard_template(*)
+      :'no-access'
     end
   end
 end
