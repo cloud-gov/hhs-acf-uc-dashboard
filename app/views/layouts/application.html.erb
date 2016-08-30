@@ -32,11 +32,14 @@
 
     <div class='application-content content-space'>
       <header class="usa-site-header" role="banner">
-        <div class='site-navbar'>
-          <a href='/'>
+        <div class='site-navbar usa-grid-full'>
+          <a href='/' class='header-home-link usa-width-two-thirds'>
             <h3>Unaccompanied Children Dashboard</h3>
             <h6>Office for Refugee Resettlement</h6>
           </a>
+          <div class='usa-width-one-third'>
+            <a href='/users/sign_out' class='float-right'>Sign out</a>
+          </div>
         </div>
       </header>
       <div class='main-content <%= controller_name.underscore %>'>

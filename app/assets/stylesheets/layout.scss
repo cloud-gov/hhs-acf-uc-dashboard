@@ -27,7 +27,14 @@ body {
 
   a {
     color: white;
+  }
+
+  a.header-home-link {
     text-decoration: none;
+  }
+
+  a.float-right {
+    float: right;
   }
 
   h3 {
