@@ -8,6 +8,11 @@ module Admin
       @view_model = View::AdminUsers.new(users)
     end
 
+    def new
+      require!(:can_admin)
+      @view_model = View::AdminNewUser.new
+    end
+
     def update
       require!(:can_admin)
       user = User.find(params[:id])

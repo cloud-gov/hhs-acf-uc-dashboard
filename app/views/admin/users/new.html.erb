@@ -1,0 +1,25 @@
+<div class='devise-form'>
+  <h2>Add new user</h2>
+
+  <p>
+  Add a new user to the dashboard. You'll be able to modify their permissions later.
+  The new user will receive a notification and be asked to update the password.
+  </p>
+
+  <%= form_for([:admin, @view_model.model]) do |f| %>
+    <%= @view_model.errors %>
+
+    <div class="field">
+      <%= f.label :email %>
+      <%= f.email_field :email, autofocus: true %>
+    </div>
+
+    <div class="field">
+      <%= f.label :role %>
+      <%= f.select :role, @view_model.role_names, {selected: @view_model.role} %>
+    </div>
+
+    <%= f.submit "Create user" %>
+  <% end %>
+</div>
+

@@ -11,6 +11,10 @@
     width: 315px;
   }
 
+  .float-right {
+    float: right;
+  }
+
   form {
     select {
       display: inline;
@@ -21,6 +25,14 @@
       display: inline-block;
       padding: 1rem;
       margin: 0 1rem;
+    }
+  }
+
+  .devise-form {
+    margin-top: 3rem;
+
+    input[type=submit] {
+      margin: 2rem 0;
     }
   }
 }
