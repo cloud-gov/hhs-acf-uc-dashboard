@@ -15,7 +15,7 @@ module Admin
 
     def create
       require!(:can_admin)
-      service = Admin::UserCreate.new(params[:user])
+      service = Admin::AddUser.new(params[:user])
       if service.save
         flash[:success] = "Successfully added #{service.model.email}."
         redirect_to admin_users_path
@@ -29,7 +29,7 @@ module Admin
     def update
       require!(:can_admin)
       user = User.find(params[:id])
-      Admin::UserRole.new(user, params[:user]).update
+      Admin::UpdateUserRole.new(user, params[:user]).update
       flash[:success] = "Successfully changed role for #{user.email}."
       redirect_to admin_users_path
     end

@@ -1,5 +1,5 @@
 module Admin
-  class UserRole
+  class UpdateUserRole
     attr_reader :user, :user_params
 
     def initialize(user, user_params)
@@ -14,15 +14,7 @@ module Admin
     private
 
     def role
-      role_object.field_value
-    end
-
-    def role_object
-      Role.all.detect{|role| role.name == role_name } || Role::None
-    end
-
-    def role_name
-      user_params[:role]
+      Admin::NormalizeRole.new(user_params[:role]).role
     end
   end
 end
