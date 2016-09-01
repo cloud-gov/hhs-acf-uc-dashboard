@@ -19,7 +19,7 @@ Feature:
     And I should see with a success message about the added user
     And the newly added user should appear in the list
     And the newly added user should have the correct role
-    #And the newly added user should be sent an email with the reset password link
+    And the newly added user should be sent an email
 
   #Scenario: Invited user receives email notification
     #Given I am an invited user whose account was created by an admin

@@ -7,6 +7,7 @@ Then(/^I should be taken to the 'Add user' page$/) do
 end
 
 Given(/^I visit the 'Add user' page$/) do
+  ActionMailer::Base.deliveries.clear
   visit "/admin/users/new"
 end
 
@@ -40,4 +41,10 @@ end
 Then(/^the newly added user should have the correct role$/) do
   role = find(".user-id-#{@new_user.id} option[selected]").value
   expect(role).to eq(@new_user_role)
+end
+
+Then(/^the newly added user should be sent an email$/) do
+  expect(ActionMailer::Base.deliveries.count).to eq(1)
+  mail = ActionMailer::Base.deliveries.last
+  expect(mail.subject).to include('invited')
 end

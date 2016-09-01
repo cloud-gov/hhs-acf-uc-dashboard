@@ -7,7 +7,10 @@ module Admin
     end
 
     def save
+      model.skip_confirmation!
       @saved = model.save
+      send_notification if saved?
+      saved?
     end
 
     def saved?
@@ -28,6 +31,11 @@ module Admin
     end
 
     private
+
+    def send_notification
+      model.send(:set_reset_password_token)
+      InvitationsMailer.change_password(model).deliver
+    end
 
     def flash_key
       saved? ? :success : :error
