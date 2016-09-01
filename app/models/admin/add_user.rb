@@ -7,7 +7,11 @@ module Admin
     end
 
     def save
-      @status = model.save
+      @saved = model.save
+    end
+
+    def saved?
+      @saved
     end
 
     def model
@@ -19,7 +23,27 @@ module Admin
       })
     end
 
+    def add_flash(flash_object)
+      flash_object[flash_key] = flash_message
+    end
+
     private
+
+    def flash_key
+      saved? ? :success : :error
+    end
+
+    def flash_message
+      saved? ? flash_success_message : flash_error_message
+    end
+
+    def flash_success_message
+      "Successfully added #{model.email}."
+    end
+
+    def flash_error_message
+      "There was a problem saving this user."
+    end
 
     def role
       Admin::NormalizeRole.new(user_params[:role]).role

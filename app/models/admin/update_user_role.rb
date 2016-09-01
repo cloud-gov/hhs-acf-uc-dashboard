@@ -11,6 +11,10 @@ module Admin
       user.update_attribute(:role, role)
     end
 
+    def add_flash(flash_object)
+      flash_object[:success] = "Successfully changed role for #{user.email}."
+    end
+
     private
 
     def role

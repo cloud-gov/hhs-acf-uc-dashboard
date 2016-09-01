@@ -15,12 +15,14 @@ module Admin
 
     def create
       require!(:can_admin)
+
       service = Admin::AddUser.new(params[:user])
-      if service.save
-        flash[:success] = "Successfully added #{service.model.email}."
+      service.save
+      service.add_flash(flash)
+
+      if service.saved?
         redirect_to admin_users_path
       else
-        flash[:error] = "There was a problem saving this user."
         @view_model = View::AdminNewUser.new(service.model)
         render :new
       end
@@ -29,8 +31,9 @@ module Admin
     def update
       require!(:can_admin)
       user = User.find(params[:id])
-      Admin::UpdateUserRole.new(user, params[:user]).update
-      flash[:success] = "Successfully changed role for #{user.email}."
+      service = Admin::UpdateUserRole.new(user, params[:user])
+      service.update
+      service.add_flash(flash)
       redirect_to admin_users_path
     end
   end
