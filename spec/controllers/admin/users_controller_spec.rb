@@ -94,9 +94,14 @@ RSpec.describe Admin::UsersController, type: :controller do
         post :create, params: create_params
         user = User.where(email: create_params[:user][:email]).first
         expect(user.role).to eq('admin')
+        expect(user.confirmed_at).not_to be_nil
       end
 
-      it "sends an email"
+      it "sends an email" do
+        expect {
+          post :create, params: create_params
+        }.to change { ActionMailer::Base.deliveries.count }
+      end
 
       it "generates a flash success message" do
         post :create, params: create_params

@@ -33,8 +33,8 @@ module Admin
     private
 
     def send_notification
-      model.send(:set_reset_password_token)
-      InvitationsMailer.change_password(model).deliver
+      token = model.send(:set_reset_password_token)
+      InvitationsMailer.change_password(model, token).deliver
     end
 
     def flash_key

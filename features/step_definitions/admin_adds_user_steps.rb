@@ -56,3 +56,35 @@ end
 Then(/^I should be taken to the 'Users' page$/) do
   expect(page.current_path).to eq('/admin/users')
 end
+
+Given(/^I am an invited user whose account was created by an admin$/) do
+  @new_user_email = @email = 'hello-newness@hhs.gov'
+  @new_user_role = 'General'
+  @new_user = User.new({
+    email: @new_user_email,
+    role: @new_user_role,
+    password: 'not-yours-yet',
+    password_confirmation: 'not-yours-yet',
+  })
+  @new_user.skip_confirmation!
+  @token = @new_user.send(:set_reset_password_token)
+end
+
+Given(/^I visit the change password link from my email$/) do
+  visit "/users/password/edit?reset_password_token=#{@token}"
+end
+
+When(/^I fill in a new password and password confirmation$/) do
+  @password = 'new-password-s3kr3t-yo!'
+  fill_in("New password", with: @password)
+  fill_in("Confirm new password", with: @password)
+end
+
+When(/^I click save$/) do
+  click_on("Change my password")
+end
+
+When(/^I will be signed in on my home page$/) do
+  expect(page).to have_content('You are now signed in')
+  expect(page.current_path).to eq('/dashboards/default')
+end

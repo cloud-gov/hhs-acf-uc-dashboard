@@ -28,10 +28,9 @@ Feature:
     And the newly added user should have the correct role
     And the newly added user should be sent an email
 
-  #Scenario: Invited user receives email notification
-    #Given I am an invited user whose account was created by an admin
-    #And I visit the change password link from my email
-    #When I fill in a password and password confirmation
-    #And I click save
-    #And I will be taken to the homepage
-    #And I will be able to sign in with my new password
+  Scenario: Invited user receives email notification
+    Given I am an invited user whose account was created by an admin
+    And I visit the change password link from my email
+    When I fill in a new password and password confirmation
+    And I click save
+    Then I will be signed in on my home page
