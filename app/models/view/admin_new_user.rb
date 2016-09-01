@@ -1,5 +1,9 @@
 module View
   class AdminNewUser
+    def initialize(user=nil)
+      @model = user
+    end
+
     def model
       @model ||= User.new
     end

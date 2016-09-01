@@ -14,7 +14,7 @@
   </thead>
   <tbody>
     <% @view_model.users.each do |user| %>
-    <tr>
+    <tr class='user-id-<%= user.id %>'>
       <td><%= user.email %></td>
       <td><%= user.confirmed_at %></td>
       <td class='role-form-container'>
