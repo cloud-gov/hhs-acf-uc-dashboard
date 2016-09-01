@@ -1,14 +1,9 @@
-Given(/^I click on an 'Add new user' button$/) do
+Given(/^I click on the 'Add new user' button$/) do
   click_on 'Add new user'
 end
 
 Then(/^I should be taken to the 'Add user' page$/) do
   expect(page.current_path).to eq('/admin/users/new')
-end
-
-Given(/^I visit the 'Add user' page$/) do
-  ActionMailer::Base.deliveries.clear
-  visit "/admin/users/new"
 end
 
 When(/^I enter an email address$/) do
@@ -22,6 +17,7 @@ When(/^I enter a role for the new user$/) do
 end
 
 When(/^I click the 'Create user' button$/) do
+  ActionMailer::Base.deliveries.clear
   click_on('Create user')
 end
 
@@ -47,4 +43,16 @@ Then(/^the newly added user should be sent an email$/) do
   expect(ActionMailer::Base.deliveries.count).to eq(1)
   mail = ActionMailer::Base.deliveries.last
   expect(mail.subject).to include('invited')
+end
+
+Then(/^I will see an error message about not saving the new user$/) do
+  expect(page).to have_content("Email can't be blank")
+end
+
+When(/^I click cancel$/) do
+  click_on('Cancel')
+end
+
+Then(/^I should be taken to the 'Users' page$/) do
+  expect(page.current_path).to eq('/admin/users')
 end
