@@ -21,7 +21,7 @@ module View
     end
 
     def errors
-      
+      model.errors.full_messages.join('. ')
     end
   end
 end

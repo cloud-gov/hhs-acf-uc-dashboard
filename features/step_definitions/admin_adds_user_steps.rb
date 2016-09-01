@@ -12,6 +12,7 @@ end
 
 When(/^I enter an email address$/) do
   @new_user_email = 'new@hhs.gov'
+  fill_in("Email", with: @new_user_email)
 end
 
 When(/^I enter a role for the new user$/) do
@@ -28,7 +29,7 @@ Then(/^I should be returned to the 'User' page$/) do
 end
 
 Then(/^I should see with a success message about the added user$/) do
-  expect(page).to have_content("Successfully changed role for #{@new_user_email}.")
+  expect(page).to have_content("Successfully added #{@new_user_email}.")
 end
 
 Then(/^the newly added user should appear in the list$/) do

@@ -9,7 +9,6 @@ Feature:
     And I click on an 'Add new user' button
     Then I should be taken to the 'Add user' page
 
-  @wip
   Scenario: Adding new user
     Given I have signed in as an authenticated 'Admin' user
     And I visit the 'Add user' page

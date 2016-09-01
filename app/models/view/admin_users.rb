@@ -23,7 +23,7 @@ module View
         @user = user
       end
 
-      delegate :email,
+      delegate :email, :id,
         to: :user
 
       def role
