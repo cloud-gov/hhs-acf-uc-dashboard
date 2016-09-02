@@ -27,6 +27,10 @@ group :development, :test do
   gem 'launchy'
   gem 'jasmine-rails'
   gem 'rails-controller-testing'
+
+  # security
+  gem 'brakeman', require: false
+  gem 'hakiri', require: false
 end
 
 group :development do
