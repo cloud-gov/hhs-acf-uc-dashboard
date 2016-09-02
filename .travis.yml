@@ -2,3 +2,6 @@ language: ruby
 before_script:
   - bundle exec rake db:create
   - bundle exec rake db:migrate
+addons:
+  code_climate:
+    repo_token: 97352d59a262945c0c60b6c0d7e245423f245809a739e1b857367b7a07f0195f

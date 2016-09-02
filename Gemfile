@@ -33,6 +33,11 @@ group :development, :test do
   gem 'hakiri', require: false
 end
 
+group :test do
+  gem "codeclimate-test-reporter", require: false
+  gem "travis"
+end
+
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
