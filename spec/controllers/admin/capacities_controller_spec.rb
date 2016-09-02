@@ -15,23 +15,10 @@ RSpec.describe Admin::CapacitiesController, type: :controller do
   }
 
   describe "GET #index" do
-    it "requires authentication" do
+    it "requires authenticated user" do
       expect(controller).to receive(:authenticate_user!)
+      expect(controller).to receive(:require!).with(:can_admin)
       get :index
-    end
-
-    it "redirects to dashboard authorization if current user is not an admin" do
-      allow(controller).to receive(:authenticate_user!)
-      allow(controller).to receive(:current_user).and_return(nobody)
-      get :index
-      expect(response).to redirect_to('/dashboards/default')
-    end
-
-    it "returns http success if current user is an admin" do
-      allow(controller).to receive(:authenticate_user!)
-      allow(controller).to receive(:current_user).and_return(admin)
-      get :index
-      expect(response).to have_http_status(:success)
     end
   end
 end

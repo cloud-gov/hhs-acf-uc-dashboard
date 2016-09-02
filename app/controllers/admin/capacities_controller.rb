@@ -5,5 +5,9 @@ module Admin
     def index
       require!(:can_admin)
     end
+
+    def show
+      require!(:can_admin)
+    end
   end
 end

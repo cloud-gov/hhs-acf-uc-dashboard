@@ -5,12 +5,10 @@ Feature:
 
   Scenario: Seeing the Capacity page
     Given I have signed in as an authenticated 'Admin' user
-    And I visit the home page
     Then I should see a link to the 'Capacity' page in the navigation bar
 
   Scenario: Hiding the Capacity page
     Given I am an authenticated user that is not an 'admin' user
-    And I visit the home page
     Then I should not see a link to the 'Capacity' page in the navigation bar
 
   @wip

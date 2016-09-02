@@ -15,23 +15,10 @@ RSpec.describe Admin::UsersController, type: :controller do
   }
 
   describe "GET #index" do
-    it "requires authentication" do
+    it "requires authenticated user" do
       expect(controller).to receive(:authenticate_user!)
+      expect(controller).to receive(:require!).with(:can_admin)
       get :index
-    end
-
-    it "redirects to dashboard authorization if current user is not an admin" do
-      allow(controller).to receive(:authenticate_user!)
-      allow(controller).to receive(:current_user).and_return(nobody)
-      get :index
-      expect(response).to redirect_to('/dashboards/default')
-    end
-
-    it "returns http success if current user is an admin" do
-      allow(controller).to receive(:authenticate_user!)
-      allow(controller).to receive(:current_user).and_return(admin)
-      get :index
-      expect(response).to have_http_status(:success)
     end
   end
 
@@ -46,23 +33,22 @@ RSpec.describe Admin::UsersController, type: :controller do
     before do
       # devise test helpers not really working with Rails 5
       allow(controller).to receive(:authenticate_user!)
+      allow(controller).to receive(:require!)
     end
 
-    it 'redirects if not authorized' do
-      allow(controller).to receive(:current_user).and_return(nobody)
+    it "requires authenticated user" do
+      expect(controller).to receive(:authenticate_user!)
+      expect(controller).to receive(:require!).with(:can_admin)
       put :update, params: update_params
-      expect(response).to redirect_to('/dashboards/default')
     end
 
     it 'updates the role of a user correctly when done by an admin' do
-      allow(controller).to receive(:current_user).and_return(admin)
       put :update, params: update_params
       nobody.reload
       expect(nobody.role).to eq('operations')
     end
 
     it 'adds a flash message for success' do
-      allow(controller).to receive(:current_user).and_return(admin)
       put :update, params: update_params
       expect(flash[:success]).to include(nobody.email)
     end
