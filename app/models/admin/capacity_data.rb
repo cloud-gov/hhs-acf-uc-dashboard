@@ -16,6 +16,11 @@ module Admin
       }
     end
 
+    def normalized_status
+      return 'locked' if params[:status] == 'locked'
+      'unlocked'
+    end
+
     private
 
     class ValidationError < Struct.new(:field, :message)

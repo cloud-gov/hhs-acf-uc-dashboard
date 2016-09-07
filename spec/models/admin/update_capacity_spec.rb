@@ -13,9 +13,51 @@ RSpec.describe Admin::UpdateCapacity do
     }
   }
 
+  let(:capacity_data) {
+    double(valid?: true, validation_errors: [], normalized_status: params[:status])
+  }
+
   before do
     allow_any_instance_of(Admin::LogCapacityChange).to receive(:call)
-    allow_any_instance_of(Admin::CapacityData).to receive(:valid?).and_return(true)
+    allow(Admin::CapacityData).to receive(:new).and_return(capacity_data)
+  end
+
+  context 'when data is invalid' do
+    let(:flash) { {} }
+
+    let(:capacity_data) {
+      double({
+        valid?: false,
+        validation_errors: [
+          double(field: :standard, message: 'must be zero or greater'),
+          double(field: :unavailable, message: 'must be zero or greater')
+        ],
+        normalized_status: 'unlocked'
+      })
+    }
+
+    it 'adds flash a error message' do
+      service.save
+      service.add_flash(flash)
+      expect(flash[:error]).to eq('There was a problem saving these values.')
+    end
+
+    it 'does not save the capacity record' do
+      expect { service.save }.to_not change {
+        Capacity.count
+      }
+    end
+
+    it 'does not create a log' do
+      expect { service.save }.to_not change {
+        CapacityLog.count
+      }
+    end
+
+    it 'adds errors to the capacity record' do
+      service.save
+      expect(service.capacity.errors).to_not be_empty
+    end
   end
 
   context 'when a capacity record with date exists' do
@@ -36,12 +78,14 @@ RSpec.describe Admin::UpdateCapacity do
       service.save
     end
 
-    it 'will not save or create a log when data is invalid' do
-      expect_any_instance_of(Admin::CapacityData).to receive(:valid?).and_return(false)
-      expect { service.save }.to_not change {
-        CapacityLog.count
-      }
-      expect(capacity.reload.standard).to eq(nil)
+    describe '#add_flash(flash_object)' do
+      let(:flash) { {} }
+
+      it 'adds a success message' do
+        service.save
+        service.add_flash(flash)
+        expect(flash[:success]).to eq('Your changes have been saved.')
+      end
     end
   end
 
@@ -61,13 +105,6 @@ RSpec.describe Admin::UpdateCapacity do
     it 'creates a log' do
       expect_any_instance_of(Admin::LogCapacityChange).to receive(:call)
       service.save
-    end
-
-    it 'will not save or create a log when data is invalid' do
-      expect_any_instance_of(Admin::CapacityData).to receive(:valid?).and_return(false)
-      expect { service.save }.to_not change {
-        CapacityLog.count + Capacity.count
-      }
     end
   end
 end

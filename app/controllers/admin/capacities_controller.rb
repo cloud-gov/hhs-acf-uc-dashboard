@@ -20,12 +20,12 @@ module Admin
       service.save
       service.add_flash(flash)
 
-      #if service.saved?
+      if service.saved?
         redirect_to '/admin/capacities/current'
-      #else
-        #@view_model = View::AdminShowCapacity.new(service)
-        #render :show
-      #end
+      else
+        @view_model = View::AdminShowCapacity.new(service)
+        render :show
+      end
     end
   end
 end

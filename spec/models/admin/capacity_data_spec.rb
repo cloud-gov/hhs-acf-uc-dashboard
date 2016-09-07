@@ -43,4 +43,30 @@ RSpec.describe Admin::CapacityData do
       expect(data.validation_errors.map(&:field)).to eq([:standard])
     end
   end
+
+  describe '#normalized_status(status)' do
+    context 'when status is "locked"' do
+      let(:params) { {status: 'locked'} }
+
+      it 'returns it' do
+        expect(data.normalized_status).to eq('locked')
+      end
+    end
+
+    context 'when status is "unlocked"' do
+      let(:params) { {status: 'unlocked'} }
+
+      it 'returns it' do
+        expect(data.normalized_status).to eq('unlocked')
+      end
+    end
+
+    context 'when it is something else' do
+      let(:params) { {status: 'gerbil'} }
+
+      it 'returns "unlocked"' do
+        expect(data.normalized_status).to eq('unlocked')
+      end
+    end
+  end
 end

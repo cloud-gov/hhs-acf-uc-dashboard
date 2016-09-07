@@ -94,6 +94,38 @@ RSpec.describe Admin::CapacitiesController, type: :controller do
         expect(flash[:success]).to include('saved')
       end
     end
+
+    describe "invalid params" do
+      let(:capacity_params) {
+        {
+          id: '2016-09-06',
+          capacity: {
+            standard: -1001,
+            reserve: 101,
+            activated: 202,
+            unavailable: 333,
+            status: 'locked'
+          }
+        }
+      }
+
+      it 'does not create a record' do
+        expect {
+          put :update, params: capacity_params
+        }.to_not change { Capacity.count }
+      end
+
+      it 'flashes a failure message' do
+        put :update, params: capacity_params
+        expect(flash[:error]).to_not be_nil
+      end
+
+      it 'renders the show page' do
+        put :update, params: capacity_params
+        expect(response).to render_template(:show)
+        expect(response).to have_http_status(200)
+      end
+    end
   end
 end
 

@@ -9,9 +9,9 @@ module Admin
     end
 
     def save
-      return if !valid?
-      save_capacity
-      save_log
+      add_errors_if_not_valid
+      save_capacity_if_valid
+      save_log_if_capacity_saved
     end
 
     def capacity
@@ -30,10 +30,31 @@ module Admin
     end
 
     def add_flash(flash_object)
-      flash_object[:success] = 'Your changes have been saved.'
+      if saved?
+        flash_object[:success] = 'Your changes have been saved.'
+      else
+        flash_object[:error] = 'There was a problem saving these values.'
+      end
     end
 
     private
+
+    def add_errors_if_not_valid
+      return if valid?
+      CapacityData.new(capacity_params).validation_errors.each do |error|
+        capacity.errors.add(error.field, error.message)
+      end
+    end
+
+    def save_capacity_if_valid
+      return if !valid?
+      @saved = capacity.save
+    end
+
+    def save_log_if_capacity_saved
+      return if !saved?
+      Admin::LogCapacityChange.new(capacity, current_user).call
+    end
 
     def valid?
       CapacityData.new(capacity_params).valid?
@@ -43,23 +64,15 @@ module Admin
       value.is_a?(Fixnum) && value >= 0
     end
 
-    def save_capacity
-      @saved = capacity.save
-    end
-
-    def save_log
-      Admin::LogCapacityChange.new(capacity, current_user).call if saved?
-    end
-
     def attributes
-      # TODO: add validation on these value
+      # TODO: normalize status
       {
         date:         date,
         standard:     capacity_params[:standard],
         reserve:      capacity_params[:reserve],
         activated:    capacity_params[:activated],
         unavailable:  capacity_params[:unavailable],
-        status:       capacity_params[:status]
+        status:       CapacityData.new(capacity_params).normalized_status
       }
     end
   end
