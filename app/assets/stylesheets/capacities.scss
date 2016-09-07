@@ -1,4 +1,8 @@
+@import 'variables';
+
 .current-capacity-form {
+  margin-bottom: 3rem;
+
   .usa-grid-full {
     max-width: 100%;
   }
@@ -30,6 +34,20 @@
 
     input {
       margin: 0;
+      float: right;
+    }
+  }
+}
+
+.audit-logs {
+  background-color: $color-gray-lightest;
+  border-top: 1px solid black;
+
+  .audit-log {
+    padding: 1rem;
+    border-bottom: 1px solid black;
+
+    .message {
       float: right;
     }
   }
