@@ -1,0 +1,54 @@
+<h2>Daily bed capacity</h2>
+
+<hr>
+
+<%= form_for([:admin, @view_model.capacity], url: "/admin/capacities/#{@view_model.capacity.date}", method: :put, html: {class: 'current-capacity-form'}) do |f| %>
+  <div class='usa-grid-full'>
+    <div class='field date'>
+      <%= f.label :date %>
+      <h2><%= @view_model.date %></h2>
+    </div>
+
+    <div class="field standard">
+      <%= f.label :standard %>
+      <%= f.number_field :standard, autofocus: true %>
+    </div>
+
+    <div class="field reserve">
+      <%= f.label :reserve %>
+      <%= f.number_field :reserve %>
+    </div>
+
+    <div class="field activated">
+      <%= f.label :activated %>
+      <%= f.number_field :activated %>
+    </div>
+
+    <div class="field unavailable">
+      <%= f.label :unavailable %>
+      <%= f.number_field :unavailable %>
+    </div>
+
+    <div class="field status">
+      <%= f.label :status %>
+      <%= f.select :status, @view_model.status_set, {selected: @view_model.status} %>
+    </div>
+
+    <div class='field save'>
+      <%= f.submit "Save" %>
+    </div>
+  </div>
+<% end %>
+
+<div class='audit-logs'>
+  <% @view_model.audit_logs.each do |log| %>
+  <div class='audit-log'>
+    <span class='logged-on'>
+      <%= log.logged_on %>
+    </span>
+    <span class='message'>
+      <%= log.message %>
+    </span>
+  </div>
+  <% end %>
+</div>

@@ -8,7 +8,7 @@ Then(/^I should be redirected to the (.+) dashboard$/) do |dash_type|
 end
 
 Then(/^I should see the capacity page$/) do
-  expect(page.current_path).to eq('/admin/capacities')
+  expect(page.current_path).to eq('/admin/capacities/current')
 end
 
 Then(/^I should be redirected to the capacity page$/) do

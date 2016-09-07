@@ -1,0 +1,36 @@
+.current-capacity-form {
+  .usa-grid-full {
+    max-width: 100%;
+  }
+
+  .field {
+    float: left;
+    display: block;
+    box-sizing: border-box;
+    margin-right: 3.8%;
+    width: 8%;
+  }
+
+  .field.date,
+  .field.status {
+    width: 15%;
+  }
+
+  .field.date h2 {
+    margin: 0.5rem 0 0 0;
+    font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+    font-weight: normal;
+  }
+
+  .field.save {
+    margin-top: 5.5rem;
+    margin-right: 0;
+    margin-left: 3rem;
+    width: 12%;
+
+    input {
+      margin: 0;
+      float: right;
+    }
+  }
+}

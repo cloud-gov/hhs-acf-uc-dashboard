@@ -15,7 +15,7 @@ RSpec.describe HomeController, type: :controller do
       it 'redirects to capacities' do
         allow(controller).to receive(:current_user).and_return(user)
         get :index
-        expect(response).to redirect_to('/admin/capacities')
+        expect(response).to redirect_to('/admin/capacities/current')
       end
     end
 

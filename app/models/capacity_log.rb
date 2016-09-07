@@ -1,0 +1,2 @@
+class CapacityLog < ApplicationRecord
+end

@@ -13,7 +13,7 @@ class Role
     end
 
     def home_path
-      "/admin/capacities"
+      "/admin/capacities/current"
     end
 
     def dashboard_template(requested_template)

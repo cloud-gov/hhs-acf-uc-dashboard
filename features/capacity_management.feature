@@ -8,24 +8,25 @@ Feature:
     Then I should see a link to the 'Capacity' page in the navigation bar
 
   Scenario: Hiding the Capacity page
-    Given I am an authenticated user that is not an 'admin' user
+    Given I have signed in as an authenticated user that is not an 'admin' user
     Then I should not see a link to the 'Capacity' page in the navigation bar
 
-  @wip
   Scenario: Intake values for beds are pre-populated from yesterday's daily values
     Given I have signed in as an authenticated 'Admin' user
     And no other user has already modified the daily intake values
     When I click on the 'Capacity' link
     Then I should see yesterday's capacity values pre-populated as today's values
-    And I will see prompts to verify or approve capacity values
+    And I should see that the capacity values are for today's date
+    And I should see the capacity values are unlocked
     And there will be no notes in the capacity audit log
 
-  #Scenario: Seeing intake values after they have been modified
-    #Given I have signed in as an authenticated 'Admin' user
-    #And another user has already modified the daily intake values
-    #When I visit the 'Capacity' page
-    #Then I will see a capacity audit log noting the change
-    ##And I will see the capacity status noted
+  Scenario: Updating intake values
+    Given I have signed in as an authenticated 'Admin' user
+    When I click on the 'Capacity' link
+    And I update intake values
+    When I click on the 'Capacity' link
+    Then I will see the capacity values have been modified from yesterday
+    Then I will see a capacity audit log noting the change
 
   #Scenario: Locking capacity values that have been entered
     #Given I have signed in as an authenticated 'Admin' user
