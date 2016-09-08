@@ -25,22 +25,22 @@
 
     <div class="field standard">
       <%= f.label :standard %>
-      <%= f.number_field :standard, autofocus: true %>
+      <%= f.number_field :standard, {autofocus: true}.merge(@view_model.input_attributes) %>
     </div>
 
     <div class="field reserve">
       <%= f.label :reserve %>
-      <%= f.number_field :reserve %>
+      <%= f.number_field :reserve, @view_model.input_attributes %>
     </div>
 
     <div class="field activated">
       <%= f.label :activated %>
-      <%= f.number_field :activated %>
+      <%= f.number_field :activated, @view_model.input_attributes %>
     </div>
 
     <div class="field unavailable">
       <%= f.label :unavailable %>
-      <%= f.number_field :unavailable %>
+      <%= f.number_field :unavailable, @view_model.input_attributes %>
     </div>
 
     <div class="field status">

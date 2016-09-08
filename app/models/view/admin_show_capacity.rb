@@ -35,6 +35,11 @@ module View
       capacity.errors.full_messages
     end
 
+    def input_attributes
+      return {} if capacity.status == 'unlocked'
+      {readonly: true}
+    end
+
     class LogPresenter
       attr_reader :model
 

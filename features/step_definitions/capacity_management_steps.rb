@@ -78,3 +78,28 @@ Then(/^I will see a capacity audit log noting the change$/) do
     expect(page).to have_content("#{@admin.email} updated intake values")
   end
 end
+
+When(/^I change the status to (locked|unlocked) and save capacity$/) do |status|
+  find('select').find(:option, status).select_option
+  click_on('Save')
+end
+
+Then(/^I will see a note about (locking|unlocking) the capacity$/) do |status|
+  within('.audit-logs') do
+    expect(page).to have_content(status.sub('ing', 'ed'))
+  end
+end
+
+Then(/^I will see the capacity form is locked$/) do
+  expect(find('#capacity_standard')).to be_readonly
+  expect(find('#capacity_reserve')).to be_readonly
+  expect(find('#capacity_unavailable')).to be_readonly
+  expect(find('#capacity_activated')).to be_readonly
+end
+
+Then(/^I will see the capacity form is unlocked$/) do
+  expect(find('#capacity_standard')).to_not be_readonly
+  expect(find('#capacity_reserve')).to_not be_readonly
+  expect(find('#capacity_unavailable')).to_not be_readonly
+  expect(find('#capacity_activated')).to_not be_readonly
+end

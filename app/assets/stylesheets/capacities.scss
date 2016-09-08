@@ -3,6 +3,12 @@
 .current-capacity-form {
   margin-bottom: 3rem;
 
+  input[readonly] {
+    background-color: $color-gray-lightest;
+    color: $color-gray;
+    box-shadow: none;
+  }
+
   .usa-grid-full {
     max-width: 100%;
   }
