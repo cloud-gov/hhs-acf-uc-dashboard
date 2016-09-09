@@ -1,0 +1,2 @@
+class BedSchedule < ApplicationRecord
+end

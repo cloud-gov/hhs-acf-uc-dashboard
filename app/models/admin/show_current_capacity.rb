@@ -5,20 +5,25 @@ module Admin
     def load_models
       load_capacity
       load_capacity_logs
-    end
-
-    def load_capacity
-      @capacity ||= existing_capacity || new_capacity
-    end
-
-    def load_capacity_logs
-      @logs = capacity.logs.to_a
+      load_scheduled_beds
     end
 
     private
 
-    def existing_capacity
-      Capacity.where(capacity_on: Date.today).take
+    def load_capacity
+      @capacity ||= capacities_query.today || new_capacity
+    end
+
+    def load_capacity_logs
+      @logs ||= capacity.logs.to_a
+    end
+
+    def load_scheduled_beds
+      @scheduled_beds ||= BedSchedule.where(current: true)
+    end
+
+    def capacities_query
+      @capacities_query ||= Query::Capacities.new
     end
 
     def new_capacity
@@ -26,7 +31,7 @@ module Admin
     end
 
     def last_capacity
-      @last_capacity ||= Capacity.where('capacity_on < ?', Date.today).order('capacity_on DESC').first
+      capacities_query.last
     end
 
     def last_capacity_default_values

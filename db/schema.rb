@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160902232032) do
+ActiveRecord::Schema.define(version: 20160909155234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bed_schedules", force: :cascade do |t|
+    t.string   "facility_name"
+    t.integer  "bed_count"
+    t.date     "scheduled_on"
+    t.boolean  "current"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["current"], name: "index_bed_schedules_on_current", using: :btree
+  end
 
   create_table "capacities", force: :cascade do |t|
     t.date     "capacity_on"
