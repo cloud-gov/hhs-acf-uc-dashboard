@@ -3,13 +3,22 @@ Feature:
   I want to manage scheduled bed numbers
   So that capacity estimations can be calculated based on these beds
 
-  @wip
-  Scenario: Viewing scheduled bed forms
+  @wip @javascript
+  Scenario: Adding a new bed schedule for a facility
     Given I have signed in as an authenticated 'Admin' user
-    And there are scheduled bed values already entered
     And I click on the 'Capacity' link
-    Then I should see a form for each schedule
-    And I will see that the 'Save' button in each schedule form is disabled
+    And I add values to the new scheduled beds form
+    And I click on the 'Add facility' button in that new schedule form
+    And I save the new schedule
+    Then I will see the new facility schedule added as an edit form
+    And I will see that the 'Save' button in that schedule is disabled
+
+    When I click on the input values for that schedule
+    Then I will see thath the 'Save' button in that schedule is enabled
+
+    When I change values for the facility's schedue
+    And I save the schedule
+    Then I will see that schedule has been changed
 
   #@javascript
   #Scenario: Activating the schedule form button

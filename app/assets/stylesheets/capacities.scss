@@ -1,7 +1,14 @@
 @import 'variables';
+$sans-serif: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
 
-.current-capacity-form {
-  margin-bottom: 3rem;
+.capacities {
+  .usa-grid-full {
+    max-width: 100%;
+  }
+
+  h4 {
+    font-family: $sans-serif;
+  }
 
   input[readonly] {
     background-color: $color-gray-lightest;
@@ -9,11 +16,8 @@
     box-shadow: none;
   }
 
-  .usa-grid-full {
-    max-width: 100%;
-  }
-
-  .field {
+  .field,
+  .fake-header {
     float: left;
     display: block;
     box-sizing: border-box;
@@ -21,14 +25,27 @@
     width: 8%;
   }
 
+  .fake-header {
+    padding: 0 1rem;
+  }
+
   .field.date,
   .field.status {
     width: 15%;
   }
 
+  .month,
+  .day {
+    width: 5%;
+  }
+
+  .save-button {
+    float: right;
+  }
+
   .field.date h2 {
     margin: 0.5rem 0 0 0;
-    font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+    font-family: $sans-serif;
     font-weight: normal;
   }
 
@@ -45,6 +62,16 @@
   }
 }
 
+h2.section-header {
+  border-bottom: 2px solid black;
+  padding-bottom: 1rem;
+  margin-bottom: 0;
+}
+
+.current-capacity-form {
+  margin-bottom: 3rem;
+}
+
 .audit-logs {
   background-color: $color-gray-lightest;
   border-top: 1px solid black;
@@ -56,5 +83,61 @@
     .message {
       float: right;
     }
+  }
+}
+
+.fake-table-header {
+  float: left;
+  width: 100%;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid black;
+}
+
+.bed-schedules {
+  .bed-schedule-form {
+    float: left;
+    width: 100%;
+    border-bottom: 1px solid black;
+    padding-bottom: 1rem;
+  }
+
+  .facility {
+    width: 25%;
+  }
+
+  .field.facility,
+  .field.bed-count,
+  .field.month,
+  .field.day,
+  .field.year {
+    padding-left: 1rem;
+
+    label {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+      position: -999rem;
+    }
+  }
+
+  .field.delete {
+    input[type=checkbox] {
+      width: 0;
+    }
+  }
+
+  .month,
+  .day {
+    margin-right: 1%;
+  }
+
+  label {
+    padding-left: 1rem;
+    margin-top: 1rem;
+  }
+
+  input[type=submit] {
+    margin: 0;
   }
 }

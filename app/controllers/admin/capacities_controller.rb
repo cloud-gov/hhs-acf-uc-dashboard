@@ -8,8 +8,7 @@ module Admin
 
     def show
       require!(:can_admin)
-      service = Admin::ShowCurrentCapacity.new
-      service.load_models
+      service = Admin::ShowCurrentCapacity.new.load_models
       @view_model = View::AdminShowCapacity.new(service)
     end
 

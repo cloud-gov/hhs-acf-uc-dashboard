@@ -1,0 +1,31 @@
+<%= form_for [:admin, schedule], html: {class: 'bed-schedule-form' } do |f| %>
+  <div class='field facility'>
+    <%= f.label :facility_name %>
+    <%= f.text_field :facility_name %>
+  </div>
+
+  <div class='field bed-count'>
+    <%= f.label :bed_count %>
+    <%= f.number_field :bed_count %>
+  </div>
+
+  <div class='field month'>
+    <%= label "bed_schedule", "month" %>
+    <%= text_field "bed_schedule", "month" %>
+  </div>
+  <div class='field day'>
+    <%= label "bed_schedule", "day" %>
+    <%= text_field "bed_schedule", "day" %>
+  </div>
+  <div class='field year'>
+    <%= label "bed_schedule", "year" %>
+    <%= text_field "bed_schedule", "year" %>
+  </div>
+  <div class='field delete'>
+    <%= check_box "bed_schedule", "delete" %>
+    <%= label "bed_schedule", "delete", '&nbsp;'.html_safe %>
+  </div>
+  <div class='field save-button'>
+    <%= f.submit "Save", disabled: true %>
+  </div>
+<% end %>

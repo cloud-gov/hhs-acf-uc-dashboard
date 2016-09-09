@@ -9,7 +9,6 @@ Feature:
     When I visit the 'Users' page
     Then I should see a list of existing users
 
-  @javascript
   Scenario: Promoting the role of a 'No access' user
     Given I have signed in as an authenticated 'Admin' user
     And there is a 'No access' user listed
@@ -18,7 +17,6 @@ Feature:
     And I click to save the role change
     Then I will see the role of the 'No access' user is now 'General'
 
-  @javascript
   Scenario: Demoting the role of a user
     Given I have signed in as an authenticated 'Admin' user
     And there is a 'Operations' user listed

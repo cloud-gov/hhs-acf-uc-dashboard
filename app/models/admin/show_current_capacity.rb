@@ -6,6 +6,7 @@ module Admin
       load_capacity
       load_capacity_logs
       load_scheduled_beds
+      self
     end
 
     private

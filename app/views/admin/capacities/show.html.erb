@@ -1,6 +1,4 @@
-<h2>Daily bed capacity</h2>
-
-<hr>
+<h2 class='section-header'>Daily bed capacity</h2>
 
 <%= form_for([:admin, @view_model.capacity], url: "/admin/capacities/#{@view_model.capacity.date}", method: :put, html: {class: 'current-capacity-form'}) do |f| %>
   <% if @view_model.errors? %>
@@ -65,4 +63,25 @@
     </span>
   </div>
   <% end %>
+</div>
+
+<h2 class='section-header'>
+  Scheduled Beds
+</h2>
+
+<div class='usa-grid-full bed-schedules'>
+  <h4 class='fake-table-header'>
+    <div class='fake-header facility'>Facility</div>
+    <div class='fake-header bed-count'>Bed count</div>
+    <div class='fake-header month'>Month</div>
+    <div class='fake-header day'>Day</div>
+    <div class='fake-header year'>Year</div>
+    <div class='fake-header delete'>Delete</div>
+    <div class='fake-header save-button'></div>
+  </h4>
+
+  <% @view_model.schedules.each do |schedule| %>
+    <%= render partial: '/admin/bed_schedules/form', locals: {schedule: schedule} %>
+  <% end %>
+  <%= render partial: '/admin/bed_schedules/form', locals: {schedule: BedSchedule.new } %>
 </div>

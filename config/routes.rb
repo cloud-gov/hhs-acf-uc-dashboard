@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users, only: [:index, :new, :create, :update]
     resources :capacities, only: [:index, :show, :update]
+    resources :bed_schedules, only: [:create]
   end
 end
