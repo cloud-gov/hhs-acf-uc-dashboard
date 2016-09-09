@@ -21,19 +21,19 @@ module Admin
       'unlocked'
     end
 
+    def self.value_fields
+      [:standard, :reserve, :activated, :unavailable]
+    end
+
     private
 
     class ValidationError < Struct.new(:field, :message)
     end
 
     def integer_error_fields
-      integer_fields.select { |value_key|
+      self.class.value_fields.select { |value_key|
         !is_positive_integer?(params[value_key].to_i)
       }
-    end
-
-    def integer_fields
-      [:standard, :reserve, :activated, :unavailable]
     end
 
     def is_positive_integer?(value)

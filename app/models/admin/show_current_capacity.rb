@@ -1,6 +1,6 @@
 module Admin
   class ShowCurrentCapacity
-    attr_reader :capacity, :logs
+    attr_reader :capacity, :logs, :scheduled_beds
 
     def load_models
       load_capacity
@@ -19,11 +19,15 @@ module Admin
     end
 
     def load_scheduled_beds
-      @scheduled_beds ||= BedSchedule.where(current: true)
+      @scheduled_beds ||= bed_schedules_query.current
     end
 
     def capacities_query
       @capacities_query ||= Query::Capacities.new
+    end
+
+    def bed_schedules_query
+      @bed_schedules_query ||= Query::BedSchedules.new
     end
 
     def new_capacity
@@ -36,28 +40,11 @@ module Admin
 
     def last_capacity_default_values
       return if !last_capacity
-      new_record_defaults.merge({
-        standard: last_capacity.standard,
-        reserve: last_capacity.reserve,
-        activated: last_capacity.activated,
-        unavailable: last_capacity.unavailable
-      })
-    end
-
-    def new_record_defaults
-      {
-        date: Date.today,
-        status: 'unlocked'
-      }
+      CapacityData::NewAttributes.from_attributes(last_capacity.attributes)
     end
 
     def default_values
-      new_record_defaults.merge({
-        standard: 0,
-        reserve: 0,
-        activated: 0,
-        unavailable: 0,
-      })
+      CapacityData::NewAttributes.from_scratch
     end
   end
 end

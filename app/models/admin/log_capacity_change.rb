@@ -32,7 +32,7 @@ module Admin
     end
 
     def values_updated?
-      !(previous_changes.keys & ['standard', 'reserved', 'activated', 'unavailable']).empty?
+      !(previous_changes.keys & CapacityData.value_fields.map(&:to_s)).empty?
     end
 
     def status_changed?
