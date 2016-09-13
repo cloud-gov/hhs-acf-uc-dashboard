@@ -33,7 +33,20 @@ module Admin
       }
     end
 
+    def update_attributes
+      {
+        facility_name: params[:facility_name],
+        bed_count: bed_count,
+        scheduled_on: scheduled_on,
+        current: current
+      }
+    end
+
     private
+
+    def current
+      params[:delete].to_i != 1
+    end
 
     def bed_count_valid?
       bed_count >= 0

@@ -1,4 +1,4 @@
-<%= form_for [:admin, schedule], html: {class: 'bed-schedule-form' } do |f| %>
+<%= form_for [:admin, schedule.model], html: {class: 'bed-schedule-form' } do |f| %>
   <div class='field facility'>
     <%= f.label :facility_name %>
     <%= f.text_field :facility_name %>
@@ -11,15 +11,15 @@
 
   <div class='field month'>
     <%= label "bed_schedule", "month" %>
-    <%= text_field "bed_schedule", "month" %>
+    <%= text_field "bed_schedule", "month", value: schedule.month %>
   </div>
   <div class='field day'>
     <%= label "bed_schedule", "day" %>
-    <%= text_field "bed_schedule", "day" %>
+    <%= text_field "bed_schedule", "day", value: schedule.day %>
   </div>
   <div class='field year'>
     <%= label "bed_schedule", "year" %>
-    <%= text_field "bed_schedule", "year" %>
+    <%= text_field "bed_schedule", "year", value: schedule.year %>
   </div>
   <div class='field delete'>
     <% if schedule.persisted? %>

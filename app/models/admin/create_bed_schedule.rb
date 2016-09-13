@@ -29,7 +29,7 @@ module Admin
       BedScheduleData.new(params)
     end
 
-    delegate :valid?, :bed_count, :scheduled_on, :validation_errors, :new_attributes,
+    delegate :valid?, :validation_errors, :new_attributes,
       to: :data
 
     def add_errors_if_not_valid

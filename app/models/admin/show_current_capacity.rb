@@ -14,6 +14,12 @@ module Admin
       @new_bed_schedule ||= BedSchedule.new
     end
 
+    def replace_bed_schedule(schedule)
+      @scheduled_beds = scheduled_beds.map do |item|
+        item.id == schedule.id ? schedule : item
+      end
+    end
+
     private
 
     def load_capacity
@@ -25,7 +31,7 @@ module Admin
     end
 
     def load_scheduled_beds
-      @scheduled_beds ||= bed_schedules_query.current
+      @scheduled_beds ||= bed_schedules_query.current.to_a
     end
 
     def capacities_query
