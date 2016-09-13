@@ -1,20 +1,8 @@
 <h2 class='section-header'>Daily bed capacity</h2>
 
 <%= form_for([:admin, @view_model.capacity], url: "/admin/capacities/#{@view_model.capacity.date}", method: :put, html: {class: 'current-capacity-form'}) do |f| %>
-  <% if @view_model.errors? %>
-    <div class='usa-alert usa-alert-error'>
-      <div class="usa-alert-body">
-        <h3 class="usa-alert-heading"><%= @view_model.error_heading %></h3>
-        <div class='usa-alert-body'>
-          <ul>
-            <% @view_model.error_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-    </div>
-  <% end %>
+  <%= render partial: '/layouts/model_error', locals: {model_error: @view_model.capacity_model_error} %>
+
   <div class='usa-grid-full'>
     <div class='field date'>
       <%= f.label :date %>

@@ -1,4 +1,5 @@
 <%= form_for [:admin, schedule.model], html: {class: 'bed-schedule-form' } do |f| %>
+  <%= render partial: '/layouts/model_error', locals: {model_error: schedule.model_error} %>
   <div class='field facility'>
     <%= f.label :facility_name %>
     <%= f.text_field :facility_name %>

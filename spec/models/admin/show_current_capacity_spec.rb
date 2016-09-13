@@ -117,4 +117,35 @@ RSpec.describe Admin::ShowCurrentCapacity do
       end
     end
   end
+
+  describe '#replace_bed_schedule' do
+    let(:capacities_query) {
+      double({
+        today: nil,
+        last: nil
+      })
+    }
+
+    let!(:saved_bed_schedule) {
+      BedSchedule.create({
+        facility_name: 'Homestead',
+        scheduled_on: Date.parse('2016-10-03'),
+        bed_count: 200,
+        current: true
+      })
+    }
+
+    let(:edited_bed_schedule) {
+      schedule = BedSchedule.find(saved_bed_schedule.id)
+      schedule.bed_count = -300
+      schedule
+    }
+
+    it 'substitutes by id' do
+      service.load_models
+      service.replace_bed_schedule(edited_bed_schedule)
+      expect(service.scheduled_beds.first).to equal(edited_bed_schedule)
+      expect(service.scheduled_beds.first.bed_count).to equal(-300)
+    end
+  end
 end

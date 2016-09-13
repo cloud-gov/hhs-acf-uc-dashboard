@@ -8,13 +8,13 @@ module Admin
 
     def save
       model.skip_confirmation!
-      @saved = model.save
+      model.save
       send_notification if saved?
       saved?
     end
 
     def saved?
-      @saved
+      model.persisted?
     end
 
     def model

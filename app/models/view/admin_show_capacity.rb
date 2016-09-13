@@ -33,16 +33,8 @@ module View
       SchedulePresenter.new(new_bed_schedule_record)
     end
 
-    def errors?
-      !capacity.errors.empty?
-    end
-
-    def error_heading
-      'Some capacity values were invalid:'
-    end
-
-    def error_messages
-      capacity.errors.full_messages
+    def capacity_model_error
+      View::ModelError.new(capacity, 'Some capacity values were invalid:')
     end
 
     def input_attributes
@@ -75,18 +67,25 @@ module View
         to: :model
 
       def month
+        return model.month if model.month
         return unless model.scheduled_on
         model.scheduled_on.month
       end
 
       def day
+        return model.day if model.day
         return unless model.scheduled_on
         model.scheduled_on.day
       end
 
       def year
+        return model.year if model.year
         return unless model.scheduled_on
         model.scheduled_on.year
+      end
+
+      def model_error
+        View::ModelError.new(model, 'Some entries were invalid:')
       end
     end
   end

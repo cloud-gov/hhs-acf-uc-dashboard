@@ -8,6 +8,7 @@ module Admin
     end
 
     def call
+      bed_schedule.assign_attributes(update_attributes)
       add_errors_if_not_valid
       update_bed_schedule_if_valid
     end
@@ -35,7 +36,6 @@ module Admin
 
     def update_bed_schedule_if_valid
       return if !valid?
-      bed_schedule.assign_attributes(update_attributes)
       bed_schedule.save
       @saved = true
     end

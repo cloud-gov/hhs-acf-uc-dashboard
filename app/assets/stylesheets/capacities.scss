@@ -1,7 +1,8 @@
 @import 'variables';
 $sans-serif: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
 
-.capacities {
+.capacities,
+.main-content.bed_schedules {
   .usa-grid-full {
     max-width: 100%;
   }
@@ -93,7 +94,8 @@ h2.section-header {
   border-bottom: 1px solid black;
 }
 
-.bed-schedules {
+.capacities .bed-schedules,
+.bed_schedules .bed-schedules {
   .bed-schedule-form {
     float: left;
     width: 100%;

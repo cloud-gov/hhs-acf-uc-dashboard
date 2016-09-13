@@ -1,0 +1,14 @@
+<% if model_error.errors? %>
+  <div class='usa-alert usa-alert-error'>
+    <div class="usa-alert-body">
+      <h3 class="usa-alert-heading"><%= model_error.heading %></h3>
+      <div class='usa-alert-body'>
+        <ul>
+          <% model_error.messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+<% end %>

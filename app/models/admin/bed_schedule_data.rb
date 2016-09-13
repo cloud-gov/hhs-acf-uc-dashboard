@@ -24,22 +24,39 @@ module Admin
       nil
     end
 
-    def new_attributes
+    def base_attributes
       {
         facility_name: params[:facility_name],
         bed_count: bed_count,
         scheduled_on: scheduled_on,
-        current: true
+        month: month,
+        day: day,
+        year: year
       }
     end
 
+    def new_attributes
+      base_attributes.merge({
+        current: true
+      })
+    end
+
     def update_attributes
-      {
-        facility_name: params[:facility_name],
-        bed_count: bed_count,
-        scheduled_on: scheduled_on,
+      base_attributes.merge({
         current: current
-      }
+      })
+    end
+
+    def month
+      params[:month]
+    end
+
+    def day
+      params[:day]
+    end
+
+    def year
+      params[:year]
     end
 
     private
@@ -59,7 +76,7 @@ module Admin
     end
 
     def parse_date
-      Date.parse("#{params[:year]}-#{params[:month]}-#{params[:day]}")
+      Date.parse("#{year}-#{month}-#{day}")
     end
 
     def date_errors
