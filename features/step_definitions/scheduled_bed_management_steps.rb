@@ -34,7 +34,7 @@ Then(/^I will see that the 'Save' button in that schedule is enabled$/) do
 end
 
 When(/^I change values for the facility's schedule$/) do
-  all('form.bed-schedule-form').first.find('input[type=number]').set('333')
+  all('form.bed-schedule-form').first.find('input[type=number]').set(333)
 end
 
 When(/^I save the schedule$/) do
@@ -43,5 +43,15 @@ end
 
 Then(/^I will see that schedule has been changed$/) do
   click_on('Capacity')
-  expect(page).to have_content('333')
+  value = all('form.bed-schedule-form').first.find('input[type=number]')[:value]
+  expect(value).to eq('333')
+end
+
+When(/^I check the 'Remove' checkbox on that schedule$/) do
+  all('form.bed-schedule-form').first.find('label[for=bed_schedule_delete]').click
+end
+
+Then(/^I will see that the schedule has been removed$/) do
+  click_on 'Capacity'
+  expect(all('form.bed-schedule-form').count).to eq(1)
 end
