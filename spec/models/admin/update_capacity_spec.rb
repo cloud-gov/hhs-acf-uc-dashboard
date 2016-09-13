@@ -5,6 +5,7 @@ RSpec.describe Admin::UpdateCapacity do
   let(:current_user) { double(id: 123, email: 'adminy@hhs.gov') }
   let(:params) {
     {
+      date: '2016-09-06',
       standard: 1001,
       reserve: 101,
       activated: 202,
@@ -14,7 +15,12 @@ RSpec.describe Admin::UpdateCapacity do
   }
 
   let(:capacity_data) {
-    double(valid?: true, validation_errors: [], normalized_status: params[:status])
+    double({
+      valid?: true,
+      validation_errors: [],
+      normalized_status: params[:status],
+      update_attributes: params
+    })
   }
 
   before do
@@ -32,14 +38,15 @@ RSpec.describe Admin::UpdateCapacity do
           double(field: :standard, message: 'must be zero or greater'),
           double(field: :unavailable, message: 'must be zero or greater')
         ],
-        normalized_status: 'unlocked'
+        normalized_status: 'unlocked',
+        update_attributes: params
       })
     }
 
     it 'adds flash a error message' do
       service.save
       service.add_flash(flash)
-      expect(flash[:error]).to eq('There was a problem saving these values.')
+      expect(flash[:error]).to include('problem')
     end
 
     it 'does not save the capacity record' do

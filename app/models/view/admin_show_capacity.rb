@@ -1,11 +1,12 @@
 module View
   class AdminShowCapacity
-    attr_reader :capacity, :schedules
+    attr_reader :capacity, :schedules, :new_bed_schedule
 
     def initialize(service)
-      @capacity = service.capacity
-      @logs = service.logs
-      @schedules = service.scheduled_beds
+      @capacity         = service.capacity
+      @new_bed_schedule = service.new_bed_schedule
+      @logs             = service.logs
+      @schedules        = service.scheduled_beds
     end
 
     def status_set

@@ -21,14 +21,22 @@ module Admin
       'unlocked'
     end
 
+    def update_attributes(date)
+      {
+        date:         date,
+        standard:     params[:standard],
+        reserve:      params[:reserve],
+        activated:    params[:activated],
+        unavailable:  params[:unavailable],
+        status:       normalized_status
+      }
+    end
+
     def self.value_fields
       [:standard, :reserve, :activated, :unavailable]
     end
 
     private
-
-    class ValidationError < Struct.new(:field, :message)
-    end
 
     def integer_error_fields
       self.class.value_fields.select { |value_key|

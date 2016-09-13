@@ -27,7 +27,7 @@ module Admin
     end
 
     def add_flash(flash_object)
-      flash_object[flash_key] = flash_message
+      UserFormFlasher.new(flash_object, saved?, model.email).add
     end
 
     private
@@ -35,22 +35,6 @@ module Admin
     def send_notification
       token = model.send(:set_reset_password_token)
       InvitationsMailer.change_password(model, token).deliver
-    end
-
-    def flash_key
-      saved? ? :success : :error
-    end
-
-    def flash_message
-      saved? ? flash_success_message : flash_error_message
-    end
-
-    def flash_success_message
-      "Successfully added #{model.email}."
-    end
-
-    def flash_error_message
-      "There was a problem saving this user."
     end
 
     def role
@@ -65,6 +49,19 @@ module Admin
         @password += chars[rand(chars.size)]
       end
       @password
+    end
+
+    class UserFormFlasher < ::FormFlasher
+      attr_reader :email
+
+      def initialize(flash_object, saved, email)
+        super(flash_object, saved)
+        @email = email
+      end
+
+      def success_message
+        "Successfully added #{email}."
+      end
     end
   end
 end

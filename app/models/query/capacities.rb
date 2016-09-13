@@ -7,8 +7,12 @@ module Query
         .first
     end
 
+    def for_date(date)
+      Capacity.where(capacity_on: date).take
+    end
+
     def today
-      @today ||= Capacity.where(capacity_on: Date.today).take
+      @today ||= for_date(Date.today)
     end
   end
 end

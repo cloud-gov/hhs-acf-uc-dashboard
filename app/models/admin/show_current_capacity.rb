@@ -1,12 +1,17 @@
 module Admin
   class ShowCurrentCapacity
-    attr_reader :capacity, :logs, :scheduled_beds
+    attr_accessor :capacity, :logs, :scheduled_beds
+    attr_writer :new_bed_schedule
 
     def load_models
       load_capacity
       load_capacity_logs
       load_scheduled_beds
       self
+    end
+
+    def new_bed_schedule
+      @new_bed_schedule ||= BedSchedule.new
     end
 
     private

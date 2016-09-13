@@ -22,7 +22,10 @@ module Admin
       if service.saved?
         redirect_to '/admin/capacities/current'
       else
-        @view_model = View::AdminShowCapacity.new(service)
+        querier = Admin::ShowCurrentCapacity.new
+        querier.capacity = service.capacity
+        querier.load_models
+        @view_model = View::AdminShowCapacity.new(querier)
         render :show
       end
     end

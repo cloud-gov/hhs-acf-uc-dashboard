@@ -83,5 +83,5 @@
   <% @view_model.schedules.each do |schedule| %>
     <%= render partial: '/admin/bed_schedules/form', locals: {schedule: schedule} %>
   <% end %>
-  <%= render partial: '/admin/bed_schedules/form', locals: {schedule: BedSchedule.new } %>
+  <%= render partial: '/admin/bed_schedules/form', locals: {schedule: @view_model.new_bed_schedule } %>
 </div>

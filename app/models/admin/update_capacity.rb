@@ -16,9 +16,13 @@ module Admin
 
     def capacity
       return @capacity if @capacity
-      @capacity = Capacity.where(capacity_on: date).take || Capacity.new
+      @capacity =  Query::Capacities.new.for_date(date) || Capacity.new
       @capacity.assign_attributes(attributes)
       @capacity
+    end
+
+    def scheduled_beds
+      @scheduled_beds ||= Query::BedSchedules.new.current
     end
 
     def saved?
@@ -30,18 +34,21 @@ module Admin
     end
 
     def add_flash(flash_object)
-      if saved?
-        flash_object[:success] = 'Your changes have been saved.'
-      else
-        flash_object[:error] = 'There was a problem saving these values.'
-      end
+      FormFlasher.new(flash_object, saved?).add
     end
 
     private
 
+    def data
+      CapacityData.new(capacity_params)
+    end
+
+    delegate :validation_errors, :valid?, :update_attributes,
+      to: :data
+
     def add_errors_if_not_valid
       return if valid?
-      CapacityData.new(capacity_params).validation_errors.each do |error|
+      validation_errors.each do |error|
         capacity.errors.add(error.field, error.message)
       end
     end
@@ -56,24 +63,8 @@ module Admin
       Admin::LogCapacityChange.new(capacity, current_user).call
     end
 
-    def valid?
-      CapacityData.new(capacity_params).valid?
-    end
-
-    def is_positive_integer?(value)
-      value.is_a?(Fixnum) && value >= 0
-    end
-
     def attributes
-      # TODO: normalize status
-      {
-        date:         date,
-        standard:     capacity_params[:standard],
-        reserve:      capacity_params[:reserve],
-        activated:    capacity_params[:activated],
-        unavailable:  capacity_params[:unavailable],
-        status:       CapacityData.new(capacity_params).normalized_status
-      }
+      update_attributes(date)
     end
   end
 end

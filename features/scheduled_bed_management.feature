@@ -8,15 +8,14 @@ Feature:
     Given I have signed in as an authenticated 'Admin' user
     And I click on the 'Capacity' link
     And I add values to the new scheduled beds form
-    And I click on the 'Add facility' button in that new schedule form
     And I save the new schedule
     Then I will see the new facility schedule added as an edit form
     And I will see that the 'Save' button in that schedule is disabled
 
     When I click on the input values for that schedule
-    Then I will see thath the 'Save' button in that schedule is enabled
+    Then I will see that the 'Save' button in that schedule is enabled
 
-    When I change values for the facility's schedue
+    When I change values for the facility's schedule
     And I save the schedule
     Then I will see that schedule has been changed
 

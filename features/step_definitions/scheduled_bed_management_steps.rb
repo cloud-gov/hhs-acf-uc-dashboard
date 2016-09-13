@@ -1,39 +1,47 @@
 Given(/^I add values to the new scheduled beds form$/) do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Given(/^I click on the 'Add facility' button in that new schedule form$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  within('#new_bed_schedule') do
+    fill_in('bed_schedule_facility_name', with: 'Homestead')
+    fill_in('bed_schedule_bed_count', with: '300')
+    fill_in('bed_schedule_month', with: '10')
+    fill_in('bed_schedule_day', with: '3')
+    fill_in('bed_schedule_year', with: '2016')
+  end
 end
 
 Given(/^I save the new schedule$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  within('#new_bed_schedule') do
+    click_on('Save')
+  end
 end
 
 Then(/^I will see the new facility schedule added as an edit form$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  click_on('Capacity') # to reload
+  expect(page.all('.bed-schedule-form').count).to eq(2)
 end
 
 Then(/^I will see that the 'Save' button in that schedule is disabled$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  save_button = all('form.bed-schedule-form').first.find('input[type=submit]')
+  expect(save_button[:disabled]).to eq(true)
 end
 
 When(/^I click on the input values for that schedule$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  all('form.bed-schedule-form').first.find('input[type=number]').click
 end
 
-Then(/^I will see thath the 'Save' button in that schedule is enabled$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+Then(/^I will see that the 'Save' button in that schedule is enabled$/) do
+  save_button = all('form.bed-schedule-form').first.find('input[type=submit]')
+  expect(save_button[:disabled]).to eq(false)
 end
 
-When(/^I change values for the facility's schedue$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+When(/^I change values for the facility's schedule$/) do
+  all('form.bed-schedule-form').first.find('input[type=number]').set('333')
 end
 
 When(/^I save the schedule$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  all('form.bed-schedule-form').first.find('input[type=submit]').click
 end
 
 Then(/^I will see that schedule has been changed$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  click_on('Capacity')
+  expect(page).to have_content('333')
 end

@@ -22,8 +22,10 @@
     <%= text_field "bed_schedule", "year" %>
   </div>
   <div class='field delete'>
+    <% if schedule.persisted? %>
     <%= check_box "bed_schedule", "delete" %>
     <%= label "bed_schedule", "delete", '&nbsp;'.html_safe %>
+    <% end %>
   </div>
   <div class='field save-button'>
     <%= f.submit "Save", disabled: true %>
