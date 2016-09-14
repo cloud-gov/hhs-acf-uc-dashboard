@@ -4,6 +4,6 @@ class ApplicationController < ActionController::Base
   include Authorization
 
   rescue_from Authorization::Error do
-    redirect_to "/dashboards/default"
+    redirect_to "/reports/default"
   end
 end

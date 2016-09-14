@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe DashboardsController, type: :controller do
+RSpec.describe ApplicationController, type: :controller do
   describe '#require!(:can_admin)' do
     context 'when there is no user' do
       let(:user) { nil }

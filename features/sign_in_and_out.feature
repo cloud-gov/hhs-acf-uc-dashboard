@@ -9,7 +9,7 @@ Feature:
     Then I should see a link to Sign in
     When I sign in
     Then I should see a link to Sign out
-    And I should not see a link to a dashboard
+    And I should not see a link to a daily report
     And I should not see a link to manage users
     When I sign out
     Then I should see a link to Sign in
@@ -20,7 +20,7 @@ Feature:
     Then I should see a link to Sign in
     When I sign in
     Then I should see a link to Sign out
-    And I should see a link to my dashboard
+    And I should see a link to my daily report
     And I should not see a link to manage users
     When I sign out
     Then I should see a link to Sign in
@@ -31,7 +31,7 @@ Feature:
     Then I should see a link to Sign in
     When I sign in
     Then I should see a link to Sign out
-    And I should see a link to my dashboard
+    And I should see a link to my daily report
     And I should not see a link to manage users
     When I sign out
     Then I should see a link to Sign in
@@ -42,7 +42,7 @@ Feature:
     Then I should see a link to Sign in
     When I sign in
     Then I should see a link to Sign out
-    And I should see a link to dashboards
+    And I should see a link to daily reports
     And I should see a link to manage users
     When I sign out
     Then I should see a link to Sign in

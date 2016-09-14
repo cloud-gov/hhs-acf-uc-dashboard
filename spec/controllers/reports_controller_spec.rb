@@ -1,18 +1,18 @@
 require 'rails_helper'
 
-RSpec.describe DashboardsController, type: :controller do
+RSpec.describe ReportsController, type: :controller do
   describe 'GET #index' do
     it "requires authentication" do
       expect(controller).to receive(:authenticate_user!)
       get :index
     end
 
-    it "redirects to the default dashboard" do
+    it "redirects to the default report" do
       user = double(role: 'admin')
       expect(controller).to receive(:authenticate_user!)
       allow(controller).to receive(:current_user).and_return(user)
       get :index
-      expect(controller).to redirect_to('/dashboards/default')
+      expect(controller).to redirect_to('/reports/default')
     end
   end
 
@@ -54,7 +54,7 @@ RSpec.describe DashboardsController, type: :controller do
         allow(controller).to receive(:current_user).and_return(user)
       end
 
-      it "only shows the general dashboard" do
+      it "only shows the general report" do
         get :show, params: {id: 'operations'}
         expect(response).to render_template("general")
 
@@ -74,7 +74,7 @@ RSpec.describe DashboardsController, type: :controller do
         allow(controller).to receive(:current_user).and_return(user)
       end
 
-      it "only shows the operations dashboard" do
+      it "only shows the operations report" do
         get :show, params: {id: 'operations'}
         expect(response).to render_template("operations")
 
@@ -94,17 +94,17 @@ RSpec.describe DashboardsController, type: :controller do
         allow(controller).to receive(:current_user).and_return(user)
       end
 
-      it "can see the operations dashboard" do
+      it "can see the operations report" do
         get :show, params: {id: 'operations'}
         expect(response).to render_template("operations")
       end
 
-      it "can see the general dashboard" do
+      it "can see the general report" do
         get :show, params: {id: 'general'}
         expect(response).to render_template("general")
       end
 
-      it "defaults to the operations dashboard" do
+      it "defaults to the operations report" do
         get :show, params: {id: 'something-weird'}
         expect(response).to render_template("operations")
       end

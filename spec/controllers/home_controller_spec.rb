@@ -22,10 +22,10 @@ RSpec.describe HomeController, type: :controller do
     context 'when logged in as something else' do
       let(:user) { double(role: 'no access') }
 
-      it 'redirects to the default dashboard' do
+      it 'redirects to the default report' do
         allow(controller).to receive(:current_user).and_return(user)
         get :index
-        expect(response).to redirect_to('/dashboards')
+        expect(response).to redirect_to('/reports')
       end
     end
   end

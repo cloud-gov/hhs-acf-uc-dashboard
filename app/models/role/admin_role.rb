@@ -16,7 +16,7 @@ class Role
       "/admin/capacities/current"
     end
 
-    def dashboard_template(requested_template)
+    def report_template(requested_template)
       templates = ['general', 'no-access', 'operations']
       return requested_template if templates.include?(requested_template.to_s)
       :operations

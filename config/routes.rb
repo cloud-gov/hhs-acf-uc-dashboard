@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
 
-  resources :dashboards, only: [:show, :index]
+  resources :reports, only: [:show, :index]
 
   namespace :admin do
     resources :users, only: [:index, :new, :create, :update]

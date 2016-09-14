@@ -13,10 +13,10 @@ class Role
     end
 
     def home_path
-      "/dashboards"
+      '/reports'
     end
 
-    def dashboard_template(*)
+    def report_template(*)
       :'no-access'
     end
 
