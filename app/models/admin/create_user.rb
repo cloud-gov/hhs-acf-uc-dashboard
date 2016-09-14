@@ -38,7 +38,7 @@ module Admin
     end
 
     def role
-      Admin::NormalizeRole.new(user_params[:role]).role
+      Attributes::NormalizeRole.new(user_params[:role]).role
     end
 
     def password

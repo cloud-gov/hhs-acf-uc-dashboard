@@ -18,7 +18,7 @@ module Admin
     private
 
     def role
-      Admin::NormalizeRole.new(user_params[:role]).role
+      Attributes::NormalizeRole.new(user_params[:role]).role
     end
   end
 end
