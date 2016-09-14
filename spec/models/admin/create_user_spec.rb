@@ -16,7 +16,7 @@ RSpec.describe Admin::CreateUser do
     }
 
     before do
-      service.save
+      service.call
     end
 
     it 'sets up user to not require confirmation' do
@@ -46,7 +46,7 @@ RSpec.describe Admin::CreateUser do
     }
 
     before do
-      service.save
+      service.call
     end
 
     it 'does not send the notification' do

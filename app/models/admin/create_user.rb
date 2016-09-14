@@ -6,7 +6,7 @@ module Admin
       @user_params = user_params
     end
 
-    def save
+    def call
       model.skip_confirmation!
       model.save
       send_notification if saved?
