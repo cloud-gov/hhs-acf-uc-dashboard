@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe Admin::ShowCurrentCapacity do
-  let(:service) { Admin::ShowCurrentCapacity.new }
+RSpec.describe Query::AdminCapacityDashboard do
+  let(:service) { Query::AdminCapacityDashboard.new }
 
   before do
     allow(Query::Capacities).to receive(:new).and_return(capacities_query)

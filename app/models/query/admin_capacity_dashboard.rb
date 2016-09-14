@@ -1,5 +1,5 @@
-module Admin
-  class ShowCurrentCapacity
+module Query
+  class AdminCapacityDashboard
     attr_accessor :capacity, :logs, :scheduled_beds
     attr_writer :new_bed_schedule
 
@@ -52,11 +52,11 @@ module Admin
 
     def last_capacity_default_values
       return if !last_capacity
-      Attributes::CapacityData::NewAttributes.from_attributes(last_capacity.attributes)
+      Admin::Attributes::CapacityData::NewAttributes.from_attributes(last_capacity.attributes)
     end
 
     def default_values
-      Attributes::CapacityData::NewAttributes.from_scratch
+      Admin::Attributes::CapacityData::NewAttributes.from_scratch
     end
   end
 end

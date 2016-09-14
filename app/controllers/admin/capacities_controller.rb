@@ -8,8 +8,9 @@ module Admin
 
     def show
       require!(:can_admin)
-      service = Admin::ShowCurrentCapacity.new.load_models
-      @view_model = View::AdminShowCapacity.new(service)
+      querier = Query::AdminCapacityDashboard.new
+      querier.load_models
+      @view_model = View::AdminShowCapacity.new(querier)
     end
 
     def update
@@ -22,7 +23,7 @@ module Admin
       if service.saved?
         redirect_to '/admin/capacities/current'
       else
-        querier = Admin::ShowCurrentCapacity.new
+        querier = Query::AdminCapacityDashboard.new
         querier.capacity = service.capacity
         querier.load_models
         @view_model = View::AdminShowCapacity.new(querier)

@@ -10,7 +10,7 @@ module Admin
       if service.saved?
         redirect_to '/admin/capacities/current'
       else
-        querier = Admin::ShowCurrentCapacity.new
+        querier = Query::AdminCapacityDashboard.new
         querier.new_bed_schedule = service.bed_schedule
         querier.load_models
         @view_model = View::AdminShowCapacity.new(querier)
@@ -26,7 +26,7 @@ module Admin
       if service.saved?
         redirect_to '/admin/capacities/current'
       else
-        querier = Admin::ShowCurrentCapacity.new
+        querier = Query::AdminCapacityDashboard.new
         querier.load_models
         querier.replace_bed_schedule(service.bed_schedule)
         @view_model = View::AdminShowCapacity.new(querier)
