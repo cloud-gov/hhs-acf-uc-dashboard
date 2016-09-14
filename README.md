@@ -6,6 +6,8 @@
 
 [![Test Coverage](https://codeclimate.com/github/18F/hhs-acf-uc-dashboard/badges/coverage.svg)](https://codeclimate.com/github/18F/hhs-acf-uc-dashboard/coverage)
 
+[![Build Status](https://api.travis-ci.org/18F/hhs-acf-uc-dashboard.svg)](https://api.travis-ci.org/18F/hhs-acf-uc-dashboard.svg)
+
 Unaccompanied children apprehended by the Department of Homeland Security (DHS) immigration officials are transferred to the care and custody of Office of Refugee Resettlement (ORR). ORR promptly places an unaccompanied child in the least restrictive setting that is in the best interests of the child, taking into consideration danger to self, danger to the community, and risk of flight. ORR takes into consideration the unique nature of each child’s situation and incorporates child welfare principles when making placement, clinical, case management, and release decisions that are in the best interest of the child.
 
 More info: [www.acf.hhs.gov/orr/programs/ucs](http://www.acf.hhs.gov/orr/programs/ucs)
