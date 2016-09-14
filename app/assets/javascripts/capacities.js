@@ -1,3 +1,13 @@
+Function.prototype.bind = Function.prototype.bind || function () {
+  var fn = this;
+  var args = Array.prototype.slice.call(arguments);
+  var object = args.shift();
+
+  return function () {
+    return fn.apply(object, args.concat(Array.prototype.slice.call(arguments)));
+  };
+};
+
 UC.BedScheduleForm = function(form) {
   this.$dom = $(form);
   this.$button = this.$dom.find('input[type=submit]');
