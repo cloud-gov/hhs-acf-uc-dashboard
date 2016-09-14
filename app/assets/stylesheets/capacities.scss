@@ -22,7 +22,7 @@ $sans-serif: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Roboto", "Arial"
     float: left;
     display: block;
     box-sizing: border-box;
-    margin-right: 3.8%;
+    margin-right: 2%;
     width: 8%;
   }
 
@@ -35,6 +35,10 @@ $sans-serif: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Roboto", "Arial"
     width: 15%;
   }
 
+  .field.funded {
+    width: 10%;
+  }
+
   .month,
   .day {
     width: 5%;
@@ -42,6 +46,7 @@ $sans-serif: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Roboto", "Arial"
 
   .save-button {
     float: right;
+    margin-right: 3rem;
   }
 
   .field.date h2 {
@@ -54,7 +59,8 @@ $sans-serif: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Roboto", "Arial"
     margin-top: 5.5rem;
     margin-right: 0;
     margin-left: 3rem;
-    width: 12%;
+    /*width: 12%;*/
+    float: right;
 
     input {
       margin: 0;
