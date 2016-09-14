@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe Admin::CapacityData do
-  let(:data) { Admin::CapacityData.new(params) }
+RSpec.describe Admin::Attributes::CapacityData do
+  let(:data) { Admin::Attributes::CapacityData.new(params) }
 
   context 'when the params are ok' do
     let(:params) {

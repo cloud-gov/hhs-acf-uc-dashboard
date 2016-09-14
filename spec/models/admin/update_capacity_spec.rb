@@ -25,7 +25,7 @@ RSpec.describe Admin::UpdateCapacity do
 
   before do
     allow_any_instance_of(Admin::CreateCapacityLog).to receive(:call)
-    allow(Admin::CapacityData).to receive(:new).and_return(capacity_data)
+    allow(Admin::Attributes::CapacityData).to receive(:new).and_return(capacity_data)
   end
 
   context 'when data is invalid' do

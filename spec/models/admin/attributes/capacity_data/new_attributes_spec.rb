@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Admin::CapacityData::NewAttributes do
+RSpec.describe Admin::Attributes::CapacityData::NewAttributes do
   describe '.from_attributes' do
     let(:attributes) {
       Capacity.new({
@@ -13,7 +13,7 @@ RSpec.describe Admin::CapacityData::NewAttributes do
       }).attributes
     }
 
-    let(:converted) { Admin::CapacityData::NewAttributes.from_attributes(attributes).symbolize_keys }
+    let(:converted) { Admin::Attributes::CapacityData::NewAttributes.from_attributes(attributes).symbolize_keys }
 
     it 'includes current date' do
       expect(converted[:date]).to eq(Date.today)

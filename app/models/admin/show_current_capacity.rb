@@ -52,11 +52,11 @@ module Admin
 
     def last_capacity_default_values
       return if !last_capacity
-      CapacityData::NewAttributes.from_attributes(last_capacity.attributes)
+      Attributes::CapacityData::NewAttributes.from_attributes(last_capacity.attributes)
     end
 
     def default_values
-      CapacityData::NewAttributes.from_scratch
+      Attributes::CapacityData::NewAttributes.from_scratch
     end
   end
 end

@@ -40,7 +40,7 @@ module Admin
     private
 
     def data
-      CapacityData.new(capacity_params)
+      Attributes::CapacityData.new(capacity_params)
     end
 
     delegate :validation_errors, :valid?, :update_attributes,
