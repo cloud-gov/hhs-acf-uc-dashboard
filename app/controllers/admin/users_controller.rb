@@ -16,7 +16,7 @@ module Admin
     def create
       require!(:can_admin)
 
-      service = Admin::AddUser.new(params[:user])
+      service = Admin::CreateUser.new(params[:user])
       service.save
       service.add_flash(flash)
 

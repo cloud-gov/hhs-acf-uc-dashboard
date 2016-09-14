@@ -1,5 +1,5 @@
 module Admin
-  class AddUser
+  class CreateUser
     attr_reader :user_params
 
     def initialize(user_params)

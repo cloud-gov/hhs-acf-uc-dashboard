@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe Admin::AddUser do
-  let(:service) { Admin::AddUser.new(params) }
+RSpec.describe Admin::CreateUser do
+  let(:service) { Admin::CreateUser.new(params) }
 
   before(:each) do
     ActionMailer::Base.deliveries.clear
