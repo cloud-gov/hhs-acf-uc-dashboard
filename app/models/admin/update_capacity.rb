@@ -60,7 +60,7 @@ module Admin
 
     def save_log_if_capacity_saved
       return if !saved?
-      Admin::LogCapacityChange.new(capacity, current_user).call
+      Admin::CreateCapacityLog.new(capacity, current_user).call
     end
 
     def attributes

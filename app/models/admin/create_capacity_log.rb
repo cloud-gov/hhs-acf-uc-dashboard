@@ -1,5 +1,5 @@
 module Admin
-  class LogCapacityChange
+  class CreateCapacityLog
     attr_reader :capacity, :current_user, :log
 
     def initialize(capacity, current_user)

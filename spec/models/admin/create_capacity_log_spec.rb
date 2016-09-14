@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe Admin::LogCapacityChange do
+RSpec.describe Admin::CreateCapacityLog do
   let(:service) {
-    Admin::LogCapacityChange.new(capacity, current_user)
+    Admin::CreateCapacityLog.new(capacity, current_user)
   }
 
   let(:capacity) {

@@ -24,7 +24,7 @@ RSpec.describe Admin::UpdateCapacity do
   }
 
   before do
-    allow_any_instance_of(Admin::LogCapacityChange).to receive(:call)
+    allow_any_instance_of(Admin::CreateCapacityLog).to receive(:call)
     allow(Admin::CapacityData).to receive(:new).and_return(capacity_data)
   end
 
@@ -81,7 +81,7 @@ RSpec.describe Admin::UpdateCapacity do
     end
 
     it 'creates a log' do
-      expect_any_instance_of(Admin::LogCapacityChange).to receive(:call)
+      expect_any_instance_of(Admin::CreateCapacityLog).to receive(:call)
       service.save
     end
 
@@ -110,7 +110,7 @@ RSpec.describe Admin::UpdateCapacity do
     end
 
     it 'creates a log' do
-      expect_any_instance_of(Admin::LogCapacityChange).to receive(:call)
+      expect_any_instance_of(Admin::CreateCapacityLog).to receive(:call)
       service.save
     end
   end
