@@ -7,7 +7,7 @@ module Admin
       @user_params = user_params
     end
 
-    def update
+    def call
       user.update_attribute(:role, role)
     end
 

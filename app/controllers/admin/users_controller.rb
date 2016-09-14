@@ -32,7 +32,7 @@ module Admin
       require!(:can_admin)
       user = User.find(params[:id])
       service = Admin::UpdateUserRole.new(user, params[:user])
-      service.update
+      service.call
       service.add_flash(flash)
       redirect_to admin_users_path
     end
