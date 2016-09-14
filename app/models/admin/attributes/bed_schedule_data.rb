@@ -87,7 +87,7 @@ module Admin
 
       def bed_count_errors
         return [] if bed_count_valid?
-        [ValidationError.new(:bed_count, 'must be 0 or greater')]
+        [ValidationError.new(:bed_count, 'not valid. Please enter a positive, whole number')]
       end
     end
   end

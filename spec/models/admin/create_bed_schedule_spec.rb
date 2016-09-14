@@ -82,7 +82,7 @@ RSpec.describe Admin::CreateBedSchedule do
 
     it 'records errors' do
       service.call
-      expect(bed_schedule.errors[:bed_count]).to eq(['must be 0 or greater'])
+      expect(bed_schedule.errors[:bed_count].first).to include('not valid')
     end
   end
 end
