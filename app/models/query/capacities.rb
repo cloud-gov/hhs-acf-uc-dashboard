@@ -2,13 +2,13 @@ module Query
   class Capacities
     def last
       @last ||= Capacity
-        .where('capacity_on < ?', Date.today)
-        .order('capacity_on DESC')
+        .where('reported_on < ?', Date.today)
+        .order('reported_on DESC')
         .first
     end
 
     def for_date(date)
-      Capacity.where(capacity_on: date).take
+      Capacity.where(reported_on: date).take
     end
 
     def today

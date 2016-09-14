@@ -25,7 +25,7 @@ module Admin
       def update_attributes(date)
         {
           date:         date,
-          standard:     params[:standard],
+          funded:     params[:funded],
           reserve:      params[:reserve],
           activated:    params[:activated],
           unavailable:  params[:unavailable],
@@ -34,7 +34,7 @@ module Admin
       end
 
       def self.value_fields
-        [:standard, :reserve, :activated, :unavailable]
+        [:funded, :reserve, :activated, :unavailable]
       end
 
       private

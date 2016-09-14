@@ -6,7 +6,7 @@ RSpec.describe Admin::Attributes::CapacityData do
   context 'when the params are ok' do
     let(:params) {
       {
-        standard: 100,
+        funded: 100,
         reserve: '100',
         activated: '17',
         unavailable: 333,
@@ -26,7 +26,7 @@ RSpec.describe Admin::Attributes::CapacityData do
   context 'when containing negative numbers' do
     let(:params) {
       {
-        standard: -100,
+        funded: -100,
         reserve: nil,
         activated: 'gerbil',
         unavailable: 333,
@@ -40,7 +40,7 @@ RSpec.describe Admin::Attributes::CapacityData do
 
     it "#validation_errors returns an array of errors" do
       expect(data.validation_errors.size).to eq(1)
-      expect(data.validation_errors.map(&:field)).to eq([:standard])
+      expect(data.validation_errors.map(&:field)).to eq([:funded])
     end
   end
 

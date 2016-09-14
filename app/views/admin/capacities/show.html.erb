@@ -1,44 +1,6 @@
 <h2 class='section-header'>Daily bed capacity</h2>
 
-<%= form_for([:admin, @view_model.capacity], url: "/admin/capacities/#{@view_model.capacity.date}", method: :put, html: {class: 'current-capacity-form'}) do |f| %>
-  <%= render partial: '/layouts/model_error', locals: {model_error: @view_model.capacity_model_error} %>
-
-  <div class='usa-grid-full'>
-    <div class='field date'>
-      <%= f.label :date %>
-      <h2><%= @view_model.date %></h2>
-    </div>
-
-    <div class="field standard">
-      <%= f.label :standard %>
-      <%= f.number_field :standard, {autofocus: true}.merge(@view_model.input_attributes) %>
-    </div>
-
-    <div class="field reserve">
-      <%= f.label :reserve %>
-      <%= f.number_field :reserve, @view_model.input_attributes %>
-    </div>
-
-    <div class="field activated">
-      <%= f.label :activated %>
-      <%= f.number_field :activated, @view_model.input_attributes %>
-    </div>
-
-    <div class="field unavailable">
-      <%= f.label :unavailable %>
-      <%= f.number_field :unavailable, @view_model.input_attributes %>
-    </div>
-
-    <div class="field status">
-      <%= f.label :status %>
-      <%= f.select :status, @view_model.status_set, {selected: @view_model.status} %>
-    </div>
-
-    <div class='field save'>
-      <%= f.submit "Save" %>
-    </div>
-  </div>
-<% end %>
+<%= render partial: 'form' %>
 
 <div class='audit-logs'>
   <% @view_model.audit_logs.each do |log| %>

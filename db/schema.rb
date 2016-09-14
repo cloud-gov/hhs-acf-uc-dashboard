@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160909155234) do
+ActiveRecord::Schema.define(version: 20160914183914) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,15 +26,15 @@ ActiveRecord::Schema.define(version: 20160909155234) do
   end
 
   create_table "capacities", force: :cascade do |t|
-    t.date     "capacity_on"
-    t.integer  "standard"
+    t.date     "reported_on"
+    t.integer  "funded"
     t.integer  "reserve"
     t.integer  "activated"
     t.integer  "unavailable"
     t.string   "status"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["capacity_on"], name: "index_capacities_on_capacity_on", unique: true, using: :btree
+    t.index ["reported_on"], name: "index_capacities_on_reported_on", unique: true, using: :btree
   end
 
   create_table "capacity_logs", force: :cascade do |t|

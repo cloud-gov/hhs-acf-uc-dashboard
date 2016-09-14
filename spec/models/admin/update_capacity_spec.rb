@@ -6,7 +6,7 @@ RSpec.describe Admin::UpdateCapacity do
   let(:params) {
     {
       date: '2016-09-06',
-      standard: 1001,
+      funded: 1001,
       reserve: 101,
       activated: 202,
       unavailable: 333,
@@ -35,7 +35,7 @@ RSpec.describe Admin::UpdateCapacity do
       double({
         valid?: false,
         validation_errors: [
-          double(field: :standard, message: 'must be zero or greater'),
+          double(field: :funded, message: 'must be zero or greater'),
           double(field: :unavailable, message: 'must be zero or greater')
         ],
         normalized_status: 'unlocked',
@@ -73,7 +73,7 @@ RSpec.describe Admin::UpdateCapacity do
     it 'updates the existing record' do
       service.save
       capacity.reload
-      expect(capacity.standard).to eq(params[:standard])
+      expect(capacity.funded).to eq(params[:funded])
       expect(capacity.reserve).to eq(params[:reserve])
       expect(capacity.activated).to eq(params[:activated])
       expect(capacity.unavailable).to eq(params[:unavailable])
@@ -97,12 +97,12 @@ RSpec.describe Admin::UpdateCapacity do
   end
 
   context 'when a capacity record does not exist with that date' do
-    let(:capacity) { Capacity.where(capacity_on: '2016-09-06').take }
+    let(:capacity) { Capacity.where(reported_on: '2016-09-06').take }
 
     it 'creates a new record' do
       service.save
       expect(capacity.date).to eq(Date.parse('2016-09-06'))
-      expect(capacity.standard).to eq(params[:standard])
+      expect(capacity.funded).to eq(params[:funded])
       expect(capacity.reserve).to eq(params[:reserve])
       expect(capacity.activated).to eq(params[:activated])
       expect(capacity.unavailable).to eq(params[:unavailable])

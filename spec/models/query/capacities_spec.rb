@@ -8,7 +8,7 @@ RSpec.describe Query::Capacities do
       let!(:much_earlier_capacity) {
         Capacity.create({
           date: Date.today - 2.days,
-          standard: 8717,
+          funded: 8717,
           reserve: 2859,
           activated: 1607,
           unavailable: 421,
@@ -19,7 +19,7 @@ RSpec.describe Query::Capacities do
       let!(:earlier_capacity) {
         Capacity.create({
           date: Date.today - 1.days,
-          standard: 8715,
+          funded: 8715,
           reserve: 2860,
           activated: 1600,
           unavailable: 400,
@@ -36,7 +36,7 @@ RSpec.describe Query::Capacities do
       let!(:much_earlier_capacity) {
         Capacity.create({
           date: Date.today - 2.days,
-          standard: 8717,
+          funded: 8717,
           reserve: 2859,
           activated: 1607,
           unavailable: 421,
@@ -61,7 +61,7 @@ RSpec.describe Query::Capacities do
       let!(:earlier_capacity) {
         Capacity.create({
           date: Date.today - 1.days,
-          standard: 8715,
+          funded: 8715,
           reserve: 2860,
           activated: 1600,
           unavailable: 400,
@@ -72,7 +72,7 @@ RSpec.describe Query::Capacities do
       let!(:current_capacity) {
         Capacity.create({
           date: Date.today,
-          standard: 8715,
+          funded: 8715,
           reserve: 2860,
           activated: 1600,
           unavailable: 400,
@@ -89,7 +89,7 @@ RSpec.describe Query::Capacities do
       let!(:earlier_capacity) {
         Capacity.create({
           date: Date.today - 1.days,
-          standard: 8715,
+          funded: 8715,
           reserve: 2860,
           activated: 1600,
           unavailable: 400,

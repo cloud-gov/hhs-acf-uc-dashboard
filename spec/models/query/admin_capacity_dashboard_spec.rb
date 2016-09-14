@@ -12,7 +12,7 @@ RSpec.describe Query::AdminCapacityDashboard do
       double({
         today: Capacity.new({
           date: Date.today,
-          standard: 8718,
+          funded: 8718,
           reserve: 2866,
           activated: 1650,
           unavailable: 500,
@@ -20,7 +20,7 @@ RSpec.describe Query::AdminCapacityDashboard do
         }),
         last: Capacity.new({
           date: Date.today - 1.days,
-          standard: 8715,
+          funded: 8715,
           reserve: 2860,
           activated: 1600,
           unavailable: 400,
@@ -46,7 +46,7 @@ RSpec.describe Query::AdminCapacityDashboard do
         today: nil,
         last: Capacity.new({
           date: Date.today - 1.days,
-          standard: 8715,
+          funded: 8715,
           reserve: 2860,
           activated: 1600,
           unavailable: 400,
@@ -67,7 +67,7 @@ RSpec.describe Query::AdminCapacityDashboard do
       end
 
       it 'default numeric values are based on last found record' do
-        expect(capacity.standard).to eq(8715)
+        expect(capacity.funded).to eq(8715)
         expect(capacity.reserve).to eq(2860)
         expect(capacity.activated).to eq(1600)
         expect(capacity.unavailable).to eq(400)
@@ -103,7 +103,7 @@ RSpec.describe Query::AdminCapacityDashboard do
       end
 
       it 'has default numeric values of 0' do
-        expect(capacity.standard).to eq(0)
+        expect(capacity.funded).to eq(0)
         expect(capacity.reserve).to eq(0)
         expect(capacity.unavailable).to eq(0)
       end

@@ -31,7 +31,7 @@ RSpec.describe Admin::CreateCapacityLog do
 
     context 'when changes to the values are made' do
       before do
-        capacity.update_attributes(standard: 323)
+        capacity.update_attributes(funded: 323)
         service.call
       end
 
@@ -66,7 +66,7 @@ RSpec.describe Admin::CreateCapacityLog do
 
     context 'when both status and values are changed' do
       before do
-        capacity.update_attributes(status: 'locked', standard: 101)
+        capacity.update_attributes(status: 'locked', funded: 101)
         service.call
       end
 

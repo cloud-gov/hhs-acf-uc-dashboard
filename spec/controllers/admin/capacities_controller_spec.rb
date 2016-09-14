@@ -45,7 +45,7 @@ RSpec.describe Admin::CapacitiesController, type: :controller do
       {
         id: '2016-09-06',
         capacity: {
-          standard: 1001,
+          funded: 1001,
           reserve: 101,
           activated: 202,
           unavailable: 333,
@@ -71,7 +71,7 @@ RSpec.describe Admin::CapacitiesController, type: :controller do
       it 'updates the record when one exists with that date' do
         capacity = Capacity.create({
           date: '2016-09-06',
-          standard: 1,
+          funded: 1,
           reserve: 2,
           activated: 3,
           unavailable: 4,
@@ -81,7 +81,7 @@ RSpec.describe Admin::CapacitiesController, type: :controller do
         put :update, params: capacity_params
 
         capacity.reload
-        expect(capacity.standard).to eq(1001)
+        expect(capacity.funded).to eq(1001)
         expect(capacity.reserve).to eq(101)
         expect(capacity.activated).to eq(202)
         expect(capacity.unavailable).to eq(333)
@@ -100,7 +100,7 @@ RSpec.describe Admin::CapacitiesController, type: :controller do
         {
           id: '2016-09-06',
           capacity: {
-            standard: -1001,
+            funded: -1001,
             reserve: 101,
             activated: 202,
             unavailable: 333,

@@ -22,7 +22,7 @@ module Admin
 
         def values
           {
-            standard: 0,
+            funded: 0,
             reserve: 0,
             activated: 0,
             unavailable: 0,

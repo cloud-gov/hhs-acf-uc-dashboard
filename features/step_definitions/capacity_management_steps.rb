@@ -22,7 +22,7 @@ end
 
 When(/^I click on the 'Capacity' link$/) do
   @previous_capacity ||= Capacity.create({
-    standard: 1,
+    funded: 1,
     reserve: 2,
     activated: 3,
     unavailable: 4,
@@ -33,7 +33,7 @@ When(/^I click on the 'Capacity' link$/) do
 end
 
 Then(/^I should see yesterday's capacity values pre\-populated as today's values$/) do
-  expect(find('#capacity_standard').value).to eq(@previous_capacity.standard.to_s)
+  expect(find('#capacity_funded').value).to eq(@previous_capacity.funded.to_s)
   expect(find('#capacity_activated').value).to eq(@previous_capacity.activated.to_s)
   expect(find('#capacity_unavailable').value).to eq(@previous_capacity.unavailable.to_s)
 end
@@ -54,12 +54,12 @@ end
 
 When(/^I update intake values$/) do
   @new_intake_values = OpenStruct.new({
-    standard: 100,
+    funded: 100,
     reserve: 200,
     activated: 300,
     unavailable: 400,
   })
-  fill_in('Standard', with: @new_intake_values.standard)
+  fill_in('Funded capacity', with: @new_intake_values.funded)
   fill_in('Reserve', with: @new_intake_values.reserve)
   fill_in('Activated', with: @new_intake_values.activated)
   fill_in('Unavailable', with: @new_intake_values.unavailable)
@@ -67,7 +67,7 @@ When(/^I update intake values$/) do
 end
 
 Then(/^I will see the capacity values have been modified from yesterday$/) do
-  expect(find('#capacity_standard').value).to eq(@new_intake_values.standard.to_s)
+  expect(find('#capacity_funded').value).to eq(@new_intake_values.funded.to_s)
   expect(find('#capacity_reserve').value).to eq(@new_intake_values.reserve.to_s)
   expect(find('#capacity_activated').value).to eq(@new_intake_values.activated.to_s)
   expect(find('#capacity_unavailable').value).to eq(@new_intake_values.unavailable.to_s)
@@ -91,14 +91,14 @@ Then(/^I will see a note about (locking|unlocking) the capacity$/) do |status|
 end
 
 Then(/^I will see the capacity form is locked$/) do
-  expect(find('#capacity_standard')).to be_readonly
+  expect(find('#capacity_funded')).to be_readonly
   expect(find('#capacity_reserve')).to be_readonly
   expect(find('#capacity_unavailable')).to be_readonly
   expect(find('#capacity_activated')).to be_readonly
 end
 
 Then(/^I will see the capacity form is unlocked$/) do
-  expect(find('#capacity_standard')).to_not be_readonly
+  expect(find('#capacity_funded')).to_not be_readonly
   expect(find('#capacity_reserve')).to_not be_readonly
   expect(find('#capacity_unavailable')).to_not be_readonly
   expect(find('#capacity_activated')).to_not be_readonly
