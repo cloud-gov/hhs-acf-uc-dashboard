@@ -44,7 +44,7 @@ module Admin
       to: :data
 
     def data
-      BedScheduleData.new(params)
+      Attributes::BedScheduleData.new(params)
     end
   end
 end

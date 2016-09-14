@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe Admin::BedScheduleData do
-  let(:data) { Admin::BedScheduleData.new(params) }
+RSpec.describe Admin::Attributes::BedScheduleData do
+  let(:data) { Admin::Attributes::BedScheduleData.new(params) }
 
   describe 'when the date is invalid' do
     let(:params) {

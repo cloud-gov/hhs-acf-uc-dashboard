@@ -26,7 +26,7 @@ module Admin
     private
 
     def data
-      BedScheduleData.new(params)
+      Attributes::BedScheduleData.new(params)
     end
 
     delegate :valid?, :validation_errors, :new_attributes,
