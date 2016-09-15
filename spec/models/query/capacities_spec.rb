@@ -102,5 +102,34 @@ RSpec.describe Query::Capacities do
       end
     end
   end
+
+  describe '#last_locked(date)' do
+    let(:date) { Date.today - 4.days }
+
+    context 'when no capacity exists' do
+      it 'returns nil' do
+        expect(query.last_locked(date)).to eq(nil)
+      end
+    end
+
+    context 'when there is a capacity for the current date, but it is not locked, and there is not previous locked capacity' do
+      let!(:future_capacity) { Capacity.create({reported_on: date + 3.days, status: 'locked'}) }
+      let!(:daily_capacity) { Capacity.create({reported_on: date, status: 'unlocked'}) }
+
+      it 'returns nil' do
+        expect(query.last_locked(date)).to eq(nil)
+      end
+    end
+
+    context 'when there is a capacity for current, but it is not locked an there is a previous locked capacity' do
+      let!(:locked_capacity) { Capacity.create({reported_on: date - 3.days, status: 'locked'}) }
+      let!(:future_capacity) { Capacity.create({reported_on: date + 3.days, status: 'locked'}) }
+      let!(:daily_capacity) { Capacity.create({reported_on: date, status: 'unlocked'}) }
+
+      it 'returns the last locked capacity' do
+        expect(query.last_locked(date)).to eq(locked_capacity)
+      end
+    end
+  end
 end
 

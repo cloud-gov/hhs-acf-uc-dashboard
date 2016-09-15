@@ -18,7 +18,7 @@ module View
     end
 
     def date
-      capacity.date.strftime('%m/%d/%y')
+      DateTimeFormatter.new(capacity.date).us_date
     end
 
     def audit_logs
@@ -52,7 +52,7 @@ module View
       delegate :message, to: :model
 
       def logged_on
-        model.created_at.strftime('%l:%M%P - %m/%d/%y')
+        DateTimeFormatter.new(model.created_at).log_stamp
       end
     end
 

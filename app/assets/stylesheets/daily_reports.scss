@@ -1,0 +1,13 @@
+@import 'variables';
+
+.daily_reports {
+  h2 .date {
+    font-weight: normal;
+    font-family: $sans-serif;
+  }
+
+  .report-content.none {
+    padding: 3rem;
+    background-color: $color-gray-lightest;
+  }
+}

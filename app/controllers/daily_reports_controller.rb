@@ -6,7 +6,11 @@ class DailyReportsController < ApplicationController
   end
 
   def show
-    if Role.new(current_user).report_access?
+    role = Role.new(current_user)
+    if role.report_access?
+      querier = Query::DailyReport.new(role, params)
+      querier.load_data
+      @view_model = View::ShowDailyReport.new(querier)
       render :show
     else
       render :'no-access'

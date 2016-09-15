@@ -1,3 +1,10 @@
-<h2>Daily report</h2>
+<h2>
+  <div class='header'>Daily report</div>
+  <div class='date'><%= @view_model.date %></div>
+</h2>
 
-<h6><%= Role.new(current_user).name %> view</h6>
+<hr>
+<%= render partial: @view_model.report_content_partial %>
+<hr>
+
+<h6><%= @view_model.type_name %> view</h6>

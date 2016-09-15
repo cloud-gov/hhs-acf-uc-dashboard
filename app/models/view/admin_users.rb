@@ -32,7 +32,7 @@ module View
 
       def confirmed_at
         return 'pending' if !user.confirmed_at
-        user.confirmed_at.strftime('%m/%d/%y')
+        DateTimeFormatter.new(user.confirmed_at).us_date
       end
     end
   end

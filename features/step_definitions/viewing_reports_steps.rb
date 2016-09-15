@@ -27,5 +27,5 @@ When(/^I visit 'Daily' report page$/) do
 end
 
 Then(/^I should see yesterday's daily report$/) do
-  expect(page).to have_content(@yesterdays_capacity.date.strftime('%m/%d/%y'))
+  expect(page).to have_content(@yesterdays_capacity.date.strftime('%B %-d, %Y'))
 end

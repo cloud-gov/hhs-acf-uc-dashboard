@@ -3,7 +3,6 @@ Feature:
   I want to see daily data
   So that I can make important decisions about the program and funding
 
-  @wip
   Scenario: Viewing daily report when today's daily capacity numbers are unlocked
     Given I am a user with permission to view the dashboard
     And capacity numbers were locked yesterday, but not today
