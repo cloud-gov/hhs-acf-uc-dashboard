@@ -7,7 +7,7 @@
 
   <div class='field bed-count'>
     <%= f.label :bed_count %>
-    <%= f.number_field :bed_count %>
+    <%= f.number_field :bed_count, {min: 0} %>
   </div>
 
   <div class='field month'>

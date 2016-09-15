@@ -9,22 +9,22 @@
 
     <div class="field funded">
       <%= f.label :funded, 'Funded capacity' %>
-      <%= f.number_field :funded, {autofocus: true}.merge(@view_model.input_attributes) %>
+      <%= f.number_field :funded, {autofocus: true, min: 0}.merge(@view_model.input_attributes) %>
     </div>
 
     <div class="field reserve">
       <%= f.label :reserve %>
-      <%= f.number_field :reserve, @view_model.input_attributes %>
+      <%= f.number_field :reserve, @view_model.input_attributes.merge({min: 0}) %>
     </div>
 
     <div class="field activated">
       <%= f.label :activated %>
-      <%= f.number_field :activated, @view_model.input_attributes %>
+      <%= f.number_field :activated, @view_model.input_attributes.merge({min: 0}) %>
     </div>
 
     <div class="field unavailable">
       <%= f.label :unavailable %>
-      <%= f.number_field :unavailable, @view_model.input_attributes %>
+      <%= f.number_field :unavailable, @view_model.input_attributes.merge({min: 0}) %>
     </div>
 
     <div class="field status">
