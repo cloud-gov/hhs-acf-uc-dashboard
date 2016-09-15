@@ -12,20 +12,20 @@
 
   <div class='field month'>
     <%= label "bed_schedule", "month" %>
-    <%= text_field "bed_schedule", "month", value: schedule.month %>
+    <%= text_field "bed_schedule", "month", value: schedule.month, id: schedule.id_for_tag('bed_schedule_month') %>
   </div>
   <div class='field day'>
     <%= label "bed_schedule", "day" %>
-    <%= text_field "bed_schedule", "day", value: schedule.day %>
+    <%= text_field "bed_schedule", "day", value: schedule.day, id: schedule.id_for_tag('bed_schedule_day') %>
   </div>
   <div class='field year'>
     <%= label "bed_schedule", "year" %>
-    <%= text_field "bed_schedule", "year", value: schedule.year %>
+    <%= text_field "bed_schedule", "year", value: schedule.year, id: schedule.id_for_tag('bed_schedule_year') %>
   </div>
   <div class='field delete'>
     <% if schedule.persisted? %>
-    <%= check_box "bed_schedule", "delete" %>
-    <%= label "bed_schedule", "delete", '&nbsp;'.html_safe %>
+    <%= check_box "bed_schedule", "delete", {id: schedule.id_for_tag('bed_schedule_delete') } %>
+    <%= label "bed_schedule", "delete", '&nbsp;'.html_safe, {for: schedule.id_for_tag('bed_schedule_delete')} %>
     <% end %>
   </div>
   <div class='field save-button'>

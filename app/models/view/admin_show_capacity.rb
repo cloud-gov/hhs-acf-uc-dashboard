@@ -84,6 +84,14 @@ module View
         model.scheduled_on.year
       end
 
+      def id
+        persisted? ? model.id : 'new'
+      end
+
+      def id_for_tag(name)
+        "#{name}_#{id}"
+      end
+
       def model_error
         View::ModelError.new(model, 'Some entries were invalid:')
       end
