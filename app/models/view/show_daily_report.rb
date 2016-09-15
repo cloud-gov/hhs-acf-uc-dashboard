@@ -6,6 +6,7 @@ module View
       @role = querier.role
       @date = format_date(querier.date)
       @capacity = querier.capacity
+      @params = querier.params
     end
 
     def report_content_partial
@@ -13,7 +14,7 @@ module View
     end
 
     def type_name
-      role.name # for now, needs to get smarter and work with type params
+      role.report_type(params[:type]).capitalize
     end
 
     private
@@ -22,6 +23,6 @@ module View
       DateTimeFormatter.new(raw_date).full_month_us_date
     end
 
-    attr_reader :capacity
+    attr_reader :capacity, :params
   end
 end

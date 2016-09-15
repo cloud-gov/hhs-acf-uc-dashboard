@@ -9,7 +9,7 @@ class Role
     @delegate_object ||= role_class.new
   end
 
-  delegate :admin?, :name, :home_path, :report_template, :header_partial, :report_access?,
+  delegate :admin?, :name, :home_path, :header_partial, :report_access?, :report_type,
     to: :delegate_object
 
   private

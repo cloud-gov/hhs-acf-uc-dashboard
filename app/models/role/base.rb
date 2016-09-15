@@ -15,6 +15,10 @@ class Role
     def report_access?
       false
     end
+
+    def report_type(*)
+      field_value
+    end
   end
 end
 

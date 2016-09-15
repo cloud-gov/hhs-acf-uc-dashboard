@@ -23,6 +23,12 @@ class Role
     def report_access?
       true
     end
+
+    def report_type(type)
+      possible_types = Role.all.map(&:field_value) - ['admin']
+      normalized_type = possible_types.find {|possible_type| possible_type == type }
+      normalized_type || 'operations'
+    end
   end
 end
 

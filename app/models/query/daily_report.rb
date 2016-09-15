@@ -7,6 +7,10 @@ module Query
       @params = params
     end
 
+    def type
+      role.report_type(type)
+    end
+
     def load_data
       load_capacity
     end

@@ -13,6 +13,14 @@ RSpec.describe Role, type: :model do
     it "can admin the app" do
       expect(role.admin?).to be true
     end
+
+    it "#report_type will be 'operations' if nothing valid is provided" do
+      expect(role.report_type(nil)).to eq('operations')
+    end
+
+    it "#report_type will be any of the valid report types if asked for" do
+      expect(role.report_type('general')).to eq('general')
+    end
   end
 
   context "when the user role is 'operations'" do
@@ -25,6 +33,12 @@ RSpec.describe Role, type: :model do
     it "cannot admin the app" do
       expect(role.admin?).to be false
     end
+
+    it "#report_type will always return 'operations'" do
+      expect(role.report_type(nil)).to eq('operations')
+      expect(role.report_type('general')).to eq('operations')
+      expect(role.report_type('operations')).to eq('operations')
+    end
   end
 
   context "when the user role is 'general'" do
@@ -36,6 +50,12 @@ RSpec.describe Role, type: :model do
 
     it "cannot admin the app" do
       expect(role.admin?).to be false
+    end
+
+    it "#report_type will always return 'general'" do
+      expect(role.report_type(nil)).to eq('general')
+      expect(role.report_type('general')).to eq('general')
+      expect(role.report_type('operations')).to eq('general')
     end
   end
 
