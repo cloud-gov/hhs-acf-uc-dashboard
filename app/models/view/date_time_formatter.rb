@@ -17,5 +17,9 @@ module View
     def full_month_us_date
       date_time.strftime('%B %-d, %Y')
     end
+
+    def database_date
+      date_time.strftime('%Y-%m-%d')
+    end
   end
 end

@@ -7,6 +7,7 @@ module View
       @date = format_date(querier.date)
       @capacity = querier.capacity
       @params = querier.params
+      @available_dates_raw = querier.available_dates
     end
 
     def report_content_partial
@@ -17,12 +18,18 @@ module View
       role.report_type(params[:type]).capitalize
     end
 
+    def available_dates
+      available_dates_raw.map do |date|
+        DateTimeFormatter.new(date)
+      end
+    end
+
     private
 
     def format_date(raw_date)
       DateTimeFormatter.new(raw_date).full_month_us_date
     end
 
-    attr_reader :capacity, :params
+    attr_reader :capacity, :params, :available_dates_raw
   end
 end

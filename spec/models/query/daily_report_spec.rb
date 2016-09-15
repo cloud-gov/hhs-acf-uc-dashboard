@@ -7,7 +7,8 @@ RSpec.describe Query::DailyReport do
 
   let(:capacities_query) {
     double({
-      last_locked: capacity
+      last_locked: capacity,
+      available_dates: []
     })
   }
 
@@ -52,12 +53,37 @@ RSpec.describe Query::DailyReport do
     end
 
     describe 'when there is a found capacity' do
-      let(:capacity) { double(date: Date.today - 3.days) }
+      let(:capacity) { double(reported_on: Date.today - 3.days, id: 42) }
 
       it 'returns the capacity date' do
         query.load_data
-        expect(query.date).to eq(capacity.date)
+        expect(query.date).to eq(capacity.reported_on)
       end
+    end
+  end
+
+  describe '#available_dates' do
+    let(:capacities_query) {
+      double({
+        available_dates: [
+          double(id: 123, reported_on: Date.today),
+          double(id: 234, reported_on: Date.today + 1),
+          double(id: 345, reported_on: Date.today + 2)
+        ],
+        last_locked: double(id: 234, reported_on: Date.today + 1)
+      })
+    }
+
+    it 'returns date objects from the models' do
+      query.load_data
+      expect(query.available_dates.map(&:class).uniq).to eq([Date])
+    end
+
+    it 'puts the last locked record on the top, but otherwise orders by date' do
+      query.load_data
+      expect(query.available_dates.first).to eq(Date.today + 1)
+      expect(query.available_dates[1]).to eq(Date.today)
+      expect(query.available_dates[2]).to eq(Date.today + 2)
     end
   end
 end

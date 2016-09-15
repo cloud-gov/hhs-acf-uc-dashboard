@@ -1,7 +1,20 @@
-<h2>
-  <div class='header'>Daily report</div>
-  <div class='date'><%= @view_model.date %></div>
-</h2>
+<div class='usa-grid-full'>
+  <h2 class='usa-width-one-half'>
+    <div class='header'>Daily report</div>
+    <div class='date'><%= @view_model.date %></div>
+  </h2>
+
+  <div class='selectors usa-width-one-half'>
+    <div class='date-selector'>
+      <label for='select-report-date'>Select report date</label>
+      <select id='select-report-date' class='report-date'>
+        <% @view_model.available_dates.each do |report_date| %>
+          <option value='<%= report_date.database_date %>'><%= report_date.full_month_us_date %></option>
+        <% end %>
+      </select>
+    </div>
+  </div>
+</div>
 
 <hr>
 <%= render partial: @view_model.report_content_partial %>

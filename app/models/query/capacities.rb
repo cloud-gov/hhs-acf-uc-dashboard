@@ -1,7 +1,10 @@
 module Query
   class Capacities
     def last
-      @last ||= last_query(Date.today).first
+      @last ||= Capacity
+        .where('reported_on < ?', Date.today)
+        .order('reported_on DESC')
+        .first
     end
 
     def for_date(date)
@@ -13,17 +16,19 @@ module Query
     end
 
     def last_locked(date)
-      last_query(date)
+      Capacity
+        .where('reported_on <= ?', date)
         .where(status: 'locked')
+        .order('reported_on DESC')
         .first
     end
 
-    private
-
-    def last_query(date)
-      Capacity
-        .where('reported_on <= ?', date)
-        .order('reported_on DESC')
+    def available_dates
+      @available_dates ||= Capacity
+        .where(status: 'locked')
+        .select(:id, :reported_on)
+        .order(:reported_on)
+        .to_a
     end
   end
 end
