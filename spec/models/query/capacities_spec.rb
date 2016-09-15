@@ -130,6 +130,14 @@ RSpec.describe Query::Capacities do
         expect(query.last_locked(date)).to eq(locked_capacity)
       end
     end
+
+    context 'when there is a capacity for current that is locked' do
+      let!(:daily_capacity) { Capacity.create({reported_on: date, status: 'locked'}) }
+
+      it 'returns that capacity' do
+        expect(query.last_locked(date)).to eq(daily_capacity)
+      end
+    end
   end
 end
 

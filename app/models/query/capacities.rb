@@ -22,7 +22,7 @@ module Query
 
     def last_query(date)
       Capacity
-        .where('reported_on < ?', date)
+        .where('reported_on <= ?', date)
         .order('reported_on DESC')
     end
   end
