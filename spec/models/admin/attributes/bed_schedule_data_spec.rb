@@ -25,7 +25,7 @@ RSpec.describe Admin::Attributes::BedScheduleData do
     end
   end
 
-  describe 'when the bed count is invalid' do
+  describe 'when the bed count is a negative number' do
     let(:params) {
       {
         month: '10',
@@ -33,6 +33,57 @@ RSpec.describe Admin::Attributes::BedScheduleData do
         year: '2016',
         facility_name: 'Homestead',
         bed_count: '-100'
+      }
+    }
+
+    it 'is invalid and has errors' do
+      expect(data.valid?).to eq(false)
+      expect(data.validation_errors.first.field).to eq(:bed_count)
+    end
+  end
+
+  describe 'when the bed count is a decimal' do
+    let(:params) {
+      {
+        month: '10',
+        day: '10',
+        year: '2016',
+        facility_name: 'Homestead',
+        bed_count: '10.05'
+      }
+    }
+
+    it 'is invalid and has errors' do
+      expect(data.valid?).to eq(false)
+      expect(data.validation_errors.first.field).to eq(:bed_count)
+    end
+  end
+
+  describe 'when the bed count is empty' do
+    let(:params) {
+      {
+        month: '10',
+        day: '10',
+        year: '2016',
+        facility_name: 'Homestead',
+        bed_count: ''
+      }
+    }
+
+    it 'is invalid and has errors' do
+      expect(data.valid?).to eq(false)
+      expect(data.validation_errors.first.field).to eq(:bed_count)
+    end
+  end
+
+  describe 'when the bed count is text' do
+    let(:params) {
+      {
+        month: '10',
+        day: '10',
+        year: '2016',
+        facility_name: 'Homestead',
+        bed_count: 'gerbil'
       }
     }
 

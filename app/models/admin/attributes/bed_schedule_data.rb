@@ -67,7 +67,8 @@ module Admin
       end
 
       def bed_count_valid?
-        bed_count >= 0
+        bed_count >= 0 &&
+          bed_count.to_s == params[:bed_count].strip
       end
 
       def date_valid?
