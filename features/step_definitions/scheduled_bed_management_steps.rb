@@ -2,9 +2,9 @@ Given(/^I add values to the new scheduled beds form$/) do
   within('#new_bed_schedule') do
     fill_in('bed_schedule_facility_name', with: 'Homestead')
     fill_in('bed_schedule_bed_count', with: '300')
-    fill_in('bed_schedule_month', with: '10')
-    fill_in('bed_schedule_day', with: '3')
-    fill_in('bed_schedule_year', with: '2016')
+    fill_in('bed_schedule_month_new', with: '10')
+    fill_in('bed_schedule_day_new', with: '3')
+    fill_in('bed_schedule_year_new', with: '2016')
   end
 end
 
@@ -48,7 +48,8 @@ Then(/^I will see that schedule has been changed$/) do
 end
 
 When(/^I check the 'Remove' checkbox on that schedule$/) do
-  all('form.bed-schedule-form').first.find('label[for=bed_schedule_delete]').click
+  id = BedSchedule.first.id
+  all('form.bed-schedule-form').first.find("label[for=bed_schedule_delete_#{id}]").click
 end
 
 Then(/^I will see that the schedule has been removed$/) do
