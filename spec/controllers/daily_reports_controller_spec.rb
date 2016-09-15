@@ -35,13 +35,10 @@ RSpec.describe DailyReportsController, type: :controller do
       end
 
       it "only shows the no-access message" do
-        get :show, params: {id: 'operations'}
+        get :show, params: {id: 'current'}
         expect(response).to render_template('no-access')
 
-        get :show, params: {id: 'no-access'}
-        expect(response).to render_template('no-access')
-
-        get :show, params: {id: 'something-weird'}
+        get :show, params: {id: '2016-09-12'}
         expect(response).to render_template('no-access')
       end
     end
@@ -55,14 +52,8 @@ RSpec.describe DailyReportsController, type: :controller do
       end
 
       it "only shows the general report" do
-        get :show, params: {id: 'operations'}
-        expect(response).to render_template("general")
-
-        get :show, params: {id: 'general'}
-        expect(response).to render_template("general")
-
-        get :show, params: {id: 'something-weird'}
-        expect(response).to render_template("general")
+        get :show, params: {id: 'current'}
+        expect(response).to render_template("show")
       end
     end
 
@@ -75,14 +66,8 @@ RSpec.describe DailyReportsController, type: :controller do
       end
 
       it "only shows the operations report" do
-        get :show, params: {id: 'operations'}
-        expect(response).to render_template("operations")
-
-        get :show, params: {id: 'general'}
-        expect(response).to render_template("operations")
-
-        get :show, params: {id: 'something-weird'}
-        expect(response).to render_template("operations")
+        get :show, params: {id: 'current'}
+        expect(response).to render_template("show")
       end
     end
 
@@ -95,18 +80,8 @@ RSpec.describe DailyReportsController, type: :controller do
       end
 
       it "can see the operations report" do
-        get :show, params: {id: 'operations'}
-        expect(response).to render_template("operations")
-      end
-
-      it "can see the general report" do
-        get :show, params: {id: 'general'}
-        expect(response).to render_template("general")
-      end
-
-      it "defaults to the operations report" do
-        get :show, params: {id: 'something-weird'}
-        expect(response).to render_template("operations")
+        get :show, params: {id: 'current'}
+        expect(response).to render_template("show")
       end
     end
   end

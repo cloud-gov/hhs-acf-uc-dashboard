@@ -8,12 +8,12 @@ class Role
       'general'
     end
 
-    def report_template(*)
-      :general
-    end
-
     def header_partial
       '/layouts/header_links/standard'
+    end
+
+    def report_access?
+      true
     end
   end
 end

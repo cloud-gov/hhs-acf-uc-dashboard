@@ -6,6 +6,10 @@ class DailyReportsController < ApplicationController
   end
 
   def show
-    render Role.new(current_user).report_template(params[:id]).to_s
+    if Role.new(current_user).report_access?
+      render :show
+    else
+      render :'no-access'
+    end
   end
 end

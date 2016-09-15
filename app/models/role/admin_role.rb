@@ -16,14 +16,12 @@ class Role
       "/admin/capacities/current"
     end
 
-    def report_template(requested_template=nil)
-      templates = ['general', 'no-access', 'operations']
-      return requested_template if templates.include?(requested_template.to_s)
-      :operations
-    end
-
     def header_partial
       '/layouts/header_links/admin'
+    end
+
+    def report_access?
+      true
     end
   end
 end

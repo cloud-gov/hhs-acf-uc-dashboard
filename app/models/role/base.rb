@@ -13,7 +13,7 @@ class Role
     end
 
     def report_access?
-      report_template != :'no-access'
+      false
     end
   end
 end

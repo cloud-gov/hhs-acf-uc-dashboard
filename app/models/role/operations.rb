@@ -8,12 +8,12 @@ class Role
       'operations'
     end
 
-    def report_template(*)
-      :operations
-    end
-
     def header_partial
       '/layouts/header_links/standard'
+    end
+
+    def report_access?
+      true
     end
   end
 end
