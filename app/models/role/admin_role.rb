@@ -1,5 +1,5 @@
 class Role
-  class AdminRole # Rails autoloading sucks the big one
+  class AdminRole < Base
     def admin?
       true
     end
@@ -16,7 +16,7 @@ class Role
       "/admin/capacities/current"
     end
 
-    def report_template(requested_template)
+    def report_template(requested_template=nil)
       templates = ['general', 'no-access', 'operations']
       return requested_template if templates.include?(requested_template.to_s)
       :operations

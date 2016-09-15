@@ -1,19 +1,11 @@
 class Role
-  class General
-    def admin?
-      false
-    end
-
+  class General < Base
     def name
       'General'
     end
 
     def field_value
       'general'
-    end
-
-    def home_path
-      '/reports'
     end
 
     def report_template(*)

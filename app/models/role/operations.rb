@@ -1,19 +1,11 @@
 class Role
-  class Operations
-    def admin?
-      false
-    end
-
+  class Operations < Base
     def name
       'Operations'
     end
 
     def field_value
       'operations'
-    end
-
-    def home_path
-      '/reports'
     end
 
     def report_template(*)

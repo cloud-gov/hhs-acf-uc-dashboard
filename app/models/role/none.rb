@@ -1,23 +1,11 @@
 class Role
-  class None
-    def admin?
-      false
-    end
-
+  class None < Base
     def name
       'No access'
     end
 
     def field_value
       nil
-    end
-
-    def home_path
-      '/reports'
-    end
-
-    def report_template(*)
-      :'no-access'
     end
 
     def header_partial
