@@ -5,7 +5,7 @@ class Role
     end
 
     def home_path
-      '/reports'
+      '/daily_reports/current'
     end
 
     def report_template(*)

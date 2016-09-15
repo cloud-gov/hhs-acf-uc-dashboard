@@ -25,7 +25,7 @@ RSpec.describe HomeController, type: :controller do
       it 'redirects to the default report' do
         allow(controller).to receive(:current_user).and_return(user)
         get :index
-        expect(response).to redirect_to('/reports')
+        expect(response).to redirect_to('/daily_reports/current')
       end
     end
   end

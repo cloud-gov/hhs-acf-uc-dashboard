@@ -86,5 +86,5 @@ end
 
 When(/^I will be signed in on my home page$/) do
   expect(page).to have_content('You are now signed in')
-  expect(page.current_path).to eq('/reports/default')
+  expect(page.current_path).to eq('/daily_reports/current')
 end

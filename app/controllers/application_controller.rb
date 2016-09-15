@@ -4,6 +4,6 @@ class ApplicationController < ActionController::Base
   include Authorization
 
   rescue_from Authorization::Error do
-    redirect_to "/reports/default"
+    redirect_to Role.new(current_user).home_path
   end
 end

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ReportsController, type: :controller do
+RSpec.describe DailyReportsController, type: :controller do
   describe 'GET #index' do
     it "requires authentication" do
       expect(controller).to receive(:authenticate_user!)
@@ -8,11 +8,11 @@ RSpec.describe ReportsController, type: :controller do
     end
 
     it "redirects to the default report" do
-      user = double(role: 'admin')
+      user = double(role: 'operations')
       expect(controller).to receive(:authenticate_user!)
       allow(controller).to receive(:current_user).and_return(user)
       get :index
-      expect(controller).to redirect_to('/reports/default')
+      expect(controller).to redirect_to('/daily_reports/current')
     end
   end
 

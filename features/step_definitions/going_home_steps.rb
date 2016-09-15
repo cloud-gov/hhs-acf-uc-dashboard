@@ -1,5 +1,5 @@
 Then(/^I should see the the default report for my permissions$/) do
-  expect(page.current_path).to eq('/reports/default')
+  expect(page.current_path).to eq('/daily_reports/current')
 end
 
 Then(/^I should be redirected to the (.+) report$/) do |dash_type|

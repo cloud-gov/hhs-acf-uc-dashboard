@@ -1,8 +1,8 @@
-class ReportsController < ApplicationController
+class DailyReportsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    redirect_to "/reports/default"
+    redirect_to Role.new(current_user).home_path
   end
 
   def show
