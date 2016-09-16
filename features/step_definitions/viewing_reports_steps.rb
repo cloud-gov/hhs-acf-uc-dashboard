@@ -85,3 +85,18 @@ Then(/^I should not see a select for the report type$/) do
   expect(page).to_not have_selector('select.report-type')
 end
 
+Given(/^capacity numbers have not been locked for the day$/) do
+  @todays_capacity = Capacity.create({
+    date: Date.today,
+    funded: 1000,
+    reserve: 2000,
+    activated: 3000,
+    unavailable: 4000,
+    status: 'unlocked'
+  })
+end
+
+Then(/^I should see a message that there is no data available$/) do
+  expect(page).to have_content('not yet available')
+end
+

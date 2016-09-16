@@ -3,6 +3,12 @@ Feature:
   I want to see daily data
   So that I can make important decisions about the program and funding
 
+  Scenario: Viewing daily reports when data unavailable
+    Given I am a user with permission to view the dashboard
+    And capacity numbers have not been locked for the day
+    When I visit 'Daily' report page
+    Then I should see a message that there is no data available
+
   @javascript
   Scenario: Viewing daily reports by date
     Given I am a user with permission to view the dashboard

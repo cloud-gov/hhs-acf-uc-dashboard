@@ -23,12 +23,8 @@ module Query
         .first
     end
 
-    def available_dates
-      @available_dates ||= Capacity
-        .where(status: 'locked')
-        .select(:id, :reported_on)
-        .order(:reported_on)
-        .to_a
+    def first
+      @first ||= Capacity.order(:reported_on).first
     end
   end
 end

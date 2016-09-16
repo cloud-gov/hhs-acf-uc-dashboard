@@ -139,53 +139,5 @@ RSpec.describe Query::Capacities do
       end
     end
   end
-
-  describe '#available_dates' do
-    let!(:current_capacity) {
-      Capacity.create({
-        date: Date.today,
-        funded: 8715,
-        reserve: 2860,
-        activated: 1600,
-        unavailable: 400,
-        status: 'locked'
-      })
-    }
-
-    let!(:earlier_capacity) {
-      Capacity.create({
-        date: Date.today - 1.days,
-        funded: 8715,
-        reserve: 2860,
-        activated: 1600,
-        unavailable: 400,
-        status: 'locked'
-      })
-    }
-
-    let!(:unlocked_capacity) {
-      Capacity.create({
-        date: Date.today - 3.days,
-        funded: 8715,
-        reserve: 2860,
-        activated: 1600,
-        unavailable: 400,
-        status: 'unlocked'
-      })
-    }
-
-    it 'finds only locked capacities' do
-      expect(query.available_dates).to include(current_capacity, earlier_capacity)
-      expect(query.available_dates).to_not include(unlocked_capacity)
-    end
-
-    it 'orders by reported_on' do
-      expect(query.available_dates.first.id).to eq(earlier_capacity.id)
-    end
-
-    it 'only returns id and reported_on fields' do
-      expect(query.available_dates.first.attributes.keys).to eq(['id', 'reported_on'])
-    end
-  end
 end
 

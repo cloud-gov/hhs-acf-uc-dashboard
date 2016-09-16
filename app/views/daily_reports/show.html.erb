@@ -9,7 +9,7 @@
       <label for='select-report-date'>Select report date</label>
       <select id='select-report-date' class='report-date'>
         <% @view_model.available_dates.each do |report_date| %>
-          <option value='<%= report_date.database_date %>'><%= report_date.full_month_us_date %></option>
+          <option value='<%= report_date.database_date %>' <%= report_date.selected %>><%= report_date.full_month_us_date %></option>
         <% end %>
       </select>
     </div>

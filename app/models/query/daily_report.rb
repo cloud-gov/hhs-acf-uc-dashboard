@@ -1,6 +1,6 @@
 module Query
   class DailyReport
-    attr_reader :role, :params, :date, :capacity, :available_dates
+    attr_reader :role, :params, :date, :capacity, :dates
 
     def initialize(role, params)
       @role = role
@@ -13,7 +13,7 @@ module Query
 
     def load_data
       load_capacity
-      load_available_dates
+      load_dates
     end
 
     def requested_date
@@ -34,12 +34,9 @@ module Query
       @capacity = capacities_query.last_locked(requested_date)
     end
 
-    def load_available_dates
-      date_models = capacities_query.available_dates.select do |date_model|
-        date_model.id != (capacity || OpenStruct.new(id: nil)).id
-      end
-      date_models.unshift(capacity) if capacity
-      @available_dates = date_models.map(&:reported_on)
+    def load_dates
+      last = capacities_query.first || OpenStruct.new(reported_on: Date.today)
+      @dates = ((last.reported_on)..Date.today).to_a.reverse
     end
 
     def capacities_query
