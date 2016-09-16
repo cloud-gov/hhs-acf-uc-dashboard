@@ -13,6 +13,17 @@
         <% end %>
       </select>
     </div>
+
+    <% if @view_model.show_type_selector? %>
+    <div class='type-selector'>
+      <label for='select-report-type'>Report view</label>
+      <select id='select-report-type' class='report-type'>
+        <% @view_model.types.each do |type| %>
+          <option value='<%= type.value %>' <%= type.selected %>><%= type.name %></option>
+        <% end %>
+      </select>
+    </div>
+    <% end %>
   </div>
 </div>
 

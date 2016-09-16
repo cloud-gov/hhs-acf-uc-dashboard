@@ -77,3 +77,11 @@ Then(/^I should be taken to that day's report$/) do
   end
 end
 
+When(/^I choose (.+) from report type selector$/) do |report_type|
+  find('select.report-type').find("option[value=#{report_type.downcase}]").select_option
+end
+
+Then(/^I should not see a select for the report type$/) do
+  expect(page).to_not have_selector('select.report-type')
+end
+

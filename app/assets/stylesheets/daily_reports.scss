@@ -11,8 +11,10 @@
     background-color: $color-gray-lightest;
   }
 
-  .date-selector {
+  .date-selector,
+  .type-selector {
     margin-top: 2rem;
+    margin-left: 2rem;
     width: 200px;
     float: right;
   }
