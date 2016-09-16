@@ -7,7 +7,7 @@ RSpec.describe Query::DailyReport do
 
   let(:capacities_query) {
     double({
-      last_locked: capacity,
+      locked_for_date: capacity,
       first: nil
     })
   }
@@ -66,7 +66,7 @@ RSpec.describe Query::DailyReport do
     let(:capacities_query) {
       double({
         first: double(id: 123, reported_on: Date.today - 2.days),
-        last_locked: double(id: 234, reported_on: Date.today + 1)
+        locked_for_date: double(id: 234, reported_on: Date.today + 1)
       })
     }
 

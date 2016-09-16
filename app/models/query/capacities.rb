@@ -11,16 +11,12 @@ module Query
       Capacity.where(reported_on: date).take
     end
 
-    def today
-      @today ||= for_date(Date.today)
+    def locked_for_date(date)
+      Capacity.where(reported_on: date, status: 'locked').take
     end
 
-    def last_locked(date)
-      Capacity
-        .where('reported_on <= ?', date)
-        .where(status: 'locked')
-        .order('reported_on DESC')
-        .first
+    def today
+      @today ||= for_date(Date.today)
     end
 
     def first

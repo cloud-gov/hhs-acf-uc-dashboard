@@ -31,7 +31,7 @@ module Query
     private
 
     def load_capacity
-      @capacity = capacities_query.last_locked(requested_date)
+      @capacity = capacities_query.locked_for_date(requested_date)
     end
 
     def load_dates
