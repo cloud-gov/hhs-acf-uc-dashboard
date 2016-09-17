@@ -4,6 +4,8 @@ module Admin
 
     def index
       require!(:can_admin)
+      querier = Query::Capacities.new
+      @view_model = View::AdminCapacityIndex.new(querier.all)
     end
 
     def show

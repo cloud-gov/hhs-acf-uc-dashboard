@@ -29,3 +29,9 @@ Feature:
     When I change the status to unlocked and save capacity
     Then I will see the capacity form is unlocked
     And I will see a note about unlocking the capacity
+
+  Scenario: Viewing the Bed capacity history
+    Given I have signed in as an authenticated 'Admin' user
+    And there are capacity records in the past
+    When I click to view the 'Bed capacity history'
+    Then I will see a list of all dates since the first recorded capacity in reverse chronological order

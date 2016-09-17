@@ -1,1 +1,22 @@
-<h2>Capacity Management</h2>
+<h2>Daily bed capacity history</h2>
+
+<div class='capacity-rows'>
+  <div class='capacity-row header'>
+    <span class='date'>Date</span>
+    <span class='funded'>Funded capacity</span>
+    <span class='reserve'>Reserve</span>
+    <span class='activated'>Activated</span>
+    <span class='unavailable'>Unavailable</span>
+    <span class='status'>Capacity status</span>
+  </div>
+  <% @view_model.capacities.each do |capacity| %>
+    <div class='capacity-row'>
+      <span class='date'><%= capacity.date %></span>
+      <span class='funded'><%= capacity.funded %></span>
+      <span class='reserve'><%= capacity.reserve %></span>
+      <span class='activated'><%= capacity.activated %></span>
+      <span class='unavailable'><%= capacity.unavailable %></span>
+      <span class='status'><%= capacity.status %></span>
+    </div>
+  <% end %>
+</div>

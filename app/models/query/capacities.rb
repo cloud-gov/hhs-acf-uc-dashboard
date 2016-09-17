@@ -22,5 +22,9 @@ module Query
     def first
       @first ||= Capacity.order(:reported_on).first
     end
+
+    def all
+      @all ||= Capacity.all.order(:reported_on).to_a
+    end
   end
 end

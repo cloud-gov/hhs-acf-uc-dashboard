@@ -20,7 +20,7 @@ When(/^I fill in my email$/) do
 end
 
 When(/^I fill in my password$/) do
-  @password ||= 's3kr3t'
+  @password ||= 's3kr3t111'
   fill_in('Password', :with => @password)
 end
 

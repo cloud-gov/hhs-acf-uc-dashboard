@@ -44,7 +44,7 @@ end
 
 Then(/^I should see that the capacity values are for today's date$/) do
   within('.field.date') do
-    expect(page).to have_content(Date.today.strftime('%m/%d/%y'))
+    expect(page).to have_content(Date.today.strftime('%m/%-d/%y'))
   end
 end
 
@@ -102,4 +102,26 @@ Then(/^I will see the capacity form is unlocked$/) do
   expect(find('#capacity_reserve')).to_not be_readonly
   expect(find('#capacity_unavailable')).to_not be_readonly
   expect(find('#capacity_activated')).to_not be_readonly
+end
+
+When(/^I click to view the 'Bed capacity history'$/) do
+  click_on('Bed capacity history')
+end
+
+Given(/^there are capacity records in the past$/) do
+  @previous_capacity ||= Capacity.create({
+    funded: 1,
+    reserve: 2,
+    activated: 3,
+    unavailable: 4,
+    status: 'locked',
+    date: Date.today - 3
+  })
+end
+
+Then(/^I will see a list of all dates since the first recorded capacity in reverse chronological order$/) do
+  expect(page).to have_content(Date.today.strftime('%m/%-d/%y'))
+  expect(page).to have_content((Date.today - 1).strftime('%m/%-d/%y'))
+  expect(page).to have_content((Date.today - 2).strftime('%m/%-d/%y'))
+  expect(page).to have_content((Date.today - 3).strftime('%m/%-d/%y'))
 end
