@@ -1,9 +1,12 @@
 @import 'variables';
 
 .daily_reports {
-  h2 .date {
+  h2 .date,
+  .key-numbers .stat {
     font-weight: normal;
     font-family: $sans-serif;
+    font-size: 3rem;
+    margin: 0;
   }
 
   .report-content.none {
@@ -17,5 +20,19 @@
     margin-left: 2rem;
     width: 200px;
     float: right;
+  }
+
+  .key-numbers {
+    background-color: $color-gray-lightest;
+    margin-top: 2rem;
+    padding: 1.5rem;
+
+    h4 {
+      margin: 0;
+    }
+  }
+
+  .bottom-row {
+    margin-bottom: 2rem;
   }
 }

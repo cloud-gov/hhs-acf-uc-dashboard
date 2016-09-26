@@ -1,6 +1,6 @@
 module Query
   class DailyReport
-    attr_reader :role, :params, :date, :capacity, :dates
+    attr_reader :role, :params, :date, :capacity, :dates, :daily_statistics
 
     def initialize(role, params)
       @role = role
@@ -14,6 +14,9 @@ module Query
     def load_data
       load_capacity
       load_dates
+      if capacity
+        load_api_statistics
+      end
     end
 
     def requested_date
@@ -28,7 +31,23 @@ module Query
       requested_date
     end
 
+    def referrals
+      daily_statistics['referrals']
+    end
+
+    def in_care
+      daily_statistics['in_care']
+    end
+
+    def discharges
+      daily_statistics['discharges']
+    end
+
     private
+
+    def load_api_statistics
+      @daily_statistics = ApiClient.new.daily_statistics
+    end
 
     def load_capacity
       @capacity = capacities_query.locked_for_date(requested_date)

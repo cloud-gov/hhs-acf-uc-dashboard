@@ -10,7 +10,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'us_web_design_standards', '~> 0.0.2'
 
 gem 'active_model_serializers'
-
+gem 'rest-client'
 gem 'devise'
 
 # Use ActiveModel has_secure_password
@@ -27,6 +27,7 @@ group :development, :test do
   gem 'launchy'
   gem 'jasmine-rails'
   gem 'rails-controller-testing'
+  gem 'dotenv-rails'
 
   # security
   gem 'brakeman', require: false

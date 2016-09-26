@@ -4,8 +4,9 @@ body {
   background-color: white;
 }
 
-.usa-grid-full {
-  max-width: 100%;
+.usa-grid-full,
+.usa-grid {
+  max-width: none;
 }
 
 .usa-disclaimer {

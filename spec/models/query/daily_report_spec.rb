@@ -14,7 +14,16 @@ RSpec.describe Query::DailyReport do
 
   let(:capacity) { nil }
 
+  let(:daily_statistics_response) {
+    double('response', body: {
+      discharges: 15,
+      in_care: 4500,
+      referrals: 32
+    }.to_json)
+  }
+
   before do
+    allow(RestClient).to receive(:get).and_return(daily_statistics_response)
     allow(Query::Capacities).to receive(:new).and_return(capacities_query)
   end
 
@@ -74,6 +83,17 @@ RSpec.describe Query::DailyReport do
       query.load_data
       expect(query.dates.first).to eq(Date.today)
       expect(query.dates.last).to eq(Date.today - 2.days)
+    end
+  end
+
+  describe 'daily statistics, when there is a capacity' do
+    let(:capacity) { double }
+
+    it 'loads and provides accessors from the API' do
+      query.load_data
+      expect(query.referrals).to eq(32)
+      expect(query.in_care).to eq(4500)
+      expect(query.discharges).to eq(15)
     end
   end
 end

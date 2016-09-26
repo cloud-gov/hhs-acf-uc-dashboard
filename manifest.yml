@@ -9,4 +9,5 @@ applications:
   env:
     RAILS_ENV: production
     RACK_ENV: production
+    API_URL: https://hhs-uc-api.apps.cloud.gov
   stack: cflinuxfs2

@@ -24,7 +24,12 @@ Bundling and setting up databases follows the expected Rails patterns.
 
 Tests can be run with the default rake command, `rake`.
 
-## Binary dependencies
+## API
+
+This application is built on top of an API, whose staging version is
+available at https://hhs-uc-api.apps.cloud.gov.
+
+## Non-Ruby dependencies
 
 Rails uses the `poltergeist` gem for testing, which requires the binary `phantomjs`.
 On our mac machines use: `brew install phantomjs`. Otherwise checkout

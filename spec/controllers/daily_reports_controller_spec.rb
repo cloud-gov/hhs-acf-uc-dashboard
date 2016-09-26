@@ -1,6 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe DailyReportsController, type: :controller do
+  let(:daily_statistics_response) {
+    double('response', body: {
+      discharges: 15,
+      in_care: 4500,
+      referrals: 32
+    }.to_json)
+  }
+
+  before do
+    allow(RestClient).to receive(:get).and_return(daily_statistics_response)
+  end
+
   describe 'GET #index' do
     it "requires authentication" do
       expect(controller).to receive(:authenticate_user!)

@@ -5,11 +5,11 @@ module View
     def initialize(querier)
       @role = querier.role
       @date = format_date(querier.date)
-      @capacity = querier.capacity
-      @params = querier.params
-      @dates_raw = querier.dates
       @querier = querier
     end
+
+    delegate :capacity, :params, :dates, :referrals, :in_care, :discharges,
+      to: :querier
 
     def report_content_partial
       capacity ? 'content' : 'no_content'
@@ -34,6 +34,14 @@ module View
 
     def show_type_selector?
       role.name == "Admin"
+    end
+
+    def open_beds
+      capacity.funded + capacity.activated - in_care
+    end
+
+    def reserve_beds
+      capacity.reserve
     end
 
     private
@@ -62,6 +70,10 @@ module View
       type == type_name ? 'selected' : ''
     end
 
-    attr_reader :capacity, :params, :dates_raw, :querier
+    def dates_raw
+      querier.dates
+    end
+
+    attr_reader :querier
   end
 end

@@ -23,7 +23,16 @@ Given(/^capacity numbers were locked yesterday, but not today$/) do
 end
 
 When(/^I visit 'Daily' report page$/) do
-  click_on "Daily"
+  @daily_statistics = {
+    discharges: 15,
+    in_care: 4500,
+    referrals: 32
+  }
+
+  RSpec::Mocks.with_temporary_scope do
+    allow(RestClient).to receive(:get).and_return(@daily_statistics)
+    click_on "Daily"
+  end
 end
 
 Then(/^I should see yesterday's daily report$/) do

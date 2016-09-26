@@ -1,3 +1,26 @@
 <div class='report-content'>
-  <h4>{{report here}}</h4>
+  <div class='usa-grid-full'>
+    <div class='usa-width-one-third key-numbers referred-placement'>
+      <h4>Referred Placement</h4>
+      <p class='stat'><%= @view_model.referrals %></p>
+    </div>
+    <div class='usa-width-one-third key-numbers discharges'>
+      <h4>Discharges</h4>
+      <p class='stat'><%= @view_model.discharges %></p>
+    </div>
+    <div class='usa-width-one-third key-numbers children-in-care'>
+      <h4>Children in care</h4>
+      <p class='stat'><%= @view_model.in_care %></p>
+    </div>
+  </div>
+  <div class='usa-grid-full bottom-row'>
+    <div class='usa-width-one-third key-numbers open-beds'>
+      <h4>Open beds</h4>
+      <p class='stat'><%= @view_model.open_beds %></p>
+    </div>
+    <div class='usa-width-one-third key-numbers reserve-beds'>
+      <h4>Reserve beds</h4>
+      <p class='stat'><%= @view_model.reserve_beds %></p>
+    </div>
+  </div>
 </div>
