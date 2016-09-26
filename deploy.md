@@ -34,6 +34,19 @@ gem install bundle
 bundle install
 ```
 
+## Deploy scripting
+
+Without a PaaS for deployment, the best option for scripting deploys is
+a tool called [Capistrano](http://capistranorb.com/). Capistrano solves
+the problems of maintaining shared resources between deploys such as
+database configuration and logs.
+
+Using this tool or another, database configuration is managed via a file
+that is copied in after the code is deployed: `config/database.yml`.
+The one checked into source control is setup for development/test
+environments, and can serve as an example for the one needed for
+production. See [Rails documentation](http://edgeguides.rubyonrails.org/configuring.html#configuring-a-database) for more details on what this file contains and how it can be modified.
+
 ## Preparing the database
 
 This application has a very small need for data. It is mostly connecting
