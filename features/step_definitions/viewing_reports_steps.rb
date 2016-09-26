@@ -22,17 +22,29 @@ Given(/^capacity numbers were locked yesterday, but not today$/) do
   })
 end
 
-When(/^I visit 'Daily' report page$/) do
-  @daily_statistics = {
+When(/^the API is up$/) do
+  @daily_statistics = double('response', body: {
     discharges: 15,
-    in_care: 4500,
+    in_care: 1500,
     referrals: 32
-  }
+  }.to_json)
+  allow(RestClient).to receive(:get).and_return(@daily_statistics)
+  click_on "Daily"
+  @api_status_set = true
+end
 
-  RSpec::Mocks.with_temporary_scope do
-    allow(RestClient).to receive(:get).and_return(@daily_statistics)
-    click_on "Daily"
-  end
+When(/^I visit 'Daily' report page$/) do
+  step "the API is up" unless @api_status_set
+  click_on "Daily"
+end
+
+Given(/^the API is down$/) do
+  allow(RestClient).to receive(:get).and_raise(RestClient::NotFound)
+  @api_status_set = true
+end
+
+Then(/^I should see a message that the API is unavailable$/) do
+  expect(page).to have_content("Data is currently unavailable!")
 end
 
 Then(/^I should see yesterday's daily report$/) do

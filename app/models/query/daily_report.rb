@@ -1,6 +1,6 @@
 module Query
   class DailyReport
-    attr_reader :role, :params, :date, :capacity, :dates, :daily_statistics
+    attr_reader :role, :params, :date, :capacity, :dates, :daily_statistics, :api_error
 
     def initialize(role, params)
       @role = role
@@ -47,6 +47,9 @@ module Query
 
     def load_api_statistics
       @daily_statistics = ApiClient.new.daily_statistics
+    rescue
+      @api_error = true
+      @daily_statistics = {}
     end
 
     def load_capacity

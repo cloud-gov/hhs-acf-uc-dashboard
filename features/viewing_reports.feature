@@ -9,6 +9,13 @@ Feature:
     When I visit 'Daily' report page
     Then I should see a message that there is no data available
 
+  Scenario: Viewing daily report when API is down
+    Given I am a user with permission to view the dashboard
+    And capacity numbers have alreday been locked today
+    And the API is down
+    When I visit 'Daily' report page
+    Then I should see a message that the API is unavailable
+
   @javascript
   Scenario: Viewing daily reports by date
     Given I am a user with permission to view the dashboard

@@ -8,11 +8,17 @@ module View
       @querier = querier
     end
 
-    delegate :capacity, :params, :dates, :referrals, :in_care, :discharges,
+    delegate :capacity, :params, :dates, :referrals, :in_care, :discharges, :api_error,
       to: :querier
 
     def report_content_partial
-      capacity ? 'content' : 'no_content'
+      if capacity && !api_error
+        'content'
+      elsif api_error
+        'api_error'
+      else
+        'no_content'
+      end
     end
 
     def type_name
