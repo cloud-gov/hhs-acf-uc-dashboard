@@ -70,18 +70,28 @@ rake db:migrate
 
 ## Environment variables
 
-There are four required environment variables:
+There are a few required environment variables:
 
 ```
 export RAILS_ENV='production'
 export RACK_ENV='production'
 export API_URL='https://url-to-api.gov/'
 export AUTH_HMAC_SECRET='some-secret-string'
+export SECRET_KEY_BASE='some-other-secret-string'
 ```
 
 The `API_URL` environment variable is the URL to the API server.  It is a regular URL and can include a port and so on.
 
 The `AUTH_HMAC_SECRET` environment variable is used to encrypt authentication calls between the Dashboard and API, and must be set to the same value on both.  It is a cryptographic key so should be reasonably secure.  A reasonable choice would be to concatenate together a couple of passwords from https://www.grc.com/passwords.htm.
+
+In addition Rails uses a secret key base to authenticate requests. In order
+for the server to work, you will need to set this value to a similar
+large value secret.
+
+Rails comes with a handy script for generating theses keys:
+
+  rake secret
+
 
 ## Start the Dashboard
 
