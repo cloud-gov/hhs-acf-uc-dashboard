@@ -22,7 +22,7 @@
     float: right;
   }
 
-  .key-numbers {
+  .key-numbers .usa-width-one-third {
     background-color: $color-gray-lightest;
     margin-top: 2rem;
     padding: 1.5rem;
@@ -34,5 +34,24 @@
 
   .bottom-row {
     margin-bottom: 2rem;
+  }
+
+  .detail-tables {
+    margin: 4rem 0;
+
+    h4.row {
+      padding: 2rem;
+      background-color: $color-gray-lightest;
+    }
+
+    .row {
+      margin: 0;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid black;
+
+      b {
+        float: right;
+      }
+    }
   }
 }

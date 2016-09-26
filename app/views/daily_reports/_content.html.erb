@@ -1,26 +1,52 @@
 <div class='report-content'>
-  <div class='usa-grid-full'>
-    <div class='usa-width-one-third key-numbers referred-placement'>
+  <div class='usa-grid-full key-numbers'>
+    <div class='usa-width-one-third referred-placement'>
       <h4>Referred Placement</h4>
       <p class='stat'><%= @view_model.referrals %></p>
     </div>
-    <div class='usa-width-one-third key-numbers discharges'>
+    <div class='usa-width-one-third discharges'>
       <h4>Discharges</h4>
       <p class='stat'><%= @view_model.discharges %></p>
     </div>
-    <div class='usa-width-one-third key-numbers children-in-care'>
+    <div class='usa-width-one-third children-in-care'>
       <h4>Children in care</h4>
       <p class='stat'><%= @view_model.in_care %></p>
     </div>
   </div>
-  <div class='usa-grid-full bottom-row'>
-    <div class='usa-width-one-third key-numbers open-beds'>
+  <div class='usa-grid-full key-numbers bottom-row'>
+    <div class='usa-width-one-third open-beds'>
       <h4>Open beds</h4>
       <p class='stat'><%= @view_model.open_beds %></p>
     </div>
-    <div class='usa-width-one-third key-numbers reserve-beds'>
+    <div class='usa-width-one-third reserve-beds'>
       <h4>Reserve beds</h4>
       <p class='stat'><%= @view_model.reserve_beds %></p>
+    </div>
+  </div>
+
+  <div class='usa-grid-full detail-tables'>
+    <div class='usa-width-one-third referred-placements'>
+      <h4 class='row'>Referred Placements</h4>
+      <p class='row'>
+        <%= @view_model.date %>
+        <b><%= @view_model.referrals %></b>
+      </p>
+    </div>
+
+    <div class='usa-width-one-third discharges'>
+      <h4 class='row'>Discharges</h4>
+      <p class='row'>
+        <%= @view_model.date %>
+        <b><%= @view_model.discharges %></b>
+      </p>
+    </div>
+
+    <div class='usa-width-one-third census'>
+      <h4 class='row'>Census</h4>
+      <p class='row'>
+        Children in care
+        <b><%= @view_model.in_care %></b>
+      </p>
     </div>
   </div>
 </div>
