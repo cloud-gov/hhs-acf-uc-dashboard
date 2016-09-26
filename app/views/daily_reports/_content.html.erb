@@ -24,6 +24,24 @@
     </div>
   </div>
 
+  <div class='usa-grid-full rates'>
+    <div class='usa-width-one-half occupancy-rates'>
+      <h4 class='row'>Occupancy rates</h4>
+      <div class='usa-grid-full color-alert-row'>
+        <div class='description usa-width-three-fourths'>Funded capacity + activated reserve beds</div>
+        <div class='calculation-value usa-width-one-fourth <%= @view_model.activated_rate_status %>'><%= @view_model.activated_rate %></div>
+      </div>
+      <div class='usa-grid-full color-alert-row'>
+        <div class='description usa-width-three-fourths'>Funded capacity + all reserve beds</div>
+        <div class='calculation-value usa-width-one-fourth <%= @view_model.reserved_rate_status %>'><%= @view_model.reserved_rate %></div>
+      </div>
+    </div>
+
+    <div class='usa-width-one-half occupancy-rates'>
+      <h4 class='row'>Discharge rates</h4>
+    </div>
+  </div>
+
   <div class='usa-grid-full detail-tables'>
     <div class='usa-width-one-third referred-placements'>
       <h4 class='row'>Referred Placements</h4>
@@ -46,6 +64,14 @@
       <p class='row'>
         Children in care
         <b><%= @view_model.in_care %></b>
+      </p>
+      <p class='row'>
+        Current funded capacity
+        <b><%= @view_model.current_funded_capacity %></b>
+      </p>
+      <p class='row'>
+        Total capacity including all reserve beds
+        <b><%= @view_model.total_reserve_capacity %></b>
       </p>
     </div>
   </div>

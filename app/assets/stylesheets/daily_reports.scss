@@ -36,7 +36,8 @@
     margin-bottom: 2rem;
   }
 
-  .detail-tables {
+  .detail-tables,
+  .rates {
     margin: 4rem 0;
 
     h4.row {
@@ -52,6 +53,38 @@
       b {
         float: right;
       }
+
+      .calculation-value {
+        float: right;
+        width: 25%;
+      }
+    }
+  }
+
+  .color-alert-row {
+    border-bottom: 1px solid black;
+
+    .description,
+    .calculation-value {
+      padding: 1rem 2rem;
+    }
+  }
+
+  .calculation-value {
+    font-weight: bold;
+    text-align: center;
+
+    &.notice {
+      background-color: $color-green-light;
+    }
+
+    &.warn {
+      background-color: $color-gold;
+    }
+
+    &.alert {
+      background-color: $color-secondary-dark;
+      color: white;
     }
   }
 }

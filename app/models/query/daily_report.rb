@@ -1,6 +1,7 @@
 module Query
   class DailyReport
-    attr_reader :role, :params, :date, :capacity, :dates, :daily_statistics, :api_error
+    attr_reader :role, :params, :date, :capacity, :dates,
+      :daily_statistics, :api_error, :data
 
     def initialize(role, params)
       @role = role
@@ -16,6 +17,7 @@ module Query
       load_dates
       if capacity
         load_api_statistics
+        build_data_object
       end
     end
 
@@ -63,6 +65,18 @@ module Query
 
     def capacities_query
       @capacities_query = Query::Capacities.new
+    end
+
+    def build_data_object
+      @data = OpenStruct.new({
+        funded: capacity.funded,
+        reserve: capacity.reserve,
+        activated: capacity.activated,
+        unavailable: capacity.unavailable,
+        referrals: daily_statistics['referrals'],
+        in_care: daily_statistics['in_care'],
+        discharges: daily_statistics['discharges']
+      })
     end
   end
 end

@@ -62,7 +62,16 @@ RSpec.describe Query::DailyReport do
     end
 
     describe 'when there is a found capacity' do
-      let(:capacity) { double(reported_on: Date.today - 3.days, id: 42) }
+      let(:capacity) {
+        double({
+          reported_on: Date.today - 3.days,
+          id: 42,
+          funded: 3000,
+          reserve: 1000,
+          activated: 200,
+          unavailable: 100
+        })
+      }
 
       it 'returns the capacity date' do
         query.load_data
@@ -74,8 +83,8 @@ RSpec.describe Query::DailyReport do
   describe '#dates' do
     let(:capacities_query) {
       double({
-        first: double(id: 123, reported_on: Date.today - 2.days),
-        locked_for_date: double(id: 234, reported_on: Date.today + 1)
+        first: OpenStruct.new(id: 123, reported_on: Date.today - 2.days),
+        locked_for_date: OpenStruct.new(id: 234, reported_on: Date.today + 1)
       })
     }
 
@@ -87,7 +96,14 @@ RSpec.describe Query::DailyReport do
   end
 
   describe 'daily statistics, when there is a capacity' do
-    let(:capacity) { double }
+    let(:capacity) {
+      double({
+        funded: 3000,
+        reserve: 1000,
+        activated: 200,
+        unavailable: 100
+      })
+    }
 
     it 'loads and provides accessors from the API' do
       query.load_data

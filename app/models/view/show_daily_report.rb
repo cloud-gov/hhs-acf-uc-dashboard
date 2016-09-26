@@ -1,15 +1,25 @@
 module View
   class ShowDailyReport
-    attr_reader :role, :date
+    attr_reader :role, :date, :data
 
     def initialize(querier)
       @role = querier.role
       @date = format_date(querier.date)
       @querier = querier
+      @data = querier.data
     end
 
-    delegate :capacity, :params, :dates, :referrals, :in_care, :discharges, :api_error,
+    delegate :capacity, :params, :dates, :api_error,
       to: :querier
+
+    delegate :referrals, :in_care, :discharges,
+      to: :data
+
+    delegate :open_beds,
+      :activated_rate, :activated_rate_status,
+      :reserved_rate, :reserved_rate_status,
+      :current_funded_capacity, :total_reserve_capacity,
+          to: :calculations
 
     def report_content_partial
       if capacity && !api_error
@@ -42,15 +52,15 @@ module View
       role.name == "Admin"
     end
 
-    def open_beds
-      capacity.funded + capacity.activated - in_care
-    end
-
     def reserve_beds
-      capacity.reserve
+      data.reserve
     end
 
     private
+
+    def calculations
+      @calclations ||= DailyCalculations.new(data)
+    end
 
     class DatePresenter
       attr_reader :formatter, :is_selected
