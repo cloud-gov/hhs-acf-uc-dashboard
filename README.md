@@ -39,6 +39,8 @@ either project for advice on installation.
 
 A demo application is on [cloud.gov](https://hhs-acf-uc-dashboard.apps.cloud.gov/). With permissions you can deploy with `cf push`. Getting access to the box can be done via `cf-ssh`.
 
+More detailed deployment information is available in [deploy.md](deploy.md).
+
 ## Security
 
 The application can be scanned locally via `brakeman`. Currently it is
