@@ -36,6 +36,14 @@ bundle install
 
 ## Preparing the database
 
+This application has a very small need for data. It is mostly connecting
+to the API to get reporting data. It stores a bit of additional
+information on daily capacity and a user authentication system. We are
+using a small shared postgres database for staging. For the forseeable
+future, the data will be less than 250MB, and have very small memory
+needs. We don't have the details or our postgres configuration, but
+expect that the most basic postgres setup will be sufficient.
+
 There are Ruby scripts provided to create the database using `rake`.  To get the database ready, run:
 
 ```
