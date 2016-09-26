@@ -20,7 +20,7 @@ If your environment has a different version of Ruby than what the Dashboard expe
 rvm install `cat .ruby-version`
 ```
 
-The environment will also need [PostgreSQL](https://www.postgresql.org/).
+The environment will also need [PostgreSQL](https://www.postgresql.org/).  This small, lightweight database is used by the Dashboard for authentication and authorization.  [I assume the meat of application data will come from the API soon]
 
 ## The application
 
