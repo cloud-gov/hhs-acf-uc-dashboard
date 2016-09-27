@@ -17,7 +17,7 @@ module Import
     end
 
     def attributes
-      attrs = {}
+      attrs = {status: 'locked'}
       KEYS.each_with_index do |key, index|
         next if key == :reported_on || data[index].blank?
         attrs[key] = data[index]

@@ -12,7 +12,7 @@ RSpec.describe Import::FromCSV, "#call" do
         reserve: 101,
         activated: 202,
         unavailable: 333,
-        status: 'locked'
+        status: 'unlocked'
       })
     }
 
@@ -31,6 +31,12 @@ RSpec.describe Import::FromCSV, "#call" do
       expect(capacity.reserve).to eq(2200)
       expect(capacity.activated).to eq(600)
       expect(capacity.unavailable).to eq(56)
+    end
+
+    it 'locks the record' do
+      service.call
+      capacity.reload
+      expect(capacity.status).to eq('locked')
     end
   end
 
@@ -51,6 +57,11 @@ RSpec.describe Import::FromCSV, "#call" do
       expect(capacity.reserve).to eq(2200)
       expect(capacity.activated).to eq(600)
       expect(capacity.unavailable).to eq(56)
+    end
+
+    it 'locks the record' do
+      service.call
+      expect(capacity.status).to eq('locked')
     end
   end
 end
