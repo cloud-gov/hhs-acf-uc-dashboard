@@ -119,6 +119,8 @@ Rails comes with a handy script for generating theses keys:
 
 ## Seeding the application with data
 
+### Creating an admin user
+
 As mentioned, the application has a user management system built in,
 however the first user has to be created as an admin for this to work.
 
@@ -130,6 +132,18 @@ Since there is an email dependency in this flow, please verify that the
 email server is setup correctly before running the task:
 
     rake dashboard:create_first_admin
+
+### Importing data from a CSV
+
+The dashboard data reports via 7 and 30 day averages, and when the
+application starts it has no days of data. To fix this Olypia will be
+providing a CSV file of the format provided at `./sample-daily-stats.csv`
+for import.
+
+We have built a script for importing data from such a file.
+
+* Place the file somewhere navigable from the root directory of the app
+* Run: `rake dashboard:import_csv ../path-to-my-file/example.csv`
 
 ## Start the Dashboard
 
