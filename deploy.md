@@ -117,6 +117,19 @@ Rails comes with a handy script for generating theses keys:
 
   rake secret
 
+## Seeding the application with data
+
+As mentioned, the application has a user management system built in,
+however the first user has to be created as an admin for this to work.
+
+We have built a script to create a user with Olympia's email. The
+password will be made up and she will need to follow a password reset
+link provided in email to reset her email and login.
+
+Since there is an email dependency in this flow, please verify that the
+email server is setup correctly before running the task:
+
+    rake dashboard:create_first_admin
 
 ## Start the Dashboard
 
