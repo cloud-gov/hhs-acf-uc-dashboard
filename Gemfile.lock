@@ -137,6 +137,7 @@ GEM
     json (1.8.3)
     jsonapi (0.1.1.beta2)
       json (~> 1.8)
+    jwt (1.5.6)
     launchy (2.4.3)
       addressable (~> 2.3)
     loofah (2.0.3)
@@ -305,6 +306,7 @@ DEPENDENCIES
   dotenv-rails
   hakiri
   jasmine-rails
+  jwt
   launchy
   pg (~> 0.18)
   poltergeist
