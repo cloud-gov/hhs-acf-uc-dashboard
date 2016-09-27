@@ -75,7 +75,7 @@ The Dashboard uses email to verify new accounts and to reset passwords.  In orde
 ```
 config.action_mailer.smtp_settings = {
     address: ENV['SMTP_ADDRESS'],
-    port: 587,
+    port: ENV['SMTP_PORT'],
     domain: ENV['SMTP_DOMAIN'] || "18f.gsa.gov",
     user_name: ENV['SMTP_USERNAME'],
     password: ENV['SMTP_PASSWORD'],
@@ -86,7 +86,7 @@ config.action_mailer.smtp_settings = {
 
 This configures Action Mailer.  For a full explanation of this configuration, check the [Action Mailer configuration page](http://guides.rubyonrails.org/action_mailer_basics.html#action-mailer-configuration).
 
-Note that by default, this configuration will use environment variables for the SMTP address, domain (for HELO), username, and password.  If the other information in the configuration is appropriate for your environment, there is no need to change the `config/environment/production.rb` file.
+Note that by default, this configuration will use environment variables for the SMTP address, port, domain (for HELO), username, and password.  If the other information in the configuration is appropriate for your environment, there is no need to change the `config/environment/production.rb` file.
 
 ## Environment variables
 
