@@ -54,8 +54,8 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "hhs-acf-uc-dashboard_#{Rails.env}"
   config.action_mailer.perform_caching = false
   config.action_mailer.smtp_settings = {
-    address: 'smtp.mandrillapp.com',
-    port: 587,
+    address: ENV['SMTP_ADDRESS'],
+    port: ENV['SMTP_PORT'].to_i,
     domain: ENV['SMTP_DOMAIN'] || "18f.gsa.gov",
     user_name: ENV['SMTP_USERNAME'],
     password: ENV['SMTP_PASSWORD'],

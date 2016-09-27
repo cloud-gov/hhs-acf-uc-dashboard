@@ -68,6 +68,26 @@ rake db:create:all
 rake db:migrate 
 ```
 
+## Email configuration
+
+The Dashboard uses email to verify new accounts and to reset passwords.  In order to do this, it must be configured to know what email server to use.  This is configured in the file `config/environments/production.rb`, in the `config.action_mailer.smtp_settings` key:
+
+```
+config.action_mailer.smtp_settings = {
+    address: ENV['SMTP_ADDRESS'],
+    port: ENV['SMTP_PORT'],
+    domain: ENV['SMTP_DOMAIN'] || "18f.gsa.gov",
+    user_name: ENV['SMTP_USERNAME'],
+    password: ENV['SMTP_PASSWORD'],
+    authentication: 'login',
+    enable_starttls_auto: true
+  }
+```
+
+This configures Action Mailer.  For a full explanation of this configuration, check the [Action Mailer configuration page](http://guides.rubyonrails.org/action_mailer_basics.html#action-mailer-configuration).
+
+Note that by default, this configuration will use environment variables for the SMTP address, port, domain (for HELO), username, and password.  If the other information in the configuration is appropriate for your environment, there is no need to change the `config/environment/production.rb` file.
+
 ## Environment variables
 
 There are a few required environment variables:
@@ -78,6 +98,11 @@ export RACK_ENV='production'
 export API_URL='https://url-to-api.gov/'
 export AUTH_HMAC_SECRET='some-secret-string'
 export SECRET_KEY_BASE='some-other-secret-string'
+
+export SMTP_ADDRESS='smtp.mail.tld.gov'
+export SMTP_DOMAIN='smtp.mail.tld.gov'
+export SMTP_USERNAME='smtp-username'
+export SMTP_PASSWORD='smtp-password'
 ```
 
 The `API_URL` environment variable is the URL to the API server.  It is a regular URL and can include a port and so on.
