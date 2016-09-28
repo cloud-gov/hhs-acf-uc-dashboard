@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :daily_reports, only: [:show, :index]
+  resources :daily_stats, only: [:create]
 
   namespace :admin do
     resources :users, only: [:index, :new, :create, :update]

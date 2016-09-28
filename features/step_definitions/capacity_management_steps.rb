@@ -119,9 +119,26 @@ Given(/^there are capacity records in the past$/) do
   })
 end
 
+Given(/^the API is available$/) do
+  @daily_statistics = double('response', body: {
+    discharges: 15,
+    in_care: 1500,
+    referrals: 32
+  }.to_json)
+  allow(RestClient).to receive(:get).and_return(@daily_statistics)
+end
+
 Then(/^I will see a list of all dates since the first recorded capacity in reverse chronological order$/) do
   expect(page).to have_content(Date.today.strftime('%m/%-d/%y'))
   expect(page).to have_content((Date.today - 1).strftime('%m/%-d/%y'))
   expect(page).to have_content((Date.today - 2).strftime('%m/%-d/%y'))
   expect(page).to have_content((Date.today - 3).strftime('%m/%-d/%y'))
 end
+
+Then(/^My API cached values will be saved$/) do
+  capacity = Capacity.where(reported_on: Date.today).take
+  expect(capacity.in_care).to eq(1500)
+  expect(capacity.referrals).to eq(32)
+  expect(capacity.discharges).to eq(15)
+end
+
