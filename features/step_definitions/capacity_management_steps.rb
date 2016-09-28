@@ -142,3 +142,7 @@ Then(/^My API cached values will be saved$/) do
   expect(capacity.discharges).to eq(15)
 end
 
+Then(/^I should see an alert that information could not be cached from the API$/) do
+  expect(page).to have_content("Unable to cache data from the API")
+end
+

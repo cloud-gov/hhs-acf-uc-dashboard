@@ -1,6 +1,6 @@
 module Admin
   class UpdateCapacity
-    attr_reader :date, :capacity_params, :current_user
+    attr_reader :date, :capacity_params, :current_user, :cache_saved
 
     def initialize(date, capacity_params, current_user)
       @date = date
@@ -12,6 +12,7 @@ module Admin
       add_errors_if_not_valid
       save_capacity_if_valid
       save_log_if_capacity_saved
+      cache_api_data_if_capacity_saved
     end
 
     def capacity
@@ -35,6 +36,10 @@ module Admin
 
     def add_flash(flash_object)
       FormFlasher.new(flash_object, saved?).add
+      if !cache_saved
+        flash_object[:error] ||= ""
+        flash_object[:error] += " Unable to cache data from the API."
+      end
     end
 
     private
@@ -61,6 +66,11 @@ module Admin
     def save_log_if_capacity_saved
       return if !saved?
       Admin::CreateCapacityLog.new(capacity, current_user).call
+    end
+
+    def cache_api_data_if_capacity_saved
+      return if !saved?
+      @cache_saved = CacheStats.new(capacity).call
     end
 
     def attributes

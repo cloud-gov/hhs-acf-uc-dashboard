@@ -7,7 +7,6 @@ Feature:
     Given I have signed in as an authenticated user that is not an 'admin' user
     Then I should not see a link to the 'Capacity' page in the navigation bar
 
-  @wip
   Scenario: Viewing and updating capacity record
     Given I have signed in as an authenticated 'Admin' user
     And the API is available
@@ -34,13 +33,12 @@ Feature:
     Then I will see the capacity form is unlocked
     And I will see a note about unlocking the capacity
 
-  @wip
   Scenario: Saving capacity when the API is down
     Given I have signed in as an authenticated 'Admin' user
     And the API is down
     When I click on the 'Capacity' link
     And I update intake values
-    Then I should see a message that the API is unavailable
+    Then I should see an alert that information could not be cached from the API
 
   Scenario: Viewing the Bed capacity history
     Given I have signed in as an authenticated 'Admin' user

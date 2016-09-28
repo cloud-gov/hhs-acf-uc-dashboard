@@ -25,6 +25,7 @@ RSpec.describe Admin::UpdateCapacity do
 
   before do
     allow_any_instance_of(Admin::CreateCapacityLog).to receive(:call)
+    allow_any_instance_of(CacheStats).to receive(:call).and_return(true)
     allow(Admin::Attributes::CapacityData).to receive(:new).and_return(capacity_data)
   end
 
@@ -56,9 +57,13 @@ RSpec.describe Admin::UpdateCapacity do
     end
 
     it 'does not create a log' do
-      expect { service.save }.to_not change {
-        CapacityLog.count
-      }
+      expect_any_instance_of(Admin::CreateCapacityLog).to_not receive(:call)
+      service.save
+    end
+
+    it 'does not try to cache data' do
+      expect_any_instance_of(CacheStats).to_not receive(:call)
+      service.save
     end
 
     it 'adds errors to the capacity record' do
@@ -85,6 +90,11 @@ RSpec.describe Admin::UpdateCapacity do
       service.save
     end
 
+    it 'tries to cache api data' do
+      expect_any_instance_of(CacheStats).to receive(:call)
+      service.save
+    end
+
     describe '#add_flash(flash_object)' do
       let(:flash) { {} }
 
@@ -92,6 +102,18 @@ RSpec.describe Admin::UpdateCapacity do
         service.save
         service.add_flash(flash)
         expect(flash[:success]).to eq('Your changes have been saved.')
+      end
+    end
+
+    describe '#add_flash(flash_object) when the API fails' do
+      let(:flash) { {} }
+
+      it 'adds a success message' do
+        allow_any_instance_of(CacheStats).to receive(:call).and_return(false)
+        service.save
+        service.add_flash(flash)
+        expect(flash[:success]).to eq('Your changes have been saved.')
+        expect(flash[:error]).to include('Unable to cache data from the API.')
       end
     end
   end
