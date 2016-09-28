@@ -13,4 +13,17 @@ namespace :dashboard do
       exit(1)
     end
   end
+
+  desc 'import csv given a path'
+  task import_csv: :environment do
+    path = ARGV[1]
+
+    if !path
+      puts "Must provide path to file: rake dashboard:import_csv ../some/path-to/example.csv"
+      exit(1)
+    end
+
+    Import::FromCSV.new(path).call
+    puts "imported!"
+  end
 end
