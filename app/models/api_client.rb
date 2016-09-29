@@ -12,7 +12,19 @@ class ApiClient
   private
 
   def get_json(path)
-    response = RestClient.get("#{base_url}/#{path}")
+    response = RestClient.get("#{base_url}/#{path}", headers)
     JSON.parse(response.body)
+  end
+
+  def headers
+    {Authorization: "Token #{token}"}
+  end
+
+  def token
+    JWT.encode({:role => 'user role', :exp => Time.now.to_i + 86400}, hmac_secret, "HS512")
+  end
+
+  def hmac_secret
+    ENV["AUTH_HMAC_SECRET"]
   end
 end

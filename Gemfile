@@ -12,6 +12,7 @@ gem 'us_web_design_standards', '~> 0.0.2'
 gem 'active_model_serializers'
 gem 'rest-client'
 gem 'devise'
+gem 'jwt'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
