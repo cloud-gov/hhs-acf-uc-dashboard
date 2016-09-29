@@ -32,8 +32,9 @@ RSpec.describe CacheStats do
     end
 
     it 'leaves the capacity as is' do
-      service.call
       updated_at = capacity.updated_at
+      expect_any_instance_of(Capacity).to_not receive(:update_attributes)
+      service.call
       expect(updated_at).to eq(capacity.reload.updated_at)
     end
   end
