@@ -11,11 +11,11 @@ module View
     end
 
     def current_funded_capacity
-      data.funded + data.reserve
+      data.funded + data.activated
     end
 
     def total_reserve_capacity
-      current_funded_capacity + data.activated
+      current_funded_capacity + data.reserve
     end
 
     def activated_rate
@@ -65,7 +65,7 @@ module View
     end
 
     def reserved_ratio
-      data.in_care.to_f/(data.funded + data.reserve)
+      data.in_care.to_f/(data.funded + data.reserve + data.activated)
     end
 
     def activation_ratio

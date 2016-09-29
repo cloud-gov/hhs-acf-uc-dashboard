@@ -26,7 +26,12 @@ RSpec.describe View::DailyCalculations do
   end
 
   it 'calculates and presents the reserve rate' do
-    expect(report.reserved_rate).to eq('61%') # in_care / (funded + reserve) to percentage - 4500/(4400 + 3000)
+    #4647[In care] divided by ( 7123[funded capacity] + 1500[reserve] + 510[activated] ) I get .5088 but the Daily page displays 54%
+    data.in_care = 4647
+    data.funded = 7123
+    data.reserve = 1500
+    data.activated = 510
+    expect(report.reserved_rate).to eq('51%') # in_care / (funded + reserve + activated) to percentage - 4500/(4400 + 3000)
   end
 
   it 'creates an alert status for calculations in the error range' do
@@ -40,5 +45,15 @@ RSpec.describe View::DailyCalculations do
   it 'creates an alert status for calculation in the warning range' do
     data.reserve = 2000
     expect(report.reserved_rate_status).to eq('warn')
+  end
+
+  it 'calculates #current_funded_capacity' do
+    # funded + activated
+    expect(report.current_funded_capacity).to eq(4400 + 250)
+  end
+
+  it 'calculates #total_reserve_capacity' do
+    # funded + activated + reserve
+    expect(report.total_reserve_capacity).to eq(4400 + 250 + 3000)
   end
 end
