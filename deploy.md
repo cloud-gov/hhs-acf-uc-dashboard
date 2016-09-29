@@ -20,7 +20,14 @@ If your environment has a different version of Ruby than what the Dashboard expe
 rvm install `cat .ruby-version`
 ```
 
-The environment will also need [PostgreSQL](https://www.postgresql.org/).  This small, lightweight database is used by the Dashboard for authentication and authorization.  [I assume the meat of application data will come from the API soon]
+> Note that rvm might need root permissions, depending on your system, so it might be necessary to run this with `su`!
+
+The environment will also need [PostgreSQL](https://www.postgresql.org/).  This small, lightweight database is used by the Dashboard for authentication and authorization.  Note that development bindings for Postgres are also needed, which requires an additional install depending on your OS:
+
+```
+# RedHat
+yum install postgresql-devel
+```
 
 ## The application
 
@@ -33,6 +40,8 @@ gem install bundle
 # Install from the Gemfile
 bundle install
 ```
+
+> Note that the `gem install` command might require root permissions, depending on how your environment is configured.
 
 ## Deploy scripting
 
@@ -67,6 +76,8 @@ gem install rake
 rake db:create:all
 rake db:migrate 
 ```
+
+> Note that the `gem install` command might require root permissions, depending on how your environment is configured.
 
 ## Email configuration
 
