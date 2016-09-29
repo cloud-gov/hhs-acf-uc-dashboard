@@ -19,9 +19,11 @@ module View
       :activated_rate, :activated_rate_status,
       :reserved_rate, :reserved_rate_status,
       :current_funded_capacity, :total_reserve_capacity,
-      :seven_day_discharge_average_per_hundred, :seven_day_discharge_average_per_hundred_status,
+          to: :daily_calculations
+
+    delegate :seven_day_discharge_average_per_hundred, :seven_day_discharge_average_per_hundred_status,
       :thirty_day_discharge_average_per_hundred, :thirty_day_discharge_average_per_hundred_status,
-          to: :calculations
+          to: :average_calculations
 
     def report_content_partial
       if api_error?
@@ -64,8 +66,12 @@ module View
 
     private
 
-    def calculations
-      @calclations ||= DailyCalculations.new(data)
+    def daily_calculations
+      @daily_calclations ||= DailyCalculations.new(data)
+    end
+
+    def average_calculations
+      @average_calculations ||= DailyCalculations.new(querier.thirty_day_history)
     end
 
     def format_date(raw_date)

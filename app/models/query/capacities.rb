@@ -15,6 +15,13 @@ module Query
       Capacity.where(reported_on: date, status: 'locked').take
     end
 
+    def last_thirty_days_from(date)
+      Capacity
+        .where("reported_on < ?", date)
+        .where("reported_on >= ?", date - 30)
+        .to_a
+    end
+
     def today
       @today ||= for_date(Date.today)
     end

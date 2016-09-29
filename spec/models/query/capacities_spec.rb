@@ -102,5 +102,36 @@ RSpec.describe Query::Capacities do
       end
     end
   end
+
+  describe '#last_thirty_days_from(date)' do
+    let!(:records) {
+      (-1..31).map do |n|
+        Capacity.create(reported_on: date - n.days)
+      end
+    }
+
+    let(:date) { Date.parse('2016-07-07') }
+
+
+    it 'return 30 records' do
+      expect(query.last_thirty_days_from(date).count).to eq(30)
+    end
+
+    it 'does not include the record for the day passed in' do
+      todays_capacity = records.detect{|r| r.reported_on == date }
+      expect(query.last_thirty_days_from(date)).to_not include(todays_capacity)
+    end
+
+    it 'starts and ends on the right days' do
+      expect(query.last_thirty_days_from(date).first.reported_on).to eq(date - 1)
+      expect(query.last_thirty_days_from(date).last.reported_on).to eq(date - 30)
+    end
+
+    it 'does not include dates out of bounds' do
+      dates = query.last_thirty_days_from(date).map(&:reported_on)
+      expect(dates).to_not include(date + 1)
+      expect(dates).to_not include(date - 31)
+    end
+  end
 end
 
