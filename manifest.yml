@@ -11,3 +11,5 @@ applications:
     RACK_ENV: production
     API_URL: https://hhs-uc-api.apps.cloud.gov
   stack: cflinuxfs2
+  services:
+    - hhs-uc-dashboard-db
