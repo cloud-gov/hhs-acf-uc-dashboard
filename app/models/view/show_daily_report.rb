@@ -6,10 +6,10 @@ module View
       @role = querier.role
       @date = format_date(querier.date)
       @querier = querier
-      @data = querier.data
+      @data = querier.capacity
     end
 
-    delegate :capacity, :params, :dates, :api_error,
+    delegate :capacity, :params, :dates,
       to: :querier
 
     delegate :referrals, :in_care, :discharges,
@@ -22,13 +22,17 @@ module View
           to: :calculations
 
     def report_content_partial
-      if capacity && !api_error
-        'content'
-      elsif api_error
+      if api_error?
         'api_error'
+      elsif capacity
+        'content'
       else
         'no_content'
       end
+    end
+
+    def api_error?
+      capacity && capacity.in_care.to_i == 0
     end
 
     def type_name

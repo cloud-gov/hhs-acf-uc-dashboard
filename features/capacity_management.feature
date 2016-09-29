@@ -9,6 +9,7 @@ Feature:
 
   Scenario: Viewing and updating capacity record
     Given I have signed in as an authenticated 'Admin' user
+    And the API is available
     And no other user has already modified the daily intake values
     When I click on the 'Capacity' link
     Then I should see yesterday's capacity values pre-populated as today's values
@@ -18,6 +19,8 @@ Feature:
 
     When I click on the 'Capacity' link
     And I update intake values
+    Then My API cached values will be saved
+
     When I click on the 'Capacity' link
     Then I will see the capacity values have been modified from yesterday
     Then I will see a capacity audit log noting the change
@@ -29,6 +32,13 @@ Feature:
     When I change the status to unlocked and save capacity
     Then I will see the capacity form is unlocked
     And I will see a note about unlocking the capacity
+
+  Scenario: Saving capacity when the API is down
+    Given I have signed in as an authenticated 'Admin' user
+    And the API is down
+    When I click on the 'Capacity' link
+    And I update intake values
+    Then I should see an alert that information could not be cached from the API
 
   Scenario: Viewing the Bed capacity history
     Given I have signed in as an authenticated 'Admin' user

@@ -5,8 +5,9 @@ class ApiClient
     @base_url = base_url || ENV['API_URL']
   end
 
-  def daily_statistics
-    get_json("daily_statistics/count")
+  def daily_statistics(date=nil)
+    date ||= Date.today
+    get_json("daily_statistics/count?on=#{View::DateTimeFormatter.new(date).database_date}")
   end
 
   private
