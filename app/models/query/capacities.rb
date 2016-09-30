@@ -19,6 +19,7 @@ module Query
       Capacity
         .where("reported_on < ?", date)
         .where("reported_on >= ?", date - 30)
+        .order("reported_on DESC")
         .to_a
     end
 
