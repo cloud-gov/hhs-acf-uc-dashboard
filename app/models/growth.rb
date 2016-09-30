@@ -1,8 +1,8 @@
 class Growth
-  attr_reader :history, :number_of_slopes
+  attr_reader :collection, :number_of_slopes
 
-  def initialize(history)
-    @history = history
+  def initialize(collection)
+    @collection = collection
     @number_of_slopes = 7
   end
 
@@ -12,7 +12,7 @@ class Growth
 
   def slopes
     (0..(number_of_slopes - 1)).map do |n|
-      values = history[n..(n+30)].map(&:referrals)
+      values = collection[n..(n+30)].map(&:referrals)
       LinearRegression.new(values).slope
     end
   end

@@ -23,6 +23,14 @@ module Query
         .to_a
     end
 
+    def regressions_collection(date)
+      Capacity
+        .where("reported_on < ?", date)
+        .where("reported_on >= ?", date - 37)
+        .order("reported_on DESC")
+        .to_a
+    end
+
     def today
       @today ||= for_date(Date.today)
     end

@@ -1,6 +1,7 @@
 module Query
   class DailyReport
-    attr_reader :role, :params, :date, :capacity, :dates, :thirty_day_history
+    attr_reader :role, :params, :date, :capacity, :dates,
+      :thirty_day_history, :regressions_collection
 
     def initialize(role, params)
       @role = role
@@ -16,6 +17,7 @@ module Query
       load_dates
       if capacity
         load_thirty_day_history
+        load_regressions_collection
         cache_api_data
       end
     end
@@ -45,6 +47,10 @@ module Query
     def load_dates
       last = capacities_query.first || OpenStruct.new(reported_on: Date.today)
       @dates = ((last.reported_on)..Date.today).to_a.reverse
+    end
+
+    def load_regressions_collection
+      @regressions_collection = capacities_query.regressions_collection(date)
     end
 
     def cache_api_data
