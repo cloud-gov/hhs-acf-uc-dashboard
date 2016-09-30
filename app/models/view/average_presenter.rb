@@ -7,7 +7,7 @@ module View
     end
 
     def average_per_hundred
-      (number/100.0).round(1)
+      (number*100.0).round(1)
     end
 
     def alert_status
@@ -16,7 +16,7 @@ module View
       elsif average_per_hundred <= 2.4
         'warn'
       else
-        'alert'
+        'notice'
       end
     end
   end

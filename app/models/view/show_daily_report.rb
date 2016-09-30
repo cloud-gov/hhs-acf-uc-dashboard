@@ -71,7 +71,7 @@ module View
     end
 
     def average_calculations
-      @average_calculations ||= DailyCalculations.new(querier.thirty_day_history)
+      @average_calculations ||= AverageCalculations.new(querier.thirty_day_history)
     end
 
     def format_date(raw_date)
