@@ -5,13 +5,21 @@ RSpec.describe View::AverageCalculations do
     View::AverageCalculations.new(data)
   }
 
-  it 'calculates the 7 day average discharge rate' do
+  it 'calculates the 7 day average discharge ratio (to in care)' do
     seven_day_average =  (20 + 13 + 12 + 18 + 5 + 7 + 12).to_f / (4500 + 4502 + 4510 + 4507 + 4502 + 4510 + 4520)
-    expect(report.seven_day_discharge_average).to eq(seven_day_average)
+    expect(report.seven_day_discharge_ratio_average).to eq(seven_day_average)
   end
 
   it 'calculates the 7 day per 100 kids' do
     expect(report.seven_day_discharge_average_per_hundred).to eq(0.3)
+  end
+
+  it 'calculates the 7 day average' do
+    expect(report.seven_day_discharge_average).to eq(((20+13+12+18+5+7+12)/7).round)
+  end
+
+  it 'calculates the percentage change is discharges 7 days vs 30' do
+    expect(report.week_vs_month_discharge_average_percentage).to eq("-37%")
   end
 
   let(:data) {
