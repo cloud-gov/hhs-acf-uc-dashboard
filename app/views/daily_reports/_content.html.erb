@@ -35,6 +35,7 @@
         <div class='description usa-width-three-fourths'>Funded capacity + all reserve beds</div>
         <div class='calculation-value usa-width-one-fourth <%= @view_model.reserved_rate_status %>'><%= @view_model.reserved_rate %></div>
       </div>
+      <%= render partial: @view_model.operational_occupancy_partial %>
     </div>
 
     <div class='usa-width-one-half occupancy-rates'>

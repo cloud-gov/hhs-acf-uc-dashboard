@@ -18,6 +18,8 @@ module View
     delegate :open_beds,
       :activated_rate, :activated_rate_status,
       :reserved_rate, :reserved_rate_status,
+      :funded_percentage, :funded_percentage_status,
+      :funded_available_percentage, :funded_available_percentage_status,
       :current_funded_capacity, :total_reserve_capacity,
           to: :daily_calculations
 
@@ -34,6 +36,14 @@ module View
         'content'
       else
         'no_content'
+      end
+    end
+
+    def operational_occupancy_partial
+      if type_name == "Operations"
+        "operational_occupancy"
+      else
+        "blank"
       end
     end
 

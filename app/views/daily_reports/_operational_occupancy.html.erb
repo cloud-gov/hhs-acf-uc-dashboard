@@ -1,0 +1,9 @@
+<div class='usa-grid-full color-alert-row'>
+  <div class='description usa-width-three-fourths'>Current occupancy rate, only funded capacity</div>
+  <div class='calculation-value usa-width-one-fourth <%= @view_model.funded_percentage_status %>'><%= @view_model.funded_percentage %></div>
+</div>
+
+<div class='usa-grid-full color-alert-row'>
+  <div class='description usa-width-three-fourths'>Current occupancy rate, only funded available capacity</div>
+  <div class='calculation-value usa-width-one-fourth <%= @view_model.funded_available_percentage_status %>'><%= @view_model.funded_available_percentage %></div>
+</div>
