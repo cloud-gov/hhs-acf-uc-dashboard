@@ -1,10 +1,10 @@
 class LinearRegression
   attr_reader :x_values, :y_values, :length
 
-  def initialize(x_values, y_values)
-    @x_values = x_values
+  def initialize(y_values, x_values=nil)
     @y_values = y_values
-    @length = x_values.length
+    @length   = y_values.length
+    @x_values = x_values || (0..(length-1)).to_a
   end
 
   def slope

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe LinearRegression do
-  let(:calculator) { LinearRegression.new(x_values, y_values) }
+  let(:calculator) { LinearRegression.new(y_values, x_values) }
 
   describe 'with two points' do
     let(:x_values) { [0, 2] }
