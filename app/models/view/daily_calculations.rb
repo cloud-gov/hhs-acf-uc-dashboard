@@ -34,35 +34,23 @@ module View
       RatioPresenter.new(reserved_ratio).alert_status
     end
 
-    private
-
-    class RatioPresenter
-      attr_reader :number
-
-      def initialize(number)
-        @number = number
-      end
-
-      def percentage
-        "#{percentile}%"
-      end
-
-      def alert_status
-        if percentile <=65
-          'notice'
-        elsif percentile <= 85
-          'warn'
-        else
-          'alert'
-        end
-      end
-
-      private
-
-      def percentile
-        (number*100).round(0)
-      end
+    def seven_day_discharge_average_per_hundred
+      AveragePresenter.new(seven_day_discharge_average).average_per_hundred
     end
+
+    def seven_day_discharge_average_per_hundred_status
+      AveragePresenter.new(seven_day_discharge_average).alert_status
+    end
+
+    def thirty_day_discharge_average_per_hundred
+      AveragePresenter.new(thirty_day_discharge_average).average_per_hundred
+    end
+
+    def thirty_day_discharge_average_per_hundred_status
+      AveragePresenter.new(thirty_day_discharge_average).alert_status
+    end
+
+    private
 
     def reserved_ratio
       data.in_care.to_f/(data.funded + data.reserve + data.activated)
@@ -70,6 +58,15 @@ module View
 
     def activation_ratio
       data.in_care.to_f/(data.funded + data.activated)
+    end
+
+    def seven_day_discharge_average
+      1
+      # average discharge / average in-care
+    end
+
+    def thirty_day_discharge_average
+      1
     end
   end
 end

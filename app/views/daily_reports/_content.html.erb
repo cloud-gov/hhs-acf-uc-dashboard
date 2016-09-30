@@ -39,6 +39,14 @@
 
     <div class='usa-width-one-half occupancy-rates'>
       <h4 class='row'>Discharge rates</h4>
+      <div class='usa-grid-full color-alert-row'>
+        <div class='description usa-width-three-fourths'>7 day average per 100 children</div>
+        <div class='calculation-value usa-width-one-fourth <%= @view_model.seven_day_discharge_average_per_hundred_status %>'><%= @view_model.seven_day_discharge_average_per_hundred %></div>
+      </div>
+      <div class='usa-grid-full color-alert-row'>
+        <div class='description usa-width-three-fourths'>30 day average per 100 children</div>
+        <div class='calculation-value usa-width-one-fourth <%= @view_model.thirty_day_discharge_average_per_hundred_status %>'><%= @view_model.thirty_day_discharge_average_per_hundred %></div>
+      </div>
     </div>
   </div>
 
@@ -56,6 +64,14 @@
       <p class='row'>
         <%= @view_model.date %>
         <b><%= @view_model.discharges %></b>
+      </p>
+      <p class='row'>
+        7 day average
+        <b><%= @view_model.seven_day_discharge_average %></b>
+      </p>
+      <p class='row'>
+        7 day average vs. last month average
+        <b><%= @view_model.week_vs_month_discharge_average_percentage %></b>
       </p>
     </div>
 

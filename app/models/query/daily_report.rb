@@ -1,7 +1,6 @@
 module Query
   class DailyReport
-    attr_reader :role, :params, :date, :capacity, :dates,
-      :daily_statistics, :api_error
+    attr_reader :role, :params, :date, :capacity, :dates, :thirty_day_history
 
     def initialize(role, params)
       @role = role
@@ -16,6 +15,7 @@ module Query
       load_capacity
       load_dates
       if capacity
+        load_thirty_day_history
         cache_api_data
       end
     end
@@ -33,6 +33,10 @@ module Query
     end
 
     private
+
+    def load_thirty_day_history
+      @thirty_day_history = capacities_query.last_thirty_days_from(capacity.reported_on)
+    end
 
     def load_capacity
       @capacity = capacities_query.locked_for_date(requested_date)

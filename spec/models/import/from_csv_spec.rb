@@ -19,18 +19,18 @@ RSpec.describe Import::FromCSV, "#call" do
     it 'updates the values that do not exist yet' do
       service.call
       capacity.reload
-      expect(capacity.in_care).to eq(4571)
-      expect(capacity.referrals).to eq(8)
-      expect(capacity.discharges).to eq(6)
+      expect(capacity.in_care).to eq(7124)
+      expect(capacity.referrals).to eq(180)
+      expect(capacity.discharges).to eq(256)
     end
 
     it 'will overwrite those value' do
       service.call
       capacity.reload
-      expect(capacity.funded).to eq(6000)
-      expect(capacity.reserve).to eq(2200)
-      expect(capacity.activated).to eq(600)
-      expect(capacity.unavailable).to eq(56)
+      expect(capacity.funded).to eq(8717)
+      expect(capacity.reserve).to eq(2875)
+      expect(capacity.activated).to eq(2000)
+      expect(capacity.unavailable).to eq(396)
     end
 
     it 'locks the record' do
@@ -50,13 +50,13 @@ RSpec.describe Import::FromCSV, "#call" do
 
     it 'record has the right imported values' do
       service.call
-      expect(capacity.in_care).to eq(4571)
-      expect(capacity.referrals).to eq(8)
-      expect(capacity.discharges).to eq(6)
-      expect(capacity.funded).to eq(6000)
-      expect(capacity.reserve).to eq(2200)
-      expect(capacity.activated).to eq(600)
-      expect(capacity.unavailable).to eq(56)
+      expect(capacity.in_care).to eq(7124)
+      expect(capacity.referrals).to eq(180)
+      expect(capacity.discharges).to eq(256)
+      expect(capacity.funded).to eq(8717)
+      expect(capacity.reserve).to eq(2875)
+      expect(capacity.activated).to eq(2000)
+      expect(capacity.unavailable).to eq(396)
     end
 
     it 'locks the record' do

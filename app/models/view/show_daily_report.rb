@@ -19,7 +19,12 @@ module View
       :activated_rate, :activated_rate_status,
       :reserved_rate, :reserved_rate_status,
       :current_funded_capacity, :total_reserve_capacity,
-          to: :calculations
+          to: :daily_calculations
+
+    delegate :seven_day_discharge_average, :seven_day_discharge_average_per_hundred, :seven_day_discharge_average_per_hundred_status,
+      :thirty_day_discharge_average_per_hundred, :thirty_day_discharge_average_per_hundred_status,
+      :week_vs_month_discharge_average_percentage,
+          to: :average_calculations
 
     def report_content_partial
       if api_error?
@@ -41,7 +46,7 @@ module View
 
     def available_dates
       dates_raw.map do |date|
-        DatePresenter.new(date, querier.date)
+        ReportDatePicker.new(date, querier.date)
       end
     end
 
@@ -62,24 +67,12 @@ module View
 
     private
 
-    def calculations
-      @calclations ||= DailyCalculations.new(data)
+    def daily_calculations
+      @daily_calclations ||= DailyCalculations.new(data)
     end
 
-    class DatePresenter
-      attr_reader :formatter, :is_selected
-
-      def initialize(date, selected_date)
-        @is_selected = date == selected_date
-        @formatter = DateTimeFormatter.new(date)
-      end
-
-      delegate :database_date, :full_month_us_date,
-        to: :formatter
-
-      def selected
-        is_selected ? 'selected' : ''
-      end
+    def average_calculations
+      @average_calculations ||= AverageCalculations.new(querier.thirty_day_history)
     end
 
     def format_date(raw_date)
