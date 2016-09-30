@@ -41,6 +41,15 @@ module View
       "#{percentile}%"
     end
 
+    def seven_day_referrals_average
+      referrals_average(history_for(7))
+    end
+
+    def week_vs_month_referrals_average_percentage
+      percentile = (week_vs_month_referrals_average_ratio * 100).round
+      "#{percentile}%"
+    end
+
     private
 
     def history_for(n)
@@ -53,6 +62,12 @@ module View
       (records.map(&:discharges).inject(0, :+) / records.size.to_f).round
     end
 
+    def referrals_average(records)
+      records = records.find_all {|record| record.referrals }
+      return 0 if records.empty?
+      (records.map(&:referrals).inject(0, :+) / records.size.to_f).round
+    end
+
     def average_discharge_ratios(records)
       discharges = records.map(&:discharges).inject(0, :+)
       in_care    = records.map(&:in_care).inject(0, :+)
@@ -62,6 +77,11 @@ module View
     def week_vs_month_discharge_average_ratio
       return 0 if discharge_average(history_for(30)) == 0
       (discharge_average(history_for(7)) - discharge_average(history_for(30))).to_f / discharge_average(history_for(30))
+    end
+
+    def week_vs_month_referrals_average_ratio
+      return 0 if referrals_average(history_for(30)) == 0
+      (referrals_average(history_for(7)) - referrals_average(history_for(30))).to_f / referrals_average(history_for(30))
     end
   end
 end

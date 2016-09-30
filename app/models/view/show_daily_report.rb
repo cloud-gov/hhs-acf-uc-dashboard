@@ -23,7 +23,8 @@ module View
 
     delegate :seven_day_discharge_average, :seven_day_discharge_average_per_hundred, :seven_day_discharge_average_per_hundred_status,
       :thirty_day_discharge_average_per_hundred, :thirty_day_discharge_average_per_hundred_status,
-      :week_vs_month_discharge_average_percentage,
+      :week_vs_month_discharge_average_percentage, :week_vs_month_referrals_average_percentage,
+      :seven_day_referrals_average,
           to: :average_calculations
 
     def report_content_partial
