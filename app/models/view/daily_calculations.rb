@@ -34,20 +34,20 @@ module View
       RatioPresenter.new(reserved_ratio).alert_status
     end
 
-    def seven_day_discharge_average_per_hundred
-      AveragePresenter.new(seven_day_discharge_average).average_per_hundred
+    def funded_percentage_status
+      RatioPresenter.new(funded_ratio).alert_status
     end
 
-    def seven_day_discharge_average_per_hundred_status
-      AveragePresenter.new(seven_day_discharge_average).alert_status
+    def funded_percentage
+      RatioPresenter.new(funded_ratio).percentage
     end
 
-    def thirty_day_discharge_average_per_hundred
-      AveragePresenter.new(thirty_day_discharge_average).average_per_hundred
+    def funded_available_percentage_status
+      RatioPresenter.new(funded_available_ratio).alert_status
     end
 
-    def thirty_day_discharge_average_per_hundred_status
-      AveragePresenter.new(thirty_day_discharge_average).alert_status
+    def funded_available_percentage
+      RatioPresenter.new(funded_available_ratio).percentage
     end
 
     private
@@ -60,13 +60,12 @@ module View
       data.in_care.to_f/(data.funded + data.activated)
     end
 
-    def seven_day_discharge_average
-      1
-      # average discharge / average in-care
+    def funded_ratio
+      data.in_care.to_f/data.funded
     end
 
-    def thirty_day_discharge_average
-      1
+    def funded_available_ratio
+      data.in_care.to_f/(data.funded - data.unavailable)
     end
   end
 end

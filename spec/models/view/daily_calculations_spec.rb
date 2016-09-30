@@ -56,4 +56,13 @@ RSpec.describe View::DailyCalculations do
     # funded + activated + reserve
     expect(report.total_reserve_capacity).to eq(4400 + 250 + 3000)
   end
+
+  it 'calculates #funded_percentage' do
+    # in_care / funded
+    expect(report.funded_percentage).to eq("102%")
+  end
+
+  it 'calculates #funded_available_percentage' do
+    expect(report.funded_available_percentage).to eq("104%")
+  end
 end
