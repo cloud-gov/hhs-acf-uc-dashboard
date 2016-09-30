@@ -57,6 +57,14 @@
         <%= @view_model.date %>
         <b><%= @view_model.referrals %></b>
       </p>
+      <p class='row'>
+        7 day average
+        <b><%= @view_model.seven_day_referrals_average %></b>
+      </p>
+      <p class='row'>
+        7 day average vs. last month average
+        <b><%= @view_model.week_vs_month_referrals_average_percentage %></b>
+      </p>
     </div>
 
     <div class='usa-width-one-third discharges'>
