@@ -37,12 +37,15 @@
   }
 
   .detail-tables,
-  .rates {
+  .rates,
+  .maximum-estimates {
     margin: 4rem 0;
 
     h4.row {
       padding: 2rem;
       background-color: $color-gray-lightest;
+
+      .unbold { font-weight: normal; }
     }
 
     .row {
@@ -58,6 +61,10 @@
         float: right;
         width: 25%;
       }
+    }
+
+    .left-label {
+      padding: 1rem 2rem;
     }
   }
 
@@ -85,6 +92,10 @@
     &.alert {
       background-color: $color-secondary-dark;
       color: white;
+    }
+
+    &.double-sized {
+      min-height: 6.5rem;
     }
   }
 }

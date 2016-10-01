@@ -17,4 +17,14 @@ RSpec.describe CensusProjection do
       expect(collection[1]).to eq(8094)
     end
   end
+
+  describe 'when growth is negative' do
+    let(:growth) { -0.24648617511520737 }
+
+    it 'calculates reasonably' do
+      expect(collection[0]).to be > 0
+      expect(collection[1]).to be > 0
+      expect(collection[2]).to be > 0
+    end
+  end
 end

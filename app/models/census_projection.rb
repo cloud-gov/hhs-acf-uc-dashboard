@@ -17,11 +17,19 @@ class CensusProjection
       collection << census
     end
 
-    collection.map(&:round)
+    collection.map do |n|
+      safe_round(n)
+    end
   end
 
   def calculate_next(census, n)
     census_nd = census - (census * thirty_day_average_discharge)
     census_nd + seven_day_average_referral + growth * n
+  end
+
+  def safe_round(n)
+    n.round
+  rescue
+    0
   end
 end
