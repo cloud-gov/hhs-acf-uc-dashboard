@@ -5,11 +5,11 @@ applications:
   disk_quota: 1024M
   command: bundle exec rake cf:on_first_instance db:migrate && bundle exec rails s -p $PORT -e $RAILS_ENV
   routes:
-  - route: hhs-acf-uc-dashboard.apps.cloud.gov
+  - route: hhs-acf-uc-dashboard.fr.cloud.gov
   env:
     RAILS_ENV: production
     RACK_ENV: production
-    API_URL: https://hhs-uc-api.apps.cloud.gov
+    API_URL: https://hhs-uc-api.fr.cloud.gov
   stack: cflinuxfs2
   services:
     - hhs-uc-dashboard-db
